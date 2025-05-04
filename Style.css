@@ -6,7 +6,7 @@ body {
     line-height: 1.6;
     height: 100%;
 }
-
+/*ladnie ogarnia stopke na dol strony*/
 .wrapper {
     min-height: 100vh;
     display: flex;
@@ -40,7 +40,6 @@ nav ul li a {
     font-weight: bold;
     padding: 10px 16px;
     border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s, transform 0.2s;
 }
 
 nav ul li a:hover {
@@ -72,7 +71,6 @@ h1, h2 {
 ul {
     padding-left: 25px;
 }
-
 footer {
     background-color: #dfe4ea;
     text-align: center;
@@ -88,10 +86,59 @@ footer a {
     margin: 0 8px;
     padding: 6px 12px;
     border-radius: 6px;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 footer a:hover {
     background-color: rgba(0, 0, 0, 0.05);
     color: #7c2ae8;
+}
+
+/* dla formularza rejestracji oraz logowania*/
+.form-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #444;
+}
+
+
+.form-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.form-container button {
+    padding: 12px;
+    background-color: #5a60e3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #4348c1;
 }
