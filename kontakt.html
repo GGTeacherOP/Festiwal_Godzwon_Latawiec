@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Festiwalowy</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="StyleDoKontakt.css">
 </head>
 <body>
     <header>
@@ -19,7 +19,71 @@
         </nav>
     </header>
     <main>
-
+        <div class="hero">
+            <h1>Kontakt</h1>
+            <p>Masz pytania lub propozycje współpracy? Skontaktuj się z nami – chętnie odpowiemy!</p>
+          </div>
+        
+          <div class="section">
+            <h2>Dane kontaktowe</h2>
+            <div class="contact-details">
+              <p><strong>Adres:</strong> ul. Festiwalowa 10, 00-001 Warszawa</p>
+              <p><strong>Email:</strong> kontakt@festiwalowy.pl</p>
+              <p><strong>Telefon:</strong> +48 123 456 789</p>
+            </div>
+        
+            <blockquote>
+              „Największym problemem w komunikacji jest iluzja, że do niej doszło.”
+              <footer>— George Bernard Shaw</footer>
+            </blockquote>
+        
+            <h2>Formularz kontaktowy</h2>
+            <form action="#" method="post">
+              <label for="name">Imię i nazwisko</label>
+              <input type="text" id="name" name="name" required />
+        
+              <label for="email">Adres email</label>
+              <input type="email" id="email" name="email" required />
+        
+              <label for="message">Wiadomość</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+        
+              <button type="submit">Wyślij wiadomość</button>
+            </form>
+        
+            <h2>FAQ – Najczęściej zadawane pytania</h2>
+            <div class="faq">
+              <details>
+                <summary>
+                  <span>Jak mogę zapisać się na festiwal?</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <p>Wystarczy przejść do zakładki „Festiwale” i kliknąć przycisk „Zapisz się” przy wybranym wydarzeniu.</p>
+              </details>
+        
+              <details>
+                <summary>
+                  <span>Czy mogę edytować swoje dane po rejestracji?</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <p>Tak, po zalogowaniu przejdź do swojego profilu i wybierz „Edytuj dane”.</p>
+              </details>
+        
+              <details>
+                <summary>
+                  <span>Jak mogę skontaktować się z organizatorami?</span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <p>Możesz użyć formularza powyżej lub napisać bezpośrednio na adres: kontakt@festiwalowy.pl</p>
+              </details>
+            </div>
+          </div>
     </main>
 
     <footer>
