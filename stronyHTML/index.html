@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Festiwalowy</title>
     <link rel="stylesheet" href="../styleCSS/Style.css">
 </head>
+
 <body>
     <div class="wrapper">
         <header>
@@ -22,11 +24,9 @@
         <main>
             <section>
                 <h1>Witamy w Systemie Festiwalowym</h1>
-                <p>Organizuj i uczestnicz w najlepszych wydarzeniach! Przeglądaj festiwale, zapisuj się i zarządzaj swoim kontem.</p>
+                <p>Organizuj i uczestnicz w najlepszych wydarzeniach! Przeglądaj festiwale, zapisuj się i zarządzaj
+                    swoim kontem.</p>
             </section>
-             <section class="cytaty">
-                <!-- cytaty ktore sie przemieniaja (zamiast podstrony)-->
-             </section>
             <section>
                 <h2>Nadchodzące festiwale</h2>
                 <ul>
@@ -34,6 +34,16 @@
                     <li>Festiwal Kina Niezależnego - 03.08.2025, Kraków</li>
                     <li>Festiwal Sztuki Nowoczesnej - 22.09.2025, Gdańsk</li>
                 </ul>
+            </section>
+            <section class="cytaty">
+                <div id="quote-container">
+                    <p id="quote-text">„Festiwal to przestrzeń spotkań, emocji i pasji — nasza strona łączy ludzi z ich
+                        doświadczeniami.”</p>
+                </div>
+                <div class="quote-buttons">
+                    <button onclick="poprzedniCytat()">&#8592; Poprzedni</button>
+                    <button onclick="nastepnyCytat()">Następny &#8594;</button>
+                </div>
             </section>
 
         </main>
@@ -44,5 +54,40 @@
             <a href="o-nas.html">O nas</a>
         </footer>
     </div>
+    <script>
+        const cytaty = [
+            "„Festiwal to przestrzeń spotkań, emocji i pasji — nasza strona łączy ludzi z ich doświadczeniami.”",
+            "„Nie budujemy tylko strony - tworzymy przestrzeń dla wspomnień, inspiracji i nowych doświadczeń.”",
+            "„Festiwale to święta wyobraźni — pozwalają nam oderwać się od codzienności i poczuć wspólnotę.”",
+            "„Między sceną a tłumem rodzą się wspomnienia, które zostają z nami na zawsze.”",
+            "„Każdy festiwal to nowa opowieść — z dźwiękiem, obrazem i emocją w roli głównej.”",
+            "„Nie ma znaczenia, gdzie jesteś — liczy się energia ludzi, którzy są obok ciebie.”",
+            "„Festiwal to więcej niż wydarzenie. To stan ducha.”",
+            "„W muzyce, filmie, sztuce – festiwale łączą świat, który chce się dzielić pasją.”",
+            "„To właśnie na festiwalu odkrywasz, że jesteś częścią czegoś większego.”"
+        ];
+
+        let obecnyCytat = 0;
+        const text = document.getElementById("quote-text");
+
+        function pokazCytaty(index) {
+            text.style.opacity = 0;
+            setTimeout(() => {
+                text.textContent = cytaty[index];
+                text.style.opacity = 1;
+            }, 300);
+        }
+
+        function nastepnyCytat() {
+            obecnyCytat = (obecnyCytat + 1) % cytaty.length;
+            pokazCytaty(obecnyCytat);
+        }
+
+        function poprzedniCytat() {
+            obecnyCytat = (obecnyCytat - 1 + cytaty.length) % cytaty.length;
+            pokazCytaty(obecnyCytat);
+        }
+
+    </script>
 </body>
 </html>
