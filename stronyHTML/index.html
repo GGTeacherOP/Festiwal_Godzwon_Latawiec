@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Festiwalowy</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="../styleCSS/Style.css">
 </head>
 <body>
     <div class="wrapper">
@@ -20,23 +20,23 @@
             </nav>
         </header>
         <main>
-            <div class="form-container">
-                <h2>Rejestracja</h2>
-                <form action="register.php" method="post">
-                    <label for="username">Nazwa użytkownika</label>
-                    <input type="text" id="username" name="username" required>
-            
-                    <label for="email">Adres e-mail</label>
-                    <input type="email" id="email" name="email" required>
-            
-                    <label for="password">Hasło</label>
-                    <input type="password" id="password" name="password" required>
-            
-                    <button type="submit">Zarejestruj się</button>
-                </form>
-            </div>          
-        </main>
+            <section>
+                <h1>Witamy w Systemie Festiwalowym</h1>
+                <p>Organizuj i uczestnicz w najlepszych wydarzeniach! Przeglądaj festiwale, zapisuj się i zarządzaj swoim kontem.</p>
+            </section>
+             <section class="cytaty">
+                <!-- cytaty ktore sie przemieniaja (zamiast podstrony)-->
+             </section>
+            <section>
+                <h2>Nadchodzące festiwale</h2>
+                <ul>
+                    <li>Festiwal Muzyki Alternatywne - 15.07.2025, Warszawa</li>
+                    <li>Festiwal Kina Niezależnego - 03.08.2025, Kraków</li>
+                    <li>Festiwal Sztuki Nowoczesnej - 22.09.2025, Gdańsk</li>
+                </ul>
+            </section>
 
+        </main>
         <footer>
             <p>&copy; 2025 System Festiwalowy</p>
             <a href="#">Regulamin</a> |
