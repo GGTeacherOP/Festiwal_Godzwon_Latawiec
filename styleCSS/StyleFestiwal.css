@@ -1,15 +1,6 @@
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6fa; /* Restored background color */
-    color: #333;
-    line-height: 1.6;
-    /* Removed position relative, min-height, overflow-x */
-    height: 100%; /* Assuming .wrapper handles layout */
-}
-
+/* ===== HEADER - ORYGINALNY ===== */
 header {
-    background: linear-gradient(90deg, #5a60e3, #7c83ff); /* Restored original background */
+    background: linear-gradient(90deg, #5a60e3, #7c83ff);
     color: white;
     padding: 25px 0;
     font-size: 22px;
@@ -43,32 +34,9 @@ nav ul li a:hover {
     transform: translateY(-1px);
 }
 
-main {
-    max-width: 1100px;
-    width: 95%;
-    margin: 30px auto;
-    padding: 30px;
-    background-color: white; /* Restored original background */
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    flex: 1;
-}
-
-section {
-    margin-bottom: 40px;
-}
-
-h1,h2 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-
-ul {
-    padding-left: 25px;
-}
-
+/* ===== STOPKA - ORYGINALNA ===== */
 footer {
-    background-color: #dfe4ea; /* Restored original background */
+    background-color: #dfe4ea;
     text-align: center;
     padding: 20px 10px;
     font-size: 14px;
@@ -83,139 +51,16 @@ footer a {
     padding: 6px 12px;
     border-radius: 6px;
 }
+
 footer a:hover {
     background-color: rgba(0, 0, 0, 0.05);
     color: #7c2ae8;
 }
 
-.festiwal {
-    display: flex;
-    align-items: flex-start;
-    margin: 50px 20px; /* Increased vertical margin */
-    border: 1px solid #e9ecef; /* Lighter border */
-    border-radius: 20px; /* More rounded corners */
-    padding: 30px; /* Adjusted padding */
-    gap: 35px; /* Adjusted gap */
-    background-color: #ffffff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Softer, slightly more spread shadow */
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-}
-
-.festiwal:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09); /* Adjusted hover shadow */
-}
-
-.festiwal-image-container {
-    width: 330px; /* Slightly adjusted width */
-    flex-shrink: 0;
-    padding: 0; 
-    border-radius: 12px; /* Consistent radius */
-    overflow: hidden; 
-}
-
-.festiwal img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 12px; /* Match container radius */
-    object-fit: cover;
-    /* border: 1px solid #eee; */ /* Removed border */
-    transition: transform 0.3s ease; 
-}
-
-.festiwal img:hover {
-    transform: scale(1.03); 
-}
-
-.opis {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 260px; /* Adjusted min-height */
-}
-
-.opis h2 {
-    margin-top: 5px; /* Slight adjustment */
-    font-size: 1.9em; /* Slightly larger */
-    color: #34495e;
-    margin-bottom: 18px; /* Adjusted spacing */
-    font-weight: 600; /* Slightly bolder */
-}
-
-.opis .krotki-opis {
-    font-size: 1.15em; /* Slightly larger */
-    color: #495057; /* Darker grey for better contrast */
-    margin-bottom: 25px; /* Adjusted spacing */
-    line-height: 1.5;
-}
-
-.pelny-opis {
-    display: none;
-<<<<<<< HEAD
-    margin-top: 15px;
-    padding-top: 20px; /* Increased padding */
-    border-top: 1px solid #e9ecef; /* Match card border color */
-    color: #495057;
-    font-size: 1em;
-    line-height: 1.6;
-}
-
-.pelny-opis p {
-    margin-bottom: 12px;
-}
-
-.pelny-opis ul {
-    list-style: disc;
-    padding-left: 25px;
-    margin-top: 12px;
-    margin-bottom: 18px;
-}
-
-.pelny-opis li {
-    margin-bottom: 10px;
-}
-
-.opis .button-container {
-    margin-top: auto;
-    padding-top: 25px; /* Adjusted spacing */
-    /* border-top: 1px solid #f0f0f0; */ /* Removed top border for cleaner look */
-}
-
-.opis button {
-    margin-top: 10px;
-    padding: 12px 28px; /* Adjusted padding */
-    font-size: 1.05em; /* Slightly larger font */
-    font-weight: bold;
-    border: none;
-    border-radius: 8px; 
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.opis button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18); /* Adjusted hover shadow */
-}
-
-.opis button[onclick*=\"kup-bilet\"] {
-    background-color: #007bff;
-    color: white;
-}
-
-.opis button.zobacz-wiecej {
-    background-color: #6c757d;
-    color: white;
-    margin-left: 12px; /* Adjusted spacing */
-}
-
-.opis button.zobacz-wiecej:hover {
-    background-color: #5a6268;
-=======
-}
 .social-links {
     margin-top: 15px;
 }
+
 .social-links a {
     color: #333;
     font-size: 1.5em;
@@ -223,16 +68,237 @@ footer a:hover {
     transition: color 0.3s ease;
     text-decoration: none;
 }
+
 .social-links a:hover {
     color: #4267B2;
 }
+
 .social-links a.instagram:hover {
     color: #E1306C;
 }
+
 .social-links a.twitter:hover {
     color: #1DA1F2;
 }
+
 .social-links a.youtube:hover {
     color: #FF0000;
->>>>>>> 09b9c824802066d9fd8bed2b2e35f17ebdb2f623
+}
+
+/* ===== NOWE STYLE DLA FESTIWALI ===== */
+:root {
+    --primary-blue: #2563eb;
+    --dark-blue: #1e40af;
+    --light-blue: #dbeafe;
+    --accent-blue: #3b82f6;
+    --text-dark: #1f2937;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --border-radius: 12px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f8fafc;
+    color: var(--text-dark);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* ===== PROFESJONALNE KARTY FESTIWALI ===== */
+.festiwal {
+    display: flex;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 3rem;
+    overflow: hidden;
+    transition: var(--transition);
+    flex-direction: column;
+}
+
+.festiwal:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.festiwal-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+
+.festiwal-image-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.festiwal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.festiwal:hover img {
+    transform: scale(1.05);
+}
+
+.opis {
+    padding: 2rem;
+}
+
+.opis h2 {
+    color: var(--dark-blue);
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.krotki-opis {
+    color: #4b5563;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.pelny-opis {
+    display: none;
+    color: #374151;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.pelny-opis p {
+    margin-bottom: 1rem;
+}
+
+.pelny-opis ul {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.pelny-opis li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+button[onclick*="kup-bilet"] {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+button[onclick*="kup-bilet"]:hover {
+    background-color: var(--dark-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.zobacz-wiecej {
+    background-color: #e5e7eb;
+    color: var(--text-dark);
+}
+
+.zobacz-wiecej:hover {
+    background-color: #d1d5db;
+    transform: translateY(-2px);
+}
+
+/* ===== RESPONSYWNOŚĆ ===== */
+@media (min-width: 768px) {
+    .festiwal {
+        flex-direction: row;
+    }
+    
+    .festiwal-image-container {
+        width: 40%;
+        height: auto;
+        min-height: 350px;
+    }
+    
+    .opis {
+        width: 60%;
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-container {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
+}
+
+/* ===== ANIMACJE ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.festiwal {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.festiwal:nth-child(1) { animation-delay: 0.1s; }
+.festiwal:nth-child(2) { animation-delay: 0.2s; }
+.festiwal:nth-child(3) { animation-delay: 0.3s; }
+.festiwal:nth-child(4) { animation-delay: 0.4s; }
+.festiwal:nth-child(5) { animation-delay: 0.5s; }
+.festiwal:nth-child(6) { animation-delay: 0.6s; }
+
+.pelny-opis {
+    display: none;
+    color: #374151;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.zobacz-wiecej.active {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+.zobacz-wiecej.active:hover {
+    background-color: #1a3a8f;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

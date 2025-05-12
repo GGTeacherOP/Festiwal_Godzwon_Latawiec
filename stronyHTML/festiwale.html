@@ -26,8 +26,8 @@
         </div>
             <div class="opis">
                 <h2>Festiwal Muzyki Rockowej</h2>
-                <p class="krotki-opis">Trzy dni pełne energii, muzyki na żywo i niesamowitej atmosfery! Dołącz do nas w
-                    Krakowie już w lipcu.</p>
+                <p class="krotki-opis">Trzy dni pełne energii, muzyki na żywo i niesamowitej atmosfery! Dołącz do nas [data z bazy i miejsce]
+                </p>
                 <div class="pelny-opis">
                     <p>Festiwal Muzyki Rockowej to trzydniowe święto gitarowych brzmień i energii na najwyższych
                         obrotach. Wystąpią legendarne zespoły, młode talenty oraz goście specjalni z zagranicy. Czekają
@@ -54,8 +54,7 @@
         </div>
             <div class="opis">
                 <h2>Festiwal Filmowy</h2>
-                <p class="krotki-opis">Oglądaj najlepsze filmy niezależne z całego świata i poznaj ich twórców. Gdańsk,
-                    sierpień 2025.</p>
+                <p class="krotki-opis">Oglądaj najlepsze filmy niezależne z całego świata i poznaj ich twórców. [data z bazy i miejsce]</p>
                 <div class="pelny-opis">
                     <p>Festiwal Filmowy to uczta dla kinomanów i twórców kina niezależnego. W ciągu 5 dni zobaczysz
                         ponad 70 filmów z całego świata, spotkasz znanych reżyserów i weźmiesz udział w inspirujących
@@ -83,7 +82,7 @@
             <div class="opis">
                 <h2>Festiwal Kultury i Sztuki</h2>
                 <p class="krotki-opis">Wystawy, koncerty, warsztaty i wiele więcej - zanurz się w świat kreatywności!
-                    Wrocław, wrzesień 2025.</p>
+                    [data z bazy i miejsce]</p>
                 <div class="pelny-opis">
                     <p>W sercu Wrocławia ożywa świat sztuki w każdej postaci. Od instalacji multimedialnych po warsztaty
                         rękodzielnicze - to festiwal dla pasjonatów i twórców. Na uczestników czekają:</p>
@@ -109,8 +108,7 @@
         </div>
             <div class="opis">
                 <h2>Festiwal Jedzenia i Wina</h2>
-                <p class="krotki-opis">Rozkoszuj się wykwintnymi smakami kuchni świata i regionalnymi winami. Toruń,
-                    lipiec 2025.</p>
+                <p class="krotki-opis">Rozkoszuj się wykwintnymi smakami kuchni świata i regionalnymi winami. [data z bazy i miejsce]</p>
                 <div class="pelny-opis">
                     <p>Festiwal dla smakoszy i odkrywców kuchni świata! Toruń zamienia się w kulinarne centrum Polski,
                         gdzie każdy znajdzie coś dla siebie. Co Cię czeka?</p>
@@ -136,8 +134,7 @@
         </div>
             <div class="opis">
                 <h2>Festiwal Technologii</h2>
-                <p class="krotki-opis">Nowinki technologiczne, robotyka, AI i panele dyskusyjne z ekspertami. Warszawa,
-                    październik 2025.</p>
+                <p class="krotki-opis">Nowinki technologiczne, robotyka, AI i panele dyskusyjne z ekspertami. [data z bazy i miejsce]</p>
                 <div class="pelny-opis">
                     <p>Nowinki technologiczne, sztuczna inteligencja, VR i drony - to wszystko znajdziesz podczas
                         największego festiwalu przyszłości w Polsce. Oto, co oferujemy:</p>
@@ -163,8 +160,7 @@
         </div>
             <div class="opis">
                 <h2>Festiwal Komedii</h2>
-                <p class="krotki-opis">Wieczory pełne śmiechu z najlepszymi stand-upowcami z Polski i zagranicy. Poznań,
-                    listopad 2025.</p>
+                <p class="krotki-opis">Wieczory pełne śmiechu z najlepszymi stand-upowcami z Polski i zagranicy. [data z bazy i miejsce]</p>
                 <div class="pelny-opis">
                     <p>Śmiech to zdrowie - a tego nie zabraknie na naszym festiwalu! Przez 4 dni poznasz najlepszych
                         komików, zobaczysz improwizacje na żywo i weźmiesz udział w warsztatach. W programie:</p>
@@ -206,14 +202,19 @@
 
     <script>
         function opis(btn) {
-            const opis = btn.parentElement.querySelector('.pelny-opis');
-
+            const opis = btn.closest('.opis').querySelector('.pelny-opis');
+            const krotkiOpis = btn.closest('.opis').querySelector('.krotki-opis');
+    
             if (opis.style.display === 'block') {
                 opis.style.display = 'none';
+                krotkiOpis.style.display = 'block';
                 btn.textContent = 'Zobacz więcej';
+                btn.classList.remove('active');
             } else {
                 opis.style.display = 'block';
+                krotkiOpis.style.display = 'none';
                 btn.textContent = 'Zobacz mniej';
+                btn.classList.add('active');
             }
         }
     </script>
