@@ -1,25 +1,22 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6fa;
+    background-color: #f4f6fa; /* Restored background color */
     color: #333;
     line-height: 1.6;
-    height: 100%;
+    /* Removed position relative, min-height, overflow-x */
+    height: 100%; /* Assuming .wrapper handles layout */
 }
-/*ladnie ogarnia stopke na dol strony*/
-.wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+
 header {
-    background: linear-gradient(90deg, #5a60e3, #7c83ff);
+    background: linear-gradient(90deg, #5a60e3, #7c83ff); /* Restored original background */
     color: white;
     padding: 25px 0;
     font-size: 22px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 nav ul {
     display: flex;
     justify-content: center;
@@ -27,9 +24,11 @@ nav ul {
     margin: 0;
     padding: 0;
 }
+
 nav ul li {
     margin: 0 15px;
 }
+
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -37,39 +36,46 @@ nav ul li a {
     padding: 10px 16px;
     border-radius: 8px;
 }
+
 nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
     color: #d2e3ff;
     transform: translateY(-1px);
 }
+
 main {
     max-width: 1100px;
     width: 95%;
     margin: 30px auto;
     padding: 30px;
-    background-color: white;
+    background-color: white; /* Restored original background */
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     flex: 1;
 }
+
 section {
     margin-bottom: 40px;
 }
+
 h1,h2 {
     color: #2c3e50;
     margin-bottom: 15px;
 }
+
 ul {
     padding-left: 25px;
 }
+
 footer {
-    background-color: #dfe4ea;
+    background-color: #dfe4ea; /* Restored original background */
     text-align: center;
     padding: 20px 10px;
     font-size: 14px;
     margin-top: auto;
     border-top: 1px solid #ccc;
 }
+
 footer a {
     color: #444;
     text-decoration: none;
@@ -81,38 +87,131 @@ footer a:hover {
     background-color: rgba(0, 0, 0, 0.05);
     color: #7c2ae8;
 }
+
 .festiwal {
     display: flex;
-    align-items: center;
-    margin: 20px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    padding: 15px;
-    gap: 20px;
-    background-color: #f9f9f9;
+    align-items: flex-start;
+    margin: 50px 20px; /* Increased vertical margin */
+    border: 1px solid #e9ecef; /* Lighter border */
+    border-radius: 20px; /* More rounded corners */
+    padding: 30px; /* Adjusted padding */
+    gap: 35px; /* Adjusted gap */
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Softer, slightly more spread shadow */
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
 }
+
+.festiwal:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09); /* Adjusted hover shadow */
+}
+
+.festiwal-image-container {
+    width: 330px; /* Slightly adjusted width */
+    flex-shrink: 0;
+    padding: 0; 
+    border-radius: 12px; /* Consistent radius */
+    overflow: hidden; 
+}
+
 .festiwal img {
-    width: 200px;
+    width: 100%;
     height: auto;
-    border-radius: 10px;
+    display: block;
+    border-radius: 12px; /* Match container radius */
+    object-fit: cover;
+    /* border: 1px solid #eee; */ /* Removed border */
+    transition: transform 0.3s ease; 
 }
+
+.festiwal img:hover {
+    transform: scale(1.03); 
+}
+
+.opis {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 260px; /* Adjusted min-height */
+}
+
 .opis h2 {
-    margin-top: 0;
+    margin-top: 5px; /* Slight adjustment */
+    font-size: 1.9em; /* Slightly larger */
+    color: #34495e;
+    margin-bottom: 18px; /* Adjusted spacing */
+    font-weight: 600; /* Slightly bolder */
 }
-.opis button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #0077cc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+.opis .krotki-opis {
+    font-size: 1.15em; /* Slightly larger */
+    color: #495057; /* Darker grey for better contrast */
+    margin-bottom: 25px; /* Adjusted spacing */
+    line-height: 1.5;
 }
-.opis button:hover {
-    background-color: #005fa3;
-}
+
 .pelny-opis {
     display: none;
+<<<<<<< HEAD
+    margin-top: 15px;
+    padding-top: 20px; /* Increased padding */
+    border-top: 1px solid #e9ecef; /* Match card border color */
+    color: #495057;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.pelny-opis p {
+    margin-bottom: 12px;
+}
+
+.pelny-opis ul {
+    list-style: disc;
+    padding-left: 25px;
+    margin-top: 12px;
+    margin-bottom: 18px;
+}
+
+.pelny-opis li {
+    margin-bottom: 10px;
+}
+
+.opis .button-container {
+    margin-top: auto;
+    padding-top: 25px; /* Adjusted spacing */
+    /* border-top: 1px solid #f0f0f0; */ /* Removed top border for cleaner look */
+}
+
+.opis button {
+    margin-top: 10px;
+    padding: 12px 28px; /* Adjusted padding */
+    font-size: 1.05em; /* Slightly larger font */
+    font-weight: bold;
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.opis button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18); /* Adjusted hover shadow */
+}
+
+.opis button[onclick*=\"kup-bilet\"] {
+    background-color: #007bff;
+    color: white;
+}
+
+.opis button.zobacz-wiecej {
+    background-color: #6c757d;
+    color: white;
+    margin-left: 12px; /* Adjusted spacing */
+}
+
+.opis button.zobacz-wiecej:hover {
+    background-color: #5a6268;
+=======
 }
 .social-links {
     margin-top: 15px;
@@ -135,4 +234,5 @@ footer a:hover {
 }
 .social-links a.youtube:hover {
     color: #FF0000;
+>>>>>>> 09b9c824802066d9fd8bed2b2e35f17ebdb2f623
 }
