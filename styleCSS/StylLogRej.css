@@ -1,0 +1,222 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6fa;
+    color: #333;
+    line-height: 1.6;
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: linear-gradient(90deg, #5a60e3, #7c83ff);
+    color: white;
+    padding: 25px 0;
+    font-size: 22px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+nav ul li:last-child {
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #d2e3ff;
+    transform: translateY(-1px);
+}
+
+main {
+    max-width: 1100px;
+    width: 95%;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    flex: 1;
+}
+
+section {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    padding: 20px;
+    margin: 15px;
+}
+
+h1, h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+ul {
+    padding-left: 25px;
+}
+.cytaty {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 800px;
+    font-size: 17px;
+}
+#quote-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    font-style: italic;
+
+}
+.quote-buttons {
+    margin-top: 15px;
+}
+.quote-buttons button {
+    background-color: #5a60e3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.quote-buttons button:hover {
+    background-color: #4348c1;
+}
+footer {
+    background-color: #dfe4ea;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 14px;
+    margin-top: auto;
+    border-top: 1px solid #ccc;
+}
+
+footer a {
+    color: #444;
+    text-decoration: none;
+    margin: 0 8px;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+footer a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #7c2ae8;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #444;
+}
+
+
+.form-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.form-container button {
+    padding: 12px;
+    background-color: #5a60e3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #4348c1;
+}
+.social-links {
+    margin-top: 15px;
+}
+.social-links a {
+    color: #333;
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+.social-links a:hover {
+    color: #4267B2;
+}
+.social-links a.instagram:hover {
+    color: #E1306C;
+}
+.social-links a.twitter:hover {
+    color: #1DA1F2;
+}
+.social-links a.youtube:hover {
+    color: #FF0000;
+}
+.form-footer {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.form-footer a {
+    color: #5a60e3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}

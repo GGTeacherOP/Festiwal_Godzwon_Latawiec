@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Festiwalowy</title>
-    <link rel="stylesheet" href="../styleCSS/Style.css">
+    <title>System Festiwalowy - Logowanie</title>
+    <link rel="stylesheet" href="../styleCSS/StylLogRej.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -14,9 +14,8 @@
                 <ul>
                     <li><a href="index.html">Strona Główna</a></li>
                     <li><a href="festiwale.html">Festiwale</a></li>
-                    <li><a href="rejestracje.html">Rejestracja</a></li>
-                    <li><a href="logowanie.html">Logowanie</a></li>
                     <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="logowanie.html">Logowanie</a></li>
                 </ul>
             </nav>
         </header>
@@ -24,33 +23,35 @@
             <div class="form-container">
                 <h2>Logowanie</h2>
                 <form action="login.php" method="post">
-                <label for="username">Nazwa użytkownika</label>
-                <input type="text" id="username" name="username" required>
-            
-                <label for="password">Hasło</label>
-                <input type="password" id="password" name="password" required>
-            
-                <button type="submit">Zaloguj się</button>
+                    <label for="username">Nazwa użytkownika</label>
+                    <input type="text" id="username" name="username" required>
+                
+                    <label for="password">Hasło</label>
+                    <input type="password" id="password" name="password" required>
+                
+                    <button type="submit">Zaloguj się</button>
+                    
+                    <div class="form-footer">
+                        Nie masz jeszcze konta? <a href="rejestracje.html">Zarejestruj się</a>
+                    </div>
                 </form>
             </div>          
         </main>
 
         <footer>
             <div class="footer-content">
-                <div class="footer-section">
-                    <p>&copy; 2025 System Festiwalowy</p>
-                    <div class="social-links">
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://instagram.com" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com" target="_blank" class="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://youtube.com" target="_blank" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
                 <div class="footer-links">
                     <a href="#">Regulamin</a> |
                     <a href="#">Polityka Prywatności</a> |
                     <a href="o-nas.html">O nas</a>
                 </div>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2025 System Festiwalowy. Wszelkie prawa zastrzeżone.</p>
             </div>
         </footer>
     </div>

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Festiwalowy</title>
-    <link rel="stylesheet" href="../styleCSS/Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styleCSS/Style.css">
 </head>
 
 <body>
@@ -16,55 +16,149 @@
                 <ul>
                     <li><a href="index.html">Strona Główna</a></li>
                     <li><a href="festiwale.html">Festiwale</a></li>
-                    <li><a href="rejestracje.html">Rejestracja</a></li>
-                    <li><a href="logowanie.html">Logowanie</a></li>
                     <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="logowanie.html">Logowanie</a></li>
                 </ul>
             </nav>
         </header>
         <main>
-            <section>
+            <section class="hero">
                 <h1>Witamy w Systemie Festiwalowym</h1>
-                <p>Organizuj i uczestnicz w najlepszych wydarzeniach! Przeglądaj festiwale, zapisuj się i zarządzaj
-                    swoim kontem.</p>
+                <p>Dołącz do najlepszych wydarzeń kulturalnych w kraju. Rejestruj się, przeglądaj programy i twórz niezapomniane wspomnienia!</p>
+                <a href="rejestracje.html" class="btn">Zarejestruj się teraz</a>
             </section>
             <section>
                 <h2>Nadchodzące festiwale</h2>
-                <ul>
-                    <li>Festiwal Muzyki Alternatywne - 15.07.2025, Warszawa</li>
-                    <li>Festiwal Kina Niezależnego - 03.08.2025, Kraków</li>
-                    <li>Festiwal Sztuki Nowoczesnej - 22.09.2025, Gdańsk</li>
-                </ul>
-            </section>
-            <section class="cytaty">
-                <div id="quote-container">
-                    <p id="quote-text">„Festiwal to przestrzeń spotkań, emocji i pasji — nasza strona łączy ludzi z ich
-                        doświadczeniami.”</p>
-                </div>
-                <div class="quote-buttons">
-                    <button onclick="poprzedniCytat()">&#8592;</button>
-                    <button onclick="nastepnyCytat()">&#8594;</button>
+                <div class="festival-grid">
+                    <div class="festival-card">
+                        <div class="festival-img">
+                            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Festiwal Muzyki Alternatywnej">
+                        </div>
+                        <div class="festival-info">
+                            <h3>Festiwal Muzyki Alternatywnej</h3>
+                            <div class="festival-date">
+                                <i class="far fa-calendar-alt"></i> 15-18.07.2025
+                            </div>
+                            <div class="festival-location">
+                                <i class="fas fa-map-marker-alt"></i> Warszawa
+                            </div>
+                            <p>Największe gwiazdy muzyki alternatywnej na jednej scenie. 3 dni niezapomnianych wrażeń!</p>
+                        </div>
+                    </div>
+
+                    <div class="festival-card">
+                        <div class="festival-img">
+                            <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Festiwal Kina Niezależnego">
+                        </div>
+                        <div class="festival-info">
+                            <h3>Festiwal Kina Niezależnego</h3>
+                            <div class="festival-date">
+                                <i class="far fa-calendar-alt"></i> 03-10.08.2025
+                            </div>
+                            <div class="festival-location">
+                                <i class="fas fa-map-marker-alt"></i> Kraków
+                            </div>
+                            <p>Pokazy filmowe, spotkania z twórcami i warsztaty filmowe. Odkryj kino na nowo!</p>
+                        </div>
+                    </div>
+
+                    <div class="festival-card">
+                        <div class="festival-img">
+                            <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Festiwal Sztuki Nowoczesnej">
+                        </div>
+                        <div class="festival-info">
+                            <h3>Festiwal Sztuki Nowoczesnej</h3>
+                            <div class="festival-date">
+                                <i class="far fa-calendar-alt"></i> 22-28.09.2025
+                            </div>
+                            <div class="festival-location">
+                                <i class="fas fa-map-marker-alt"></i> Gdańsk
+                            </div>
+                            <p>Instalacje, performance i wystawy najciekawszych współczesnych artystów.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
+            <section>
+                <h2>Nasze statystyki</h2>
+                <div class="stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users fa-2x" style="color: #5a60e3;"></i>
+                        <div class="stat-number">25,000+</div>
+                        <div class="stat-label">Uczestników rocznie</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-alt fa-2x" style="color: #5a60e3;"></i>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Wydarzeń</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-map-marked-alt fa-2x" style="color: #5a60e3;"></i>
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Miast</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star fa-2x" style="color: #5a60e3;"></i>
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Zadowolonych uczestników</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Uczestnicy festiwali</h2>
+                <div class="participants">
+                    <div class="participant-card">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Anna Kowalska" class="participant-img">
+                        <h3 class="participant-name">Anna Kowalska</h3>
+                        <div class="participant-role">Fotografka</div>
+                        <p class="participant-bio">Uwielbiam dokumentować festiwalowe emocje. Od 5 lat z nami!</p>
+                    </div>
+                    <div class="participant-card">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marek Nowak" class="participant-img">
+                        <h3 class="participant-name">Marek Nowak</h3>
+                        <div class="participant-role">Meloman</div>
+                        <p class="participant-bio">Na każdym festiwalu muzycznym od 2018 roku. Moja pasja!</p>
+                    </div>
+                    <div class="participant-card">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Katarzyna Wiśniewska" class="participant-img">
+                        <h3 class="participant-name">Katarzyna Wiśniewska</h3>
+                        <div class="participant-role">Wolontariuszka</div>
+                        <p class="participant-bio">Pomagam przy organizacji, bo kocham festiwalową atmosferę.</p>
+                    </div>
+                    <div class="participant-card">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Piotr Lewandowski" class="participant-img">
+                        <h3 class="participant-name">Piotr Lewandowski</h3>
+                        <div class="participant-role">Bloger</div>
+                        <p class="participant-bio">Relacjonuję festiwale dla moich czytelników. Najlepsze wrażenia!</p>
+                    </div>
+                </div>
+            </section>
+            <section class="cytaty">
+                <div id="quote-container">
+                    <p id="quote-text">„Festiwal to przestrzeń spotkań, emocji i pasji — nasza strona łączy ludzi z ich doświadczeniami.”</p>
+                </div>
+                <div class="quote-buttons">
+                    <button onclick="poprzedniCytat()"><i class="fas fa-arrow-left"></i> Poprzedni</button>
+                    <button onclick="nastepnyCytat()">Następny <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
         </main>
         <footer>
             <div class="footer-content">
-                <div class="footer-section">
-                    <p>&copy; 2025 System Festiwalowy</p>
-                    <div class="social-links">
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://instagram.com" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com" target="_blank" class="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://youtube.com" target="_blank" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
                 <div class="footer-links">
                     <a href="#">Regulamin</a> |
                     <a href="#">Polityka Prywatności</a> |
-                    <a href="o-nas.html">O nas</a> |
-                    <a href="kontakt.html">Kontakt</a>
+                    <a href="o-nas.html">O nas</a>
                 </div>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2025 System Festiwalowy. Wszelkie prawa zastrzeżone.</p>
             </div>
         </footer>
     </div>
@@ -101,7 +195,6 @@
             obecnyCytat = (obecnyCytat - 1 + cytaty.length) % cytaty.length;
             pokazCytaty(obecnyCytat);
         }
-
     </script>
 </body>
 </html>
