@@ -1,20 +1,5 @@
-<<<<<<< HEAD
 /* ===== HEADER - ORYGINALNY ===== */
-=======
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6fa;
-    background-color: #f4f6fa;
-    color: #333;
-    line-height: 1.6;
-    height: 100%;
-    height: 100%;
-}
-
->>>>>>> c2de245cd340659907b0a0a4855c4dcde123c6f4
 header {
-    background: linear-gradient(90deg, #5a60e3, #7c83ff);
     background: linear-gradient(90deg, #5a60e3, #7c83ff);
     color: white;
     padding: 25px 0;
@@ -25,29 +10,10 @@ header {
 
 nav ul {
     display: flex;
-    justify-content: space-between;
-    justify-content: space-between;
+    justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-nav ul li:last-child {
-    margin-left: auto;
-    margin-right: 15px;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-nav ul li:last-child {
-    margin-left: auto;
-    margin-right: 15px;
 }
 
 nav ul li {
@@ -60,8 +26,6 @@ nav ul li a {
     font-weight: bold;
     padding: 10px 16px;
     border-radius: 8px;
-    transition: all 0.3s ease;
-    transition: all 0.3s ease;
 }
 
 nav ul li a:hover {
@@ -69,38 +33,9 @@ nav ul li a:hover {
     color: #d2e3ff;
     transform: translateY(-1px);
 }
-<<<<<<< HEAD
 
 /* ===== STOPKA - ORYGINALNA ===== */
-=======
-main {
-    max-width: 1100px;
-    width: 95%;
-    margin: 30px auto;
-    padding: 30px;
-    background-color: white;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    flex: 1;
-}
-
-section {
-    margin-bottom: 40px;
-}
-
-h1,h2 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-
-ul {
-    padding-left: 25px;
-}
-
->>>>>>> c2de245cd340659907b0a0a4855c4dcde123c6f4
 footer {
-    background-color: #dfe4ea;
     background-color: #dfe4ea;
     text-align: center;
     padding: 20px 10px;
@@ -122,167 +57,9 @@ footer a:hover {
     color: #7c2ae8;
 }
 
-
-<<<<<<< HEAD
-=======
-.festiwal {
-    display: flex;
-    align-items: flex-start;
-    margin: 50px 20px;
-    border: 1px solid #e9ecef;
-    border-radius: 20px;
-    padding: 30px;
-    gap: 35px;
-    margin: 50px 20px;
-    border: 1px solid #e9ecef;
-    border-radius: 20px;
-    padding: 30px;
-    gap: 35px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-}
-
-.festiwal:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
-}
-
-.festiwal-image-container {
-    width: 330px;
-    width: 330px;
-    flex-shrink: 0;
-    padding: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    padding: 0;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.festiwal img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 12px;
-    border-radius: 12px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    transition: transform 0.3s ease;
-}
-
-.festiwal img:hover {
-    transform: scale(1.03);
-    transform: scale(1.03);
-}
-
-.opis {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 260px;
-    min-height: 260px;
-}
-
-.opis h2 {
-    margin-top: 5px;
-    font-size: 1.9em;
-    margin-top: 5px;
-    font-size: 1.9em;
-    color: #34495e;
-    margin-bottom: 18px;
-    font-weight: 600;
-    margin-bottom: 18px;
-    font-weight: 600;
-}
-
-.opis .krotki-opis {
-    font-size: 1.15em;
-    color: #495057;
-    margin-bottom: 25px;
-    font-size: 1.15em;
-    color: #495057;
-    margin-bottom: 25px;
-    line-height: 1.5;
-}
-
-.pelny-opis {
-    display: none;
-    margin-top: 15px;
-    padding-top: 20px;
-    border-top: 1px solid #e9ecef;
-    padding-top: 20px;
-    border-top: 1px solid #e9ecef;
-    color: #495057;
-    font-size: 1em;
-    line-height: 1.6;
-}
-
-.pelny-opis p {
-    margin-bottom: 12px;
-}
-
-.pelny-opis ul {
-    list-style: disc;
-    padding-left: 25px;
-    margin-top: 12px;
-    margin-bottom: 18px;
-}
-
-.pelny-opis li {
-    margin-bottom: 10px;
-}
-
-.opis .button-container {
-    margin-top: auto;
-    padding-top: 25px;
-    padding-top: 25px;
-}
-
-.opis button {
-    margin-top: 10px;
-    padding: 12px 28px;
-    font-size: 1.05em;
-    padding: 12px 28px;
-    font-size: 1.05em;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.opis button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
-}
-
-.opis button[onclick*="kup-bilet"] {
-.opis button[onclick*="kup-bilet"] {
-    background-color: #007bff;
-    color: white;
-}
-
-.opis button.zobacz-wiecej {
-    background-color: #6c757d;
-    color: white;
-    margin-left: 12px;
-    margin-left: 12px;
-}
-
-.opis button.zobacz-wiecej:hover {
-    background-color: #5a6268;
-}
-
->>>>>>> c2de245cd340659907b0a0a4855c4dcde123c6f4
 .social-links {
     margin-top: 15px;
 }
-
 
 .social-links a {
     color: #333;
@@ -292,25 +69,20 @@ footer a:hover {
     text-decoration: none;
 }
 
-
 .social-links a:hover {
     color: #4267B2;
 }
-
 
 .social-links a.instagram:hover {
     color: #E1306C;
 }
 
-
 .social-links a.twitter:hover {
     color: #1DA1F2;
 }
 
-
 .social-links a.youtube:hover {
     color: #FF0000;
-<<<<<<< HEAD
 }
 
 /* ===== NOWE STYLE DLA FESTIWALI ===== */
@@ -341,7 +113,17 @@ main {
     padding: 0 1.5rem;
 }
 
-/* ===== PROFESJONALNE KARTY FESTIWALI ===== */
+/* ===== KONTENER FESTIWALI ===== */
+.festival-container {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border: 1px solid #e5e7eb;
+}
+
+/* ===== KARTY FESTIWALI ===== */
 .festiwal {
     display: flex;
     background: white;
@@ -351,6 +133,12 @@ main {
     overflow: hidden;
     transition: var(--transition);
     flex-direction: column;
+    max-height: 650px;
+    transition: all 0.4s ease-out;
+}
+
+.festiwal.expanded {
+    max-height: 1200px;
 }
 
 .festiwal:hover {
@@ -378,7 +166,7 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition);
+    transition: transform 0.4s ease-out;
 }
 
 .festiwal:hover img {
@@ -409,6 +197,19 @@ main {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid #e5e7eb;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-out 0.1s;
+}
+
+.festiwal.expanded .pelny-opis {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.festiwal.expanded .krotki-opis {
+    display: none;
 }
 
 .pelny-opis p {
@@ -479,6 +280,14 @@ button[onclick*="kup-bilet"]:hover {
         width: 60%;
         padding: 2.5rem;
     }
+
+    .festiwal {
+        max-height: 400px;
+    }
+    
+    .festiwal.expanded {
+        max-height: 800px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -507,28 +316,3 @@ button[onclick*="kup-bilet"]:hover {
 .festiwal:nth-child(4) { animation-delay: 0.4s; }
 .festiwal:nth-child(5) { animation-delay: 0.5s; }
 .festiwal:nth-child(6) { animation-delay: 0.6s; }
-
-.pelny-opis {
-    display: none;
-    color: #374151;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #e5e7eb;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.zobacz-wiecej.active {
-    background-color: var(--dark-blue);
-    color: white;
-}
-
-.zobacz-wiecej.active:hover {
-    background-color: #1a3a8f;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-=======
->>>>>>> c2de245cd340659907b0a0a4855c4dcde123c6f4
-}

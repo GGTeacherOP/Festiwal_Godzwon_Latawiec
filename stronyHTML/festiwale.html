@@ -6,11 +6,6 @@
     <title>System Festiwalowy</title>
     <link rel="stylesheet" href="../styleCSS/StyleFestiwal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .login-link {
-            float: right;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -18,208 +13,188 @@
             <ul>
                 <li><a href="index.html">Strona Główna</a></li>
                 <li><a href="festiwale.html">Festiwale</a></li>
+                <li><a href="rejestracje.html">Rejestracja</a></li>
+                <li><a href="logowanie.html">Logowanie</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
-                <li class="login-link"><a href="logowanie.html">Logowanie</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section class="festiwal">
-            <div class="festiwal-image-container">
-            <img src="../zdjecia/festiwalMuzykiRockowej.png" alt="Festiwal Muzyki Rockowej">
-        </div>
-            <div class="opis">
-                <h2>Festiwal Muzyki Rockowej</h2>
-                <p class="krotki-opis">Trzy dni pełne energii, muzyki na żywo i niesamowitej atmosfery! Dołącz do nas [data z bazy i miejsce]
-                </p>
-                <div class="pelny-opis">
-                    <p>Festiwal Muzyki Rockowej to trzydniowe święto gitarowych brzmień i energii na najwyższych
-                        obrotach. Wystąpią legendarne zespoły, młode talenty oraz goście specjalni z zagranicy. Czekają
-                        na Ciebie:</p>
-                    <ul>
-                        <li>3 sceny tematyczne (klasyczny rock, alternatywa, metal)</li>
-                        <li>Strefa namiotowa i pole kempingowe tuż przy Wiśle</li>
-                        <li>Afterparty z DJ-ami rockowymi</li>
-                        <li>Warsztaty muzyczne prowadzone przez artystów</li>
-                        <li>Strefa merchu i winyli kolekcjonerskich</li>
-                    </ul>
-                    <p>To wydarzenie, którego nie możesz przegapić, jeśli kochasz rocka!</p>
-                </div>
-                <div class="button-container">
-                    <button onclick="location.href='kup-bilet.html?festiwal=rock'">Kup bilet</button>
-                    <button class="zobacz-wiecej" onclick="opis(this)">Zobacz więcej</button>
-                </div>
+        <div class="festival-container">
+            <section class="festiwal">
+                <div class="festiwal-image-container">
+                <img src="../zdjecia/festiwalMuzykiRockowej.png" alt="Festiwal Muzyki Rockowej">
             </div>
-        </section>
+                <div class="opis">
+                    <h2>Festiwal Muzyki Rockowej</h2>
+                    <p class="krotki-opis">Trzy dni pełne energii, muzyki na żywo i niesamowitej atmosfery! Dołącz do nas w Krakowie już w lipcu.</p>
+                    <div class="pelny-opis">
+                        <p>Festiwal Muzyki Rockowej to trzydniowe święto gitarowych brzmień i energii na najwyższych obrotach. Wystąpią legendarne zespoły, młode talenty oraz goście specjalni z zagranicy. Czekają na Ciebie:</p>
+                        <ul>
+                            <li>3 sceny tematyczne (klasyczny rock, alternatywa, metal)</li>
+                            <li>Strefa namiotowa i pole kempingowe tuż przy Wiśle</li>
+                            <li>Afterparty z DJ-ami rockowymi</li>
+                        </ul>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="location.href='kup-bilet.html?festiwal=rock'">Kup bilet</button>
+                        <button class="zobacz-wiecej" onclick="toggleOpis(this)">Zobacz więcej</button>
+                    </div>
+                </div>
+            </section>
 
-        <section class="festiwal">
-            <div class="festiwal-image-container">
-            <img src="../zdjecia/festiwalFilmowy.jpg" alt="Festiwal Filmowy">
-        </div>
-            <div class="opis">
-                <h2>Festiwal Filmowy</h2>
-                <p class="krotki-opis">Oglądaj najlepsze filmy niezależne z całego świata i poznaj ich twórców. [data z bazy i miejsce]</p>
-                <div class="pelny-opis">
-                    <p>Festiwal Filmowy to uczta dla kinomanów i twórców kina niezależnego. W ciągu 5 dni zobaczysz
-                        ponad 70 filmów z całego świata, spotkasz znanych reżyserów i weźmiesz udział w inspirujących
-                        rozmowach. Cechy wydarzenia:</p>
-                    <ul>
-                        <li>Pokazy filmowe w kinach, na plaży i na dziedzińcach</li>
-                        <li>Spotkania autorskie z twórcami po seansach</li>
-                        <li>Konkurs główny z nagrodą publiczności</li>
-                        <li>Warsztaty scenariuszowe i reżyserskie</li>
-                        <li>Festiwalowa kawiarnia z klimatem lat 60.</li>
-                    </ul>
-                    <p>Gdańsk stanie się centrum kina i artystycznych emocji.</p>
-                </div>
-                <div class="button-container">
-                    <button onclick="location.href='kup-bilet.html?festiwal=film'">Kup bilet</button>
-                    <button class="zobacz-wiecej" onclick="opis(this)">Zobacz więcej</button>
-                </div>
+            <section class="festiwal">
+                <div class="festiwal-image-container">
+                <img src="../zdjecia/festiwalFilmowy.jpg" alt="Festiwal Filmowy">
             </div>
-        </section>
+                <div class="opis">
+                    <h2>Festiwal Filmowy</h2>
+                    <p class="krotki-opis">Oglądaj najlepsze filmy niezależne z całego świata i poznaj ich twórców. Gdańsk, sierpień 2025.</p>
+                    <div class="pelny-opis">
+                        <p>Festiwal Filmowy to uczta dla kinomanów i twórców kina niezależnego. W ciągu 5 dni zobaczysz ponad 70 filmów z całego świata, spotkasz znanych reżyserów i weźmiesz udział w inspirujących rozmowach.</p>
+                        <ul>
+                            <li>Pokazy filmowe w kinach, na plaży i na dziedzińcach</li>
+                            <li>Spotkania autorskie z twórcami po seansach</li>
+                            <li>Konkurs główny z nagrodą publiczności</li>
+                        </ul>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="location.href='kup-bilet.html?festiwal=film'">Kup bilet</button>
+                        <button class="zobacz-wiecej" onclick="toggleOpis(this)">Zobacz więcej</button>
+                    </div>
+                </div>
+            </section>
 
-        <section class="festiwal">
-            <div class="festiwal-image-container">
-            <img src="../zdjecia/festiwalKulturyiSztuki.jpg" alt="Festiwal Kultury i Sztuki">
-        </div>
-            <div class="opis">
-                <h2>Festiwal Kultury i Sztuki</h2>
-                <p class="krotki-opis">Wystawy, koncerty, warsztaty i wiele więcej - zanurz się w świat kreatywności!
-                    [data z bazy i miejsce]</p>
-                <div class="pelny-opis">
-                    <p>W sercu Wrocławia ożywa świat sztuki w każdej postaci. Od instalacji multimedialnych po warsztaty
-                        rękodzielnicze - to festiwal dla pasjonatów i twórców. Na uczestników czekają:</p>
-                    <ul>
-                        <li>Spektakle uliczne i mapping 3D na fasadach budynków</li>
-                        <li>Wystawy malarstwa, fotografii i sztuki cyfrowej</li>
-                        <li>Koncerty na dziedzińcach i dachach kamienic</li>
-                        <li>Strefa dzieci z kreatywnymi zajęciami</li>
-                        <li>Wieczorne jam sessions w plenerze</li>
-                    </ul>
-                    <p>Otwórz się na nowe formy wyrazu i poczuj puls kultury!</p>
-                </div>
-                <div class="button-container">
-                    <button onclick="location.href='kup-bilet.html?festiwal=sztuka'">Kup bilet</button>
-                    <button class="zobacz-wiecej" onclick="opis(this)">Zobacz więcej</button>
-                </div>
+            <section class="festiwal">
+                <div class="festiwal-image-container">
+                <img src="../zdjecia/festiwalKulturyiSztuki.jpg" alt="Festiwal Kultury i Sztuki">
             </div>
-        </section>
+                <div class="opis">
+                    <h2>Festiwal Kultury i Sztuki</h2>
+                    <p class="krotki-opis">Wystawy, koncerty, warsztaty i wiele więcej - zanurz się w świat kreatywności! Wrocław, wrzesień 2025.</p>
+                    <div class="pelny-opis">
+                        <p>W sercu Wrocławia ożywa świat sztuki w każdej postaci. Od instalacji multimedialnych po warsztaty rękodzielnicze - to festiwal dla pasjonatów i twórców.</p>
+                        <ul>
+                            <li>Spektakle uliczne i mapping 3D na fasadach budynków</li>
+                            <li>Wystawy malarstwa, fotografii i sztuki cyfrowej</li>
+                            <li>Koncerty na dziedzińcach i dachach kamienic</li>
+                        </ul>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="location.href='kup-bilet.html?festiwal=sztuka'">Kup bilet</button>
+                        <button class="zobacz-wiecej" onclick="toggleOpis(this)">Zobacz więcej</button>
+                    </div>
+                </div>
+            </section>
 
-        <section class="festiwal">
-            <div class="festiwal-image-container">
-            <img src="../zdjecia/festiwalJedzeniaiWIna.jpg" alt="Festiwal Jedzenia i Wina">
-        </div>
-            <div class="opis">
-                <h2>Festiwal Jedzenia i Wina</h2>
-                <p class="krotki-opis">Rozkoszuj się wykwintnymi smakami kuchni świata i regionalnymi winami. [data z bazy i miejsce]</p>
-                <div class="pelny-opis">
-                    <p>Festiwal dla smakoszy i odkrywców kuchni świata! Toruń zamienia się w kulinarne centrum Polski,
-                        gdzie każdy znajdzie coś dla siebie. Co Cię czeka?</p>
-                    <ul>
-                        <li>Stoły degustacyjne z kuchnią włoską, francuską, tajską i regionalną</li>
-                        <li>Prezentacje sommelierów i degustacje win naturalnych</li>
-                        <li>Strefa slow food i vege-friendly</li>
-                        <li>Live cooking z mistrzami kuchni</li>
-                        <li>Warsztaty parowania wina z potrawami</li>
-                    </ul>
-                    <p>Wyjdź z codzienności i oddaj się przyjemności smaku i aromatu.</p>
-                </div>
-                <div class="button-container">
-                    <button onclick="location.href='kup-bilet.html?festiwal=jedzenie'">Kup bilet</button>
-                    <button class="zobacz-wiecej" onclick="opis(this)">Zobacz więcej</button>
-                </div>
+            <section class="festiwal">
+                <div class="festiwal-image-container">
+                <img src="../zdjecia/festiwalJedzeniaiWIna.jpg" alt="Festiwal Jedzenia i Wina">
             </div>
-        </section>
+                <div class="opis">
+                    <h2>Festiwal Jedzenia i Wina</h2>
+                    <p class="krotki-opis">Rozkoszuj się wykwintnymi smakami kuchni świata i regionalnymi winami. Toruń, lipiec 2025.</p>
+                    <div class="pelny-opis">
+                        <p>Festiwal dla smakoszy i odkrywców kuchni świata! Toruń zamienia się w kulinarne centrum Polski, gdzie każdy znajdzie coś dla siebie.</p>
+                        <ul>
+                            <li>Stoły degustacyjne z kuchnią włoską, francuską, tajską i regionalną</li>
+                            <li>Prezentacje sommelierów i degustacje win naturalnych</li>
+                            <li>Live cooking z mistrzami kuchni</li>
+                        </ul>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="location.href='kup-bilet.html?festiwal=jedzenie'">Kup bilet</button>
+                        <button class="zobacz-wiecej" onclick="toggleOpis(this)">Zobacz więcej</button>
+                    </div>
+                </div>
+            </section>
 
-        <section class="festiwal">
-            <div class="festiwal-image-container">
-            <img src="../zdjecia/festiwalTechnologii.jpg" alt="Festiwal Technologii">
-        </div>
-            <div class="opis">
-                <h2>Festiwal Technologii</h2>
-                <p class="krotki-opis">Nowinki technologiczne, robotyka, AI i panele dyskusyjne z ekspertami. [data z bazy i miejsce]</p>
-                <div class="pelny-opis">
-                    <p>Nowinki technologiczne, sztuczna inteligencja, VR i drony - to wszystko znajdziesz podczas
-                        największego festiwalu przyszłości w Polsce. Oto, co oferujemy:</p>
-                    <ul>
-                        <li>Prezentacje nowych startupów i produktów high-tech</li>
-                        <li>Strefa VR/AR z immersyjnymi doświadczeniami</li>
-                        <li>Robotyczne pokazy walk i inteligentne maszyny</li>
-                        <li>Panele z liderami branży IT i AI</li>
-                        <li>Hackathony i konkursy programistyczne</li>
-                    </ul>
-                    <p>To wydarzenie dla każdego, kto interesuje się innowacjami i przyszłością.</p>
-                </div>
-                <div class="button-container">
-                    <button onclick="location.href='kup-bilet.html?festiwal=tech'">Kup bilet</button>
-                    <button class="zobacz-wiecej" onclick="opis(this)">Zobacz więcej</button>
-                </div>
+            <section class="festiwal">
+                <div class="festiwal-image-container">
+                <img src="../zdjecia/festiwalTechnologii.jpg" alt="Festiwal Technologii">
             </div>
-        </section>
+                <div class="opis">
+                    <h2>Festiwal Technologii</h2>
+                    <p class="krotki-opis">Nowinki technologiczne, robotyka, AI i panele dyskusyjne z ekspertami. Warszawa, październik 2025.</p>
+                    <div class="pelny-opis">
+                        <p>Nowinki technologiczne, sztuczna inteligencja, VR i drony - to wszystko znajdziesz podczas największego festiwalu przyszłości w Polsce.</p>
+                        <ul>
+                            <li>Prezentacje nowych startupów i produktów high-tech</li>
+                            <li>Strefa VR/AR z immersyjnymi doświadczeniami</li>
+                            <li>Robotyczne pokazy walk i inteligentne maszyny</li>
+                        </ul>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="location.href='kup-bilet.html?festiwal=tech'">Kup bilet</button>
+                        <button class="zobacz-wiecej" onclick="toggleOpis(this)">Zobacz więcej</button>
+                    </div>
+                </div>
+            </section>
 
-        <section class="festiwal">
-            <div class="festiwal-image-container">
-            <img src="../zdjecia/festiwalKomedii.jpg" alt="Festiwal Komedii">
-        </div>
-            <div class="opis">
-                <h2>Festiwal Komedii</h2>
-                <p class="krotki-opis">Wieczory pełne śmiechu z najlepszymi stand-upowcami z Polski i zagranicy. [data z bazy i miejsce]</p>
-                <div class="pelny-opis">
-                    <p>Śmiech to zdrowie - a tego nie zabraknie na naszym festiwalu! Przez 4 dni poznasz najlepszych
-                        komików, zobaczysz improwizacje na żywo i weźmiesz udział w warsztatach. W programie:</p>
-                    <ul>
-                        <li>Wieczory stand-upowe z gwiazdami sceny komediowej</li>
-                        <li>Bitwy improwizacyjne z udziałem publiczności</li>
-                        <li>Kącik „open mic” dla debiutantów</li>
-                        <li>Warsztaty z budowania żartu i wystąpień scenicznych</li>
-                        <li>Strefa relaksu z planszówkami i food truckami</li>
-                    </ul>
-                    <p>Spędź listopad z uśmiechem - bilety szybko znikają!</p>
-                </div>
-                <div class="button-container">
-                    <button onclick="location.href='kup-bilet.html?festiwal=komedia'">Kup bilet</button>
-                    <button class="zobacz-wiecej" onclick="opis(this)">Zobacz więcej</button>
-                </div>
+            <section class="festiwal">
+                <div class="festiwal-image-container">
+                <img src="../zdjecia/festiwalKomedii.jpg" alt="Festiwal Komedii">
             </div>
-        </section>
+                <div class="opis">
+                    <h2>Festiwal Komedii</h2>
+                    <p class="krotki-opis">Wieczory pełne śmiechu z najlepszymi stand-upowcami z Polski i zagranicy. Poznań, listopad 2025.</p>
+                    <div class="pelny-opis">
+                        <p>Śmiech to zdrowie - a tego nie zabraknie na naszym festiwalu! Przez 4 dni poznasz najlepszych komików, zobaczysz improwizacje na żywo i weźmiesz udział w warsztatach.</p>
+                        <ul>
+                            <li>Wieczory stand-upowe z gwiazdami sceny komediowej</li>
+                            <li>Bitwy improwizacyjne z udziałem publiczności</li>
+                            <li>Warsztaty z budowania żartu i wystąpień scenicznych</li>
+                        </ul>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="location.href='kup-bilet.html?festiwal=komedia'">Kup bilet</button>
+                        <button class="zobacz-wiecej" onclick="toggleOpis(this)">Zobacz więcej</button>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
         <div class="footer-content">
+            <div class="footer-section">
+                <p>&copy; 2025 System Festiwalowy</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
             <div class="footer-links">
                 <a href="#">Regulamin</a> |
                 <a href="#">Polityka Prywatności</a> |
                 <a href="o-nas.html">O nas</a>
             </div>
-            <div class="social-links">
-                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://instagram.com" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com" target="_blank" class="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="https://youtube.com" target="_blank" class="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p>&copy; 2025 System Festiwalowy. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
 
     <script>
-        function opis(btn) {
-            const opis = btn.closest('.opis').querySelector('.pelny-opis');
-            const krotkiOpis = btn.closest('.opis').querySelector('.krotki-opis');
-    
-            if (opis.style.display === 'block') {
-                opis.style.display = 'none';
-                krotkiOpis.style.display = 'block';
-                btn.textContent = 'Zobacz więcej';
-                btn.classList.remove('active');
+        function toggleOpis(button) {
+            const festiwalSection = button.closest('.festiwal');
+            const pelnyOpis = festiwalSection.querySelector('.pelny-opis');
+            const krotkiOpis = festiwalSection.querySelector('.krotki-opis');
+            const obrazek = festiwalSection.querySelector('img');
+
+            festiwalSection.classList.toggle('expanded');
+            
+            if (festiwalSection.classList.contains('expanded')) {
+                button.textContent = 'Zobacz mniej';
+                button.style.backgroundColor = '#1e40af';
+                button.style.color = 'white';
+                obrazek.style.transform = 'scale(1.03)';
             } else {
-                opis.style.display = 'block';
-                krotkiOpis.style.display = 'none';
-                btn.textContent = 'Zobacz mniej';
-                btn.classList.add('active');
+                button.textContent = 'Zobacz więcej';
+                button.style.backgroundColor = '';
+                button.style.color = '';
+                obrazek.style.transform = '';
             }
         }
     </script>
 </body>
-
 </html>
