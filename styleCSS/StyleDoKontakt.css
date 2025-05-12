@@ -80,27 +80,6 @@ h1, h2 {
 ul {
     padding-left: 25px;
 }
-footer {
-    background-color: #dfe4ea;
-    text-align: center;
-    padding: 20px 10px;
-    font-size: 14px;
-    margin-top: auto;
-    border-top: 1px solid #ccc;
-}
-
-footer a {
-    color: #444;
-    text-decoration: none;
-    margin: 0 8px;
-    padding: 6px 12px;
-    border-radius: 6px;
-}
-
-footer a:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: #7c2ae8;
-}
 
 .form-container {
     max-width: 400px;
