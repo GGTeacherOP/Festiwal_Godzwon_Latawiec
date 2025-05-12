@@ -84,34 +84,7 @@ h1, h2 {
 ul {
     padding-left: 25px;
 }
-.cytaty {
-    text-align: center;
-    margin: 40px auto;
-    max-width: 800px;
-    font-size: 17px;
-}
-#quote-container {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 10px;
-    font-style: italic;
 
-}
-.quote-buttons {
-    margin-top: 15px;
-}
-.quote-buttons button {
-    background-color: #5a60e3;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.quote-buttons button:hover {
-    background-color: #4348c1;
-}
 footer {
     background-color: #dfe4ea;
     text-align: center;
