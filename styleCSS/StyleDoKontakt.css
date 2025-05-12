@@ -315,3 +315,25 @@ footer a:hover {
       gap: 8px;
     }
   }
+  .social-links {
+    margin-top: 15px;
+}
+.social-links a {
+    color: #333;
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+.social-links a:hover {
+    color: #4267B2;
+}
+.social-links a.instagram:hover {
+    color: #E1306C;
+}
+.social-links a.twitter:hover {
+    color: #1DA1F2;
+}
+.social-links a.youtube:hover {
+    color: #FF0000;
+}
