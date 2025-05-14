@@ -12,7 +12,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+/* nagłówek */
 header {
     background: linear-gradient(90deg, #5a60e3, #7c83ff);
     color: white;
@@ -110,7 +110,7 @@ h2 {
 ul {
     padding-left: 25px;
 }
-
+/* festiwale */
 .hero {
     background: linear-gradient(rgba(90, 96, 227, 0.8), rgba(124, 131, 255, 0.7)), url('https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
     color: white;
@@ -264,7 +264,98 @@ ul {
     font-size: 0.9rem;
     color: #666;
 }
+/* Style dla galerii */
+.gallery-section {
+    margin: 40px 0;
+    text-align: center;
+}
 
+.gallery-description {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 250px;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(90, 96, 227, 0.8);
+    color: white;
+    padding: 15px;
+    font-size: 0.9rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+
+.gallery-controls {
+    margin-top: 20px;
+}
+
+.gallery-btn {
+    background-color: #5a60e3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.gallery-btn:hover {
+    background-color: #4348c1;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-item {
+        height: 200px;
+    }
+}
+/* cytaty */
 .cytaty {
     text-align: center;
     margin: 40px auto;
@@ -329,7 +420,7 @@ ul {
     color: #666;
     font-size: 1rem;
 }
-
+/* stopka */
 footer {
     background-color: #dfe4ea;
     text-align: center;

@@ -80,6 +80,42 @@
                     </div>
                 </div>
             </section>
+            <section class="gallery-section">
+                <h2>Galeria z poprzednich festiwali</h2>
+                <p class="gallery-description">Zobacz najlepsze momenty z naszych wydarzeń i poczuj atmosferę festiwali!</p>
+                
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="../zdjecia/galeria1.jpg" alt="Koncert na festiwalu muzycznym">
+                        <div class="gallery-caption">Koncert główny - Festiwal Muzyki 2024</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../zdjecia/galeria2.jpg" alt="Widownia podczas koncertu">
+                        <div class="gallery-caption">Entuzjastyczna publiczność</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../zdjecia/galeria3.jpg" alt="Artysta podczas występu">
+                        <div class="gallery-caption">Występ artysty na głównej scenie</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../zdjecia/galeria4.jpg" alt="Warsztaty festiwalowe">
+                        <div class="gallery-caption">Warsztaty artystyczne dla uczestników</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../zdjecia/galeria5.jpg" alt="Scena wieczorna">
+                        <div class="gallery-caption">Wieczorny klimat na festiwalu</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../zdjecia/galeria6.jpg" alt="Food trucki festiwalowe">
+                        <div class="gallery-caption">Strefa food trucków</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-controls">
+                    <button class="gallery-btn" onclick="pokazPoprzednieGaleria()"><i class="fas fa-chevron-left"></i> Poprzednie</button>
+                    <button class="gallery-btn" onclick="pokanNastepneGaleria()">Następne <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </section>
 
             <section>
                 <h2>Nasze statystyki</h2>
@@ -163,6 +199,7 @@
         </footer>
     </div>
     <script>
+        //cytaty
         const cytaty = [
             "„Festiwal to przestrzeń spotkań, emocji i pasji — nasza strona łączy ludzi z ich doświadczeniami.”",
             "„Nie budujemy tylko strony - tworzymy przestrzeń dla wspomnień, inspiracji i nowych doświadczeń.”",
@@ -195,6 +232,35 @@
             obecnyCytat = (obecnyCytat - 1 + cytaty.length) % cytaty.length;
             pokazCytaty(obecnyCytat);
         }
+
+        //galeria
+        let currentGalleryIndex = 0;
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const itemsPerPage = 3;
+
+        function pokazGalerie(startIndex) {
+            galleryItems.forEach((item, index) => {
+                if (index >= startIndex && index < startIndex + itemsPerPage) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function pokanNastepneGaleria() {
+            currentGalleryIndex = (currentGalleryIndex + itemsPerPage) % galleryItems.length;
+            pokazGalerie(currentGalleryIndex);
+        }
+
+        function pokazPoprzednieGaleria() {
+            currentGalleryIndex = (currentGalleryIndex - itemsPerPage + galleryItems.length) % galleryItems.length;
+            pokazGalerie(currentGalleryIndex);
+        }
+
+        window.onload = function() {
+            pokazGalerie(0);
+        };
     </script>
 </body>
 </html>
