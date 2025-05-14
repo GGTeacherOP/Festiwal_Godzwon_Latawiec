@@ -264,7 +264,7 @@ ul {
     font-size: 0.9rem;
     color: #666;
 }
-/* Style dla galerii */
+/* galeria */
 .gallery-section {
     margin: 40px 0;
     text-align: center;
@@ -355,6 +355,144 @@ ul {
         height: 200px;
     }
 }
+/* noclegi */
+.accommodation-section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.accommodation-description {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.accommodation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.accommodation-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.accommodation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.accommodation-img {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+}
+
+.accommodation-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.accommodation-card:hover .accommodation-img img {
+    transform: scale(1.05);
+}
+
+.accommodation-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #5a60e3;
+}
+
+.accommodation-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.accommodation-info h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.accommodation-location {
+    color: #666;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.accommodation-location i {
+    margin-right: 8px;
+    color: #5a60e3;
+}
+
+.accommodation-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.accommodation-features span {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.accommodation-features i {
+    margin-right: 5px;
+    color: #5a60e3;
+}
+
+.accommodation-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #5a60e3;
+    margin: 15px 0;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #5a60e3;
+    color: #5a60e3;
+}
+
+.btn-outline:hover {
+    background: #5a60e3;
+    color: white;
+}
+
+.accommodation-more {
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .accommodation-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .accommodation-img {
+        height: 200px;
+    }
+}
+
 /* cytaty */
 .cytaty {
     text-align: center;
