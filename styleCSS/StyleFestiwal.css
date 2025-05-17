@@ -287,35 +287,140 @@ main {
     flex-wrap: wrap;
 }
 
-button {
+/* kup bilet przycisk*/
+.kup-bilet {
+    background: linear-gradient(135deg, #5a60e3, #7c83ff);
+    color: white;
     padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(90, 96, 227, 0.2);
 }
 
-button[onclick*="kup-bilet"] {
-    background-color: var(--primary-blue);
-    color: white;
-}
-
-button[onclick*="kup-bilet"]:hover {
-    background-color: var(--dark-blue);
+.kup-bilet:hover {
+    background: linear-gradient(135deg, #4a50d3, #6c73ef);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 6px 12px rgba(90, 96, 227, 0.3);
 }
 
+.kup-bilet:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(90, 96, 227, 0.3);
+}
+
+.kup-bilet::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.kup-bilet:focus:not(:active)::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+.kup-bilet.clicked {
+    animation: buttonClick 0.4s ease-out;
+}
+
+@keyframes buttonClick {
+    0% {
+        transform: translateY(-2px) scale(1);
+    }
+    50% {
+        transform: translateY(-2px) scale(0.95);
+    }
+    100% {
+        transform: translateY(-2px) scale(1);
+    }
+}
+
+/* zobacz wiecej przycisk */
 .zobacz-wiecej {
-    background-color: #e5e7eb;
-    color: var(--text-dark);
+    background-color: white;
+    color: #5a60e3;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #5a60e3;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(90, 96, 227, 0.1);
 }
 
 .zobacz-wiecej:hover {
-    background-color: #d1d5db;
+    background-color: #f0f2ff;
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(90, 96, 227, 0.15);
+    color: #4a50d3;
+    border-color: #4a50d3;
+}
+
+.zobacz-wiecej:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(90, 96, 227, 0.1);
+}
+
+.zobacz-wiecej::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(90, 96, 227, 0.1), transparent);
+    transition: all 0.5s ease;
+}
+
+.zobacz-wiecej:hover::before {
+    left: 100%;
+}
+
+.zobacz-wiecej.clicked {
+    animation: buttonClick 0.4s ease-out;
+}
+
+.button-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.zobacz-wiecej i {
+    font-size: 0.9em;
+    transition: transform 0.3s ease;
+}
+
+.zobacz-wiecej:hover i {
+    transform: translateX(3px);
 }
 
 /* ===== RESPONSYWNOŚĆ ===== */
