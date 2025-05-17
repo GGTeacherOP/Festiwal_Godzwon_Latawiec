@@ -193,6 +193,58 @@
                             <a href="#" class="btn btn-small">Sprawdź dostępność</a>
                         </div>
                     </div>
+                    <!-- DODATKOWE HOTELE UKRYTE NA START -->
+<div class="accommodation-card" style="display: none;">
+    <div class="accommodation-img">
+        <img src="../zdjecia/hotelMiejski.png" alt="Hotel Miejski">
+        <div class="accommodation-rating"><i class="fas fa-star"></i> 4.6</div>
+    </div>
+    <div class="accommodation-info">
+        <h3>Hotel Miejski</h3>
+        <div class="accommodation-location"><i class="fas fa-map-marker-alt"></i> 1.5 km od festiwalu</div>
+        <div class="accommodation-features">
+            <span><i class="fas fa-wifi"></i> WiFi</span>
+            <span><i class="fas fa-concierge-bell"></i> Obsługa 24/7</span>
+        </div>
+        <div class="accommodation-price">Od 200 zł/noc</div>
+        <a href="#" class="btn btn-small">Sprawdź dostępność</a>
+    </div>
+</div>
+
+<div class="accommodation-card" style="display: none;">
+    <div class="accommodation-img">
+        <img src="../zdjecia/pensjonatZacisze.png" alt="Pensjonat Zacisze">
+        <div class="accommodation-rating"><i class="fas fa-star"></i> 4.4</div>
+    </div>
+    <div class="accommodation-info">
+        <h3>Pensjonat Zacisze</h3>
+        <div class="accommodation-location"><i class="fas fa-map-marker-alt"></i> 2.3 km od festiwalu</div>
+        <div class="accommodation-features">
+            <span><i class="fas fa-coffee"></i> Śniadanie w cenie</span>
+            <span><i class="fas fa-tree"></i> Ogród</span>
+        </div>
+        <div class="accommodation-price">Od 150 zł/noc</div>
+        <a href="#" class="btn btn-small">Sprawdź dostępność</a>
+    </div>
+</div>
+
+<div class="accommodation-card" style="display: none;">
+    <div class="accommodation-img">
+        <img src="../zdjecia/kempingFestiwalowy.png" alt="Kemping Festiwalowy">
+        <div class="accommodation-rating"><i class="fas fa-star"></i> 4.1</div>
+    </div>
+    <div class="accommodation-info">
+        <h3>Kemping Festiwalowy</h3>
+        <div class="accommodation-location"><i class="fas fa-map-marker-alt"></i> 500 m od festiwalu</div>
+        <div class="accommodation-features">
+            <span><i class="fas fa-fire"></i> Miejsce na ognisko</span>
+            <span><i class="fas fa-shower"></i> Prysznice</span>
+        </div>
+        <div class="accommodation-price">Od 60 zł/noc</div>
+        <a href="#" class="btn btn-small">Sprawdź dostępność</a>
+    </div>
+</div>
+
                 </div>
                 
                 <div class="accommodation-more">
@@ -343,6 +395,37 @@
 
         window.onload = function() {
             pokazGalerie(0);
+
+    
+    const przyciskWiecej = document.querySelector('.accommodation-more a');
+    const ukryteHotele = document.querySelectorAll('.accommodation-card[style*="display: none"], .accommodation-card[data-toggle="true"]');
+    let pokazane = false;
+
+    przyciskWiecej.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (!pokazane) {
+            let licznik = 0;
+            ukryteHotele.forEach(hotel => {
+                if (licznik < 3) {
+                    hotel.style.display = 'block';
+                    hotel.setAttribute('data-toggle', 'true');
+                    licznik++;
+                }
+            });
+            pokazane = true;
+            przyciskWiecej.textContent = 'Pokaż mniej';
+        } else {
+            ukryteHotele.forEach(hotel => {
+                if (hotel.getAttribute('data-toggle') === 'true') {
+                    hotel.style.display = 'none';
+                    hotel.removeAttribute('data-toggle');
+                }
+            });
+            pokazane = false;
+            przyciskWiecej.textContent = 'Zobacz więcej noclegów';
+        }
+    });
         };
     </script>
 </body>
