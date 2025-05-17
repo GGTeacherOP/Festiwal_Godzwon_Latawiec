@@ -492,7 +492,95 @@ ul {
         height: 200px;
     }
 }
+/* wspolny dojazd */
+.transport-section {
+    margin: 40px 0;
+    text-align: center;
+}
 
+.transport-description {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.transport-card {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.transport-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.transport-icon {
+    background: linear-gradient(90deg, #5a60e3, #7c83ff);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    padding: 20px;
+}
+
+.transport-info {
+    padding: 20px;
+    text-align: left;
+    flex: 1;
+}
+
+.transport-info h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.transport-details div {
+    margin: 10px 0;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.transport-details i {
+    margin-right: 10px;
+    color: #5a60e3;
+    width: 20px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .transport-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .transport-card {
+        flex-direction: column;
+    }
+    
+    .transport-icon {
+        min-width: 100%;
+        padding: 15px;
+    }
+    
+    .transport-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 /* cytaty */
 .cytaty {
     text-align: center;
