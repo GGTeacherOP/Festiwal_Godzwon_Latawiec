@@ -1,6 +1,5 @@
 function toggleOpis(button) {
-    const festiwalSection = button.closest('.festiwal');
-    const pelnyOpis = festiwalSection.querySelector('.pelny-opis');
+    const festiwalSection = button.closest('.festiwal-card');
     const krotkiOpis = festiwalSection.querySelector('.krotki-opis');
     const obrazek = festiwalSection.querySelector('img');
 
@@ -28,4 +27,20 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Bilet zakupiono!');
         });
     });
+
+    // Karuzela artystów
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const cardWidth = document.querySelector('.artysta-card').offsetWidth + 24; // 24 to gap
+
+    prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
 });
+
+
