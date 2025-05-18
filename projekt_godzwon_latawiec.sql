@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 17, 2025 at 06:39 PM
+-- Generation Time: Maj 18, 2025 at 12:31 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.0.30
 
@@ -55,20 +55,6 @@ CREATE TABLE `lokalizacja` (
   `lokalizacja_id` int(11) NOT NULL,
   `nazwa` varchar(150) DEFAULT NULL,
   `adres` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `miejsca_festiwali`
---
-
-CREATE TABLE `miejsca_festiwali` (
-  `miejsce_festiwalu_id` int(11) NOT NULL,
-  `nazwa` varchar(255) NOT NULL,
-  `adres` varchar(255) DEFAULT NULL,
-  `miasto` varchar(100) DEFAULT NULL,
-  `kraj` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 -- --------------------------------------------------------
@@ -210,12 +196,6 @@ ALTER TABLE `lokalizacja`
   ADD PRIMARY KEY (`lokalizacja_id`);
 
 --
--- Indeksy dla tabeli `miejsca_festiwali`
---
-ALTER TABLE `miejsca_festiwali`
-  ADD PRIMARY KEY (`miejsce_festiwalu_id`);
-
---
 -- Indeksy dla tabeli `pracownicy`
 --
 ALTER TABLE `pracownicy`
@@ -296,12 +276,6 @@ ALTER TABLE `kategoria_wydarzenia`
 --
 ALTER TABLE `lokalizacja`
   MODIFY `lokalizacja_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `miejsca_festiwali`
---
-ALTER TABLE `miejsca_festiwali`
-  MODIFY `miejsce_festiwalu_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pracownicy`
@@ -386,8 +360,7 @@ ALTER TABLE `uczestnicy_zespolu`
 --
 ALTER TABLE `wydarzenia`
   ADD CONSTRAINT `wydarzenia_ibfk_1` FOREIGN KEY (`lokalizacja_id`) REFERENCES `lokalizacja` (`lokalizacja_id`),
-  ADD CONSTRAINT `wydarzenia_ibfk_2` FOREIGN KEY (`kategoria_id`) REFERENCES `kategoria_wydarzenia` (`kategoria_id`),
-  ADD CONSTRAINT `wydarzenia_ibfk_3` FOREIGN KEY (`miejsce_festiwalu_id`) REFERENCES `miejsca_festiwali` (`miejsce_festiwalu_id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `wydarzenia_ibfk_2` FOREIGN KEY (`kategoria_id`) REFERENCES `kategoria_wydarzenia` (`kategoria_id`);
 
 --
 -- Constraints for table `zarobki`
