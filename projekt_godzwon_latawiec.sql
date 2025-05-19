@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 19, 2025 at 10:53 PM
+-- Generation Time: Maj 19, 2025 at 11:03 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.0.30
 
@@ -97,6 +97,34 @@ INSERT INTO `lokalizacja` (`lokalizacja_id`, `nazwa`, `adres`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `noclegi`
+--
+
+CREATE TABLE `noclegi` (
+  `nocleg_id` int(11) NOT NULL,
+  `lokalizacja_id` int(11) NOT NULL,
+  `nazwa` varchar(150) NOT NULL,
+  `adres` varchar(255) NOT NULL,
+  `liczba_pokoi` int(11) DEFAULT 0,
+  `cena_za_noc` decimal(10,2) DEFAULT NULL,
+  `dostepnosc` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Dumping data for table `noclegi`
+--
+
+INSERT INTO `noclegi` (`nocleg_id`, `lokalizacja_id`, `nazwa`, `adres`, `liczba_pokoi`, `cena_za_noc`, `dostepnosc`) VALUES
+(1, 1, 'Hotel Premium', 'ul. Muzyczna 15, Warszawa', 50, 320.00, 1),
+(2, 5, 'Hostel Festiwalowy', 'ul. Zielona 2, Gdańsk', 25, 110.00, 1),
+(3, 11, 'Apartamenty Nad Brzegiem', 'ul. Wypoczynkowa 5, Hel', 12, 290.00, 0),
+(4, 4, 'Hotel Miejski', 'ul. Sportowa 15, Poznań', 40, 240.00, 1),
+(5, 14, 'Pensjonat Zacisze', 'ul. Górnicza 35, Gliwice', 18, 170.00, 1),
+(6, 8, 'Kemping Festiwalowy', 'ul. Glebowa 114, Glebnica', 60, 60.00, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `pracownicy`
 --
 
@@ -107,6 +135,34 @@ CREATE TABLE `pracownicy` (
   `data_zatrudnienia` date DEFAULT NULL,
   `zarobki` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `rezerwacje_noclegow`
+--
+
+CREATE TABLE `rezerwacje_noclegow` (
+  `rezerwacja_id` int(11) NOT NULL,
+  `uzytkownicy_id` int(11) NOT NULL,
+  `nocleg_id` int(11) NOT NULL,
+  `data_przyjazdu` date NOT NULL,
+  `data_wyjazdu` date NOT NULL,
+  `liczba_osob` int(11) DEFAULT 1,
+  `status` varchar(50) DEFAULT 'potwierdzona'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Dumping data for table `rezerwacje_noclegow`
+--
+
+INSERT INTO `rezerwacje_noclegow` (`rezerwacja_id`, `uzytkownicy_id`, `nocleg_id`, `data_przyjazdu`, `data_wyjazdu`, `liczba_osob`, `status`) VALUES
+(1, 1, 1, '2025-07-19', '2025-07-21', 2, 'potwierdzona'),
+(2, 2, 2, '2025-08-14', '2025-08-16', 1, 'potwierdzona'),
+(3, 3, 3, '2025-08-05', '2025-08-07', 2, 'anulowana'),
+(4, 4, 4, '2025-07-28', '2025-07-30', 3, 'potwierdzona'),
+(5, 5, 5, '2025-10-04', '2025-10-06', 1, 'oczekująca'),
+(6, 6, 6, '2025-09-21', '2025-09-24', 2, 'potwierdzona');
 
 -- --------------------------------------------------------
 
@@ -312,11 +368,26 @@ ALTER TABLE `lokalizacja`
   ADD PRIMARY KEY (`lokalizacja_id`);
 
 --
+-- Indeksy dla tabeli `noclegi`
+--
+ALTER TABLE `noclegi`
+  ADD PRIMARY KEY (`nocleg_id`),
+  ADD KEY `lokalizacja_id` (`lokalizacja_id`);
+
+--
 -- Indeksy dla tabeli `pracownicy`
 --
 ALTER TABLE `pracownicy`
   ADD PRIMARY KEY (`pracownik_id`),
   ADD KEY `uzytkownicy_id` (`uzytkownicy_id`);
+
+--
+-- Indeksy dla tabeli `rezerwacje_noclegow`
+--
+ALTER TABLE `rezerwacje_noclegow`
+  ADD PRIMARY KEY (`rezerwacja_id`),
+  ADD KEY `uzytkownicy_id` (`uzytkownicy_id`),
+  ADD KEY `nocleg_id` (`nocleg_id`);
 
 --
 -- Indeksy dla tabeli `uczestnicy`
@@ -393,10 +464,22 @@ ALTER TABLE `lokalizacja`
   MODIFY `lokalizacja_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `noclegi`
+--
+ALTER TABLE `noclegi`
+  MODIFY `nocleg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `pracownicy`
 --
 ALTER TABLE `pracownicy`
   MODIFY `pracownik_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `rezerwacje_noclegow`
+--
+ALTER TABLE `rezerwacje_noclegow`
+  MODIFY `rezerwacja_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `uczestnicy`
@@ -452,10 +535,23 @@ ALTER TABLE `bilety`
   ADD CONSTRAINT `bilety_ibfk_2` FOREIGN KEY (`wydarzenia_id`) REFERENCES `wydarzenia` (`wydarzenia_id`);
 
 --
+-- Constraints for table `noclegi`
+--
+ALTER TABLE `noclegi`
+  ADD CONSTRAINT `noclegi_ibfk_1` FOREIGN KEY (`lokalizacja_id`) REFERENCES `lokalizacja` (`lokalizacja_id`);
+
+--
 -- Constraints for table `pracownicy`
 --
 ALTER TABLE `pracownicy`
   ADD CONSTRAINT `pracownicy_ibfk_1` FOREIGN KEY (`uzytkownicy_id`) REFERENCES `uzytkownicy` (`uzytkownicy_id`);
+
+--
+-- Constraints for table `rezerwacje_noclegow`
+--
+ALTER TABLE `rezerwacje_noclegow`
+  ADD CONSTRAINT `rezerwacje_noclegow_ibfk_1` FOREIGN KEY (`uzytkownicy_id`) REFERENCES `uzytkownicy` (`uzytkownicy_id`),
+  ADD CONSTRAINT `rezerwacje_noclegow_ibfk_2` FOREIGN KEY (`nocleg_id`) REFERENCES `noclegi` (`nocleg_id`);
 
 --
 -- Constraints for table `uczestnicy`
