@@ -14,11 +14,11 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="index.html">Strona Główna</a></li>
-                    <li><a href="festiwale.html">Festiwale</a></li>
-                    <li><a href="O-nas.html">O nas</a></li>
-                    <li><a href="kontakt.html">Kontakt</a></li>
-                    <li><a href="logowanie.html">Logowanie</a></li>
+                    <li><a href="index.php">Strona Główna</a></li>
+                    <li><a href="festiwale.php">Festiwale</a></li>
+                    <li><a href="o-nas.php">O nas</a></li>
+                    <li><a href="kontakt.php">Kontakt</a></li>
+                    <li><a href="logowanie.php">Logowanie</a></li>
                 </ul>
             </nav>
         </header>
@@ -27,7 +27,7 @@
                 <h1>Witamy w Systemie Festiwalowym</h1>
                 <p>Dołącz do najlepszych wydarzeń kulturalnych w kraju. Rejestruj się, przeglądaj programy i twórz
                     niezapomniane wspomnienia!</p>
-                <a href="rejestracje.html" class="btn">Zarejestruj się teraz</a>
+                <a href="rejestracje.php" class="btn">Zarejestruj się teraz</a>
             </section>
             <section>
                 <h2>Nadchodzące festiwale</h2>

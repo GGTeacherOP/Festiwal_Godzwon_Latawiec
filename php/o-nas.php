@@ -11,11 +11,11 @@
     <header>
             <nav>
                 <ul>
-                    <li><a href="index.html">Strona Główna</a></li>
-                    <li><a href="festiwale.html">Festiwale</a></li>
-                    <li><a href="O-nas.html">O nas</a></li>
-                    <li><a href="kontakt.html">Kontakt</a></li>
-                    <li><a href="logowanie.html">Logowanie</a></li>
+                    <li><a href="index.php">Strona Główna</a></li>
+                    <li><a href="festiwale.php">Festiwale</a></li>
+                    <li><a href="O-nas.php">O nas</a></li>
+                    <li><a href="kontakt.php">Kontakt</a></li>
+                    <li><a href="logowanie.php">Logowanie</a></li>
                 </ul>
             </nav>
     </header>
@@ -73,7 +73,7 @@
     </div>
 
     <div class="cta">
-      <a href="rejestracje.html">Dołącz do nas</a>
+      <a href="rejestracje.php">Dołącz do nas</a>
     </div>
   </div>
 

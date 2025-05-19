@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['uzytkownicy_id'];
             $_SESSION['username'] = $user['nazwa'];
             echo '<script>alert("Zalogowano!");</script>'; // Dodany alert
-            header("Location: ../stronyHTML/logowanie.html"); // Przekieruj do panelu użytkownika
+            header("Location: ../php/index.php"); // Przekieruj do panelu użytkownika
             exit();
         } else {
             $error = "Nieprawidłowa nazwa użytkownika lub hasło.";

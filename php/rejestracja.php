@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($result->num_rows > 0) {
         // Użytkownik już istnieje
-        echo "<script>alert('Nazwa użytkownika lub email jest już zajęty!'); window.location.href='../stronyHTML/rejestracje.html';</script>";
+        echo "<script>alert('Nazwa użytkownika lub email jest już zajęty!'); window.location.href='../php/rejestracje.php';</script>";
         exit();
     }
     
@@ -45,10 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($stmt->execute()) {
         // Rejestracja udana
-        echo "<script>alert('Rejestracja zakończona sukcesem! Możesz się teraz zalogować.'); window.location.href='../stronyHTML/logowanie.html';</script>";
+        echo "<script>alert('Rejestracja zakończona sukcesem! Możesz się teraz zalogować.'); window.location.href='../php/logowanie.php';</script>";
     } else {
         // Błąd podczas rejestracji
-        echo "<script>alert('Wystąpił błąd podczas rejestracji: " . $conn->error . "'); window.location.href='../stronyHTML/rejestracje.html';</script>";
+        echo "<script>alert('Wystąpił błąd podczas rejestracji: " . $conn->error . "'); window.location.href='../php/rejestracje.php';</script>";
     }
     
     $stmt->close();
