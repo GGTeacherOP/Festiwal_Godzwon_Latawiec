@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -20,13 +19,10 @@
                     <li><a href="o-nas.php">O nas</a></li>
                     <li><a href="kontakt.php">Kontakt</a></li>
                     <li><a href="logowanie.php">Logowanie</a></li>
-              
                 </ul>
             </nav>
         </header>
         <main>
-            
-   
             <section class="hero">
                 <h1>Witamy w Systemie Festiwalowym</h1>
                 <p>Dołącz do najlepszych wydarzeń kulturalnych w kraju. Rejestruj się, przeglądaj programy i twórz
@@ -36,57 +32,63 @@
             <section>
                 <h2>Nadchodzące festiwale</h2>
                 <div class="festival-grid">
-                    <div class="festival-card">
-                        <div class="festival-img">
-                            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                alt="Festiwal Muzyki Alternatywnej">
-                        </div>
-                        <div class="festival-info">
-                            <h3>Festiwal Muzyki Alternatywnej</h3>
-                            <div class="festival-date">
-                                <i class="far fa-calendar-alt"></i> 15-18.07.2025
-                            </div>
-                            <div class="festival-location">
-                                <i class="fas fa-map-marker-alt"></i> Warszawa
-                            </div>
-                            <p>Największe gwiazdy muzyki alternatywnej na jednej scenie. 3 dni niezapomnianych wrażeń!
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="festival-card">
-                        <div class="festival-img">
-                            <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                alt="Festiwal Kina Niezależnego">
-                        </div>
-                        <div class="festival-info">
-                            <h3>Festiwal Kina Niezależnego</h3>
-                            <div class="festival-date">
-                                <i class="far fa-calendar-alt"></i> 03-10.08.2025
-                            </div>
-                            <div class="festival-location">
-                                <i class="fas fa-map-marker-alt"></i> Kraków
-                            </div>
-                            <p>Pokazy filmowe, spotkania z twórcami i warsztaty filmowe. Odkryj kino na nowo!</p>
-                        </div>
-                    </div>
-
-                    <div class="festival-card">
-                        <div class="festival-img">
-                            <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                alt="Festiwal Sztuki Nowoczesnej">
-                        </div>
-                        <div class="festival-info">
-                            <h3>Festiwal Sztuki Nowoczesnej</h3>
-                            <div class="festival-date">
-                                <i class="far fa-calendar-alt"></i> 22-28.09.2025
-                            </div>
-                            <div class="festival-location">
-                                <i class="fas fa-map-marker-alt"></i> Gdańsk
-                            </div>
-                            <p>Instalacje, performance i wystawy najciekawszych współczesnych artystów.</p>
-                        </div>
-                    </div>
+                <?php
+                    $conn = new mysqli('localhost', 'root', '', 'projekt_godzwon_latawiec');
+                    
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    
+                    // Pobranie 3 najbliższych wydarzeń
+                    $currentDate = date('Y-m-d H:i:s');
+                    $sql = "SELECT w.*, k.nazwa AS kategoria, l.nazwa AS miejsce 
+                            FROM wydarzenia w
+                            JOIN kategoria_wydarzenia k ON w.kategoria_id = k.kategoria_id
+                            JOIN lokalizacja l ON w.lokalizacja_id = l.lokalizacja_id
+                            WHERE w.rozpoczecie > '$currentDate'
+                            ORDER BY w.rozpoczecie ASC
+                            LIMIT 3";
+                    
+                    $result = $conn->query($sql);
+                    
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            $startDate = new DateTime($row['rozpoczecie']);
+                            $endDate = new DateTime($row['zakonczenie']);
+                            $image_url = "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+                            if ($row['kategoria_id'] == 10) { // Kino Niezależne
+                                $image_url = "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+                            } elseif ($row['kategoria_id'] == 11) { // Sztuka Nowoczesna
+                                $image_url = "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+                            }
+                            
+                            echo '<div class="festival-card">';
+                            echo '  <div class="festival-img">';
+                            echo '    <img src="'.$image_url.'" alt="'.$row['tytul'].'">';
+                            echo '  </div>';
+                            echo '  <div class="festival-info">';
+                            echo '    <h3>'.$row['tytul'].'</h3>';
+                            echo '    <div class="festival-date">';
+                            echo '      <i class="far fa-calendar-alt"></i> '.$startDate->format('d.m.Y').' - '.$endDate->format('d.m.Y');
+                            echo '    </div>';
+                            echo '    <div class="festival-location">';
+                            echo '      <i class="fas fa-map-marker-alt"></i> '.$row['miejsce'];
+                            echo '    </div>';
+                            echo '    <p>'.$row['opis'].'</p>';
+                            echo '  </div>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<div class="festival-card">';
+                        echo '  <div class="festival-info">';
+                        echo '    <h3>Brak nadchodzących wydarzeń</h3>';
+                        echo '    <p>Sprawdź później lub zobacz inne dostępne festiwale.</p>';
+                        echo '  </div>';
+                        echo '</div>';
+                    }
+                    
+                    $conn->close();
+                    ?>
                 </div>
             </section>
             <section class="gallery-section">
