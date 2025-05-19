@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -22,30 +20,13 @@ session_start();
                     <li><a href="o-nas.php">O nas</a></li>
                     <li><a href="kontakt.php">Kontakt</a></li>
                     <li><a href="logowanie.php">Logowanie</a></li>
-                    <?php if (isset($_SESSION['logged_in'])): ?>
-            <li><a href="moje-konto.php"><i class="fas fa-user"></i> <?php echo htmlspecialchars($_SESSION['user_name']); ?></a></li>
-            <li><a href="wyloguj.php"><i class="fas fa-sign-out-alt"></i> Wyloguj</a></li>
-        <?php else: ?>
-            <li><a href="logowanie.php"><i class="fas fa-sign-in-alt"></i> Logowanie</a></li>
-            <li><a href="rejestracje.php"><i class="fas fa-user-plus"></i> Rejestracja</a></li>
-        <?php endif; ?>
+              
                 </ul>
             </nav>
         </header>
         <main>
             
-    <?php
-    // Komunikat o zalogowaniu
-    if (isset($_SESSION['login_success'])) {
-        echo '<div class="alert success">' . $_SESSION['login_success'] . '</div>';
-        unset($_SESSION['login_success']);
-    }
-    
-    // Komunikat o wylogowaniu
-    if (isset($_GET['logout'])) {
-        echo '<div class="alert info">Wylogowano pomyślnie.</div>';
-    }
-    ?>
+   
             <section class="hero">
                 <h1>Witamy w Systemie Festiwalowym</h1>
                 <p>Dołącz do najlepszych wydarzeń kulturalnych w kraju. Rejestruj się, przeglądaj programy i twórz
