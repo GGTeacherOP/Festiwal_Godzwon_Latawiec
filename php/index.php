@@ -131,214 +131,173 @@
                 </div>
             </section>
 
-            <section class="accommodation-section">
-                <h2>Polecane noclegi w okolicy</h2>
-                <p class="accommodation-description">Zarezerwuj wygodny nocleg w pobliżu festiwalu i ciesz się pełnym komfortem!</p>
+<section class="accommodation-section">
+    <h2>Polecane noclegi w okolicy</h2>
+    <p class="accommodation-description">Zarezerwuj wygodny nocleg w pobliżu festiwalu i ciesz się pełnym komfortem!</p>
 
-                <div class="accommodation-grid">
-                    <div class="accommodation-card">
-                        <div class="accommodation-img">
-                            <img src="../zdjecia/hotelPremium.jpg" alt="Hotel Premium">
-                            <div class="accommodation-rating">
-                                <i class="fas fa-star"></i> 4.8
-                            </div>
+    <div class="accommodation-grid">
+            <?php
+                $conn = new mysqli('localhost', 'root', '', 'projekt_godzwon_latawiec');
+                
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                
+                // Pobranie noclegów z bazy danych - upewnij się, że masz 6 rekordów w bazie
+                $sql = "SELECT n.*, l.nazwa AS lokalizacja_nazwa 
+                        FROM noclegi n
+                        JOIN lokalizacja l ON n.lokalizacja_id = l.lokalizacja_id
+                        WHERE n.dostepnosc = 1
+                        ORDER BY n.cena_za_noc ASC
+                        LIMIT 7";
+                
+                $result = $conn->query($sql);
+                
+                if ($result->num_rows > 0) {
+                    $zdjecia_noclegow = [
+                        "../zdjecia/kempingFestiwalowy.png",
+                        "../zdjecia/HostelFestiwal.png",
+                        "../zdjecia/pensjonatZacisze.png",
+                        "../zdjecia/HotelMiejski.png",
+                        "../zdjecia/HotelPremium.jpg",
+                        "../zdjecia/apartamentNadBrzegiem.jpg"
+                    ];
+                    
+                    $counter = 0;
+                    while($row = $result->fetch_assoc()) {
+                        $image_path = $zdjecia_noclegow[$counter % count($zdjecia_noclegow)];
+                        
+                        $style = ($counter >= 3) ? 'style="display: none;"' : '';
+                        
+                        echo '<div class="accommodation-card" '.$style.'>';
+                        echo '  <div class="accommodation-img">';
+                        echo '    <img src="'.$image_path.'" alt="'.$row['nazwa'].'">';
+                        echo '    <div class="accommodation-rating">';
+                        echo '      <i class="fas fa-star"></i> 4.'.rand(5,9);
+                        echo '    </div>';
+                        echo '  </div>';
+                        echo '  <div class="accommodation-info">';
+                        echo '    <h3>'.$row['nazwa'].'</h3>';
+                        echo '    <div class="accommodation-location">';
+                        echo '      <i class="fas fa-map-marker-alt"></i> '.$row['lokalizacja_nazwa'];
+                        echo '    </div>';
+                        echo '    <div class="accommodation-features">';
+                        
+                        // Losowe cechy dla każdego noclegu
+                        $features = [
+                            ['icon' => 'fa-wifi', 'text' => 'Darmowe WiFi'],
+                            ['icon' => 'fa-parking', 'text' => 'Parking'],
+                            ['icon' => 'fa-utensils', 'text' => 'Restauracja'],
+                            ['icon' => 'fa-swimming-pool', 'text' => 'Basen'],
+                            ['icon' => 'fa-coffee', 'text' => 'Śniadanie'],
+                            ['icon' => 'fa-concierge-bell', 'text' => 'Obsługa 24/7']
+                        ];
+                        shuffle($features);
+                        
+                        for ($i = 0; $i < 3; $i++) {
+                            echo '<span><i class="fas '.$features[$i]['icon'].'"></i> '.$features[$i]['text'].'</span>';
+                        }
+                        
+                        echo '    </div>';
+                        echo '    <div class="accommodation-price">';
+                        echo '      Od '.number_format($row['cena_za_noc'], 2, ',', ' ').' zł/noc';
+                        echo '    </div>';
+                        echo '    <a href="#" class="btn btn-small">Sprawdź dostępność</a>';
+                        echo '  </div>';
+                        echo '</div>';
+                        
+                        $counter++;
+                    }
+                    
+                    // Debug - wyświetl liczbę znalezionych noclegów
+                    echo '<!-- DEBUG: Znaleziono '.$counter.' noclegów -->';
+                } else {
+                    echo '<div class="accommodation-card">';
+                    echo '  <div class="accommodation-info">';
+                    echo '    <h3>Brak dostępnych noclegów</h3>';
+                    echo '    <p>Sprawdź później dostępne opcje zakwaterowania.</p>';
+                    echo '  </div>';
+                    echo '</div>';
+                }
+                
+                $conn->close();
+                ?>
+            </div>
+
+            <div class="accommodation-more">
+                <a href="#" class="btn btn-outline">Zobacz więcej noclegów</a>
+            </div>
+        </section>
+
+            <section class="transport-section">
+                <h2>Wspólny transport na festiwale</h2>
+                <p class="transport-description">Dołącz do organizowanych przejazdów lub zorganizuj własny i podziel się kosztami z innymi uczestnikami!</p>
+
+                <div class="transport-grid">
+                    <div class="transport-card">
+                        <div class="transport-icon">
+                            <i class="fas fa-bus fa-3x"></i>
                         </div>
-                        <div class="accommodation-info">
-                            <h3>Hotel Premium</h3>
-                            <div class="accommodation-location">
-                                <i class="fas fa-map-marker-alt"></i> 1.2 km od festiwalu
+                        <div class="transport-info">
+                            <h3>Autokar z Warszawy</h3>
+                            <div class="transport-details">
+                                <div><i class="fas fa-calendar-alt"></i> 14.07.2025, 18:00</div>
+                                <div><i class="fas fa-map-marker-alt"></i> Zbiórka: Dworzec Zachodni</div>
+                                <div><i class="fas fa-users"></i> Wolnych miejsc: 12/50</div>
+                                <div><i class="fas fa-money-bill-wave"></i> Cena: 60 zł/os</div>
                             </div>
-                            <div class="accommodation-features">
-                                <span><i class="fas fa-wifi"></i> Darmowe WiFi</span>
-                                <span><i class="fas fa-parking"></i> Parking</span>
-                                <span><i class="fas fa-utensils"></i> Restauracja</span>
-                            </div>
-                            <div class="accommodation-price">
-                                Od 250 zł/noc
-                            </div>
-                            <a href="#" class="btn btn-small">Sprawdź dostępność</a>
+                            <a href="#" class="btn btn-small">Dołącz do przejazdu</a>
                         </div>
                     </div>
 
-                    <div class="accommodation-card">
-                        <div class="accommodation-img">
-                            <img src="../zdjecia/festiwalHostel.png" alt="Hostel Festiwalowy">
-                            <div class="accommodation-rating">
-                                <i class="fas fa-star"></i> 4.5
-                            </div>
+                    <div class="transport-card">
+                        <div class="transport-icon">
+                            <i class="fas fa-car fa-3x"></i>
                         </div>
-                        <div class="accommodation-info">
-                            <h3>Hostel Festiwalowy</h3>
-                            <div class="accommodation-location">
-                                <i class="fas fa-map-marker-alt"></i> 800 m od festiwalu
+                        <div class="transport-info">
+                            <h3>Samochód z Krakowa</h3>
+                            <div class="transport-details">
+                                <div><i class="fas fa-calendar-alt"></i> 02.08.2025, 16:00</div>
+                                <div><i class="fas fa-map-marker-alt"></i> Zbiórka: Galeria Krakowska</div>
+                                <div><i class="fas fa-users"></i> Wolnych miejsc: 2/4</div>
+                                <div><i class="fas fa-money-bill-wave"></i> Cena: 40 zł/os</div>
                             </div>
-                            <div class="accommodation-features">
-                                <span><i class="fas fa-wifi"></i> WiFi</span>
-                                <span><i class="fas fa-users"></i> Wspólna kuchnia</span>
-                                <span><i class="fas fa-bicycle"></i> Wypożyczalnia rowerów</span>
-                            </div>
-                            <div class="accommodation-price">
-                                Od 80 zł/noc
-                            </div>
-                            <a href="#" class="btn btn-small">Sprawdź dostępność</a>
+                            <a href="#" class="btn btn-small">Dołącz do przejazdu</a>
                         </div>
                     </div>
 
-                    <div class="accommodation-card">
-                        <div class="accommodation-img">
-                            <img src="../zdjecia/apartamentNadBrzegiem.jpg" alt="Apartamenty Nad Brzegiem">
-                            <div class="accommodation-rating">
-                                <i class="fas fa-star"></i> 4.9
-                            </div>
+                    <div class="transport-card">
+                        <div class="transport-icon">
+                            <i class="fas fa-car fa-3x"></i>
                         </div>
-                        <div class="accommodation-info">
-                            <h3>Apartamenty Nad Brzegiem</h3>
-                            <div class="accommodation-location">
-                                <i class="fas fa-map-marker-alt"></i> 2 km od festiwalu
+                        <div class="transport-info">
+                            <h3>Samochód z Mielca</h3>
+                            <div class="transport-details">
+                                <div><i class="fas fa-calendar-alt"></i> 25.07.2025, 13:00</div>
+                                <div><i class="fas fa-map-marker-alt"></i> Zbiórka: Dworzec Autobusowy Mielec</div>
+                                <div><i class="fas fa-users"></i> Wolnych miejsc: 5/7</div>
+                                <div><i class="fas fa-money-bill-wave"></i> Cena: 50 zł/os</div>
                             </div>
-                            <div class="accommodation-features">
-                                <span><i class="fas fa-swimming-pool"></i> Basen</span>
-                                <span><i class="fas fa-umbrella-beach"></i> Plaża</span>
-                                <span><i class="fas fa-warehouse"></i> Apartamenty</span>
-                            </div>
-                            <div class="accommodation-price">
-                                Od 350 zł/noc
-                            </div>
-                            <a href="#" class="btn btn-small">Sprawdź dostępność</a>
+                            <a href="#" class="btn btn-small">Dołącz do przejazdu</a>
                         </div>
                     </div>
                     
-                    <div class="accommodation-card" style="display: none;">
-                        <div class="accommodation-img">
-                            <img src="../zdjecia/hotelMiejski.png" alt="Hotel Miejski">
-                            <div class="accommodation-rating"><i class="fas fa-star"></i> 4.6</div>
+                    <div class="transport-card">
+                        <div class="transport-icon">
+                            <i class="fas fa-train fa-3x"></i>
                         </div>
-                        <div class="accommodation-info">
-                            <h3>Hotel Miejski</h3>
-                            <div class="accommodation-location"><i class="fas fa-map-marker-alt"></i> 1.5 km od
-                                festiwalu</div>
-                            <div class="accommodation-features">
-                                <span><i class="fas fa-wifi"></i> WiFi</span>
-                                <span><i class="fas fa-concierge-bell"></i> Obsługa 24/7</span>
+                        <div class="transport-info">
+                            <h3>Pociąg z Gdańska</h3>
+                            <div class="transport-details">
+                                <div><i class="fas fa-calendar-alt"></i> 21.09.2025, 08:30</div>
+                                <div><i class="fas fa-map-marker-alt"></i> Zbiórka: Gdańsk Główny</div>
+                                <div><i class="fas fa-users"></i> Wolnych miejsc: 8/15</div>
+                                <div><i class="fas fa-money-bill-wave"></i> Cena: 45 zł/os</div>
                             </div>
-                            <div class="accommodation-price">Od 200 zł/noc</div>
-                            <a href="#" class="btn btn-small">Sprawdź dostępność</a>
+                            <a href="#" class="btn btn-small">Dołącz do przejazdu</a>
                         </div>
                     </div>
-
-                    <div class="accommodation-card" style="display: none;">
-                        <div class="accommodation-img">
-                            <img src="../zdjecia/pensjonatZacisze.png" alt="Pensjonat Zacisze">
-                            <div class="accommodation-rating"><i class="fas fa-star"></i> 4.4</div>
-                        </div>
-                        <div class="accommodation-info">
-                            <h3>Pensjonat Zacisze</h3>
-                            <div class="accommodation-location"><i class="fas fa-map-marker-alt"></i> 2.3 km od
-                                festiwalu</div>
-                            <div class="accommodation-features">
-                                <span><i class="fas fa-coffee"></i> Śniadanie w cenie</span>
-                                <span><i class="fas fa-tree"></i> Ogród</span>
-                            </div>
-                            <div class="accommodation-price">Od 150 zł/noc</div>
-                            <a href="#" class="btn btn-small">Sprawdź dostępność</a>
-                        </div>
-                    </div>
-
-                    <div class="accommodation-card" style="display: none;">
-                        <div class="accommodation-img">
-                            <img src="../zdjecia/kempingFestiwalowy.png" alt="Kemping Festiwalowy">
-                            <div class="accommodation-rating"><i class="fas fa-star"></i> 4.1</div>
-                        </div>
-                        <div class="accommodation-info">
-                            <h3>Kemping Festiwalowy</h3>
-                            <div class="accommodation-location"><i class="fas fa-map-marker-alt"></i> 500 m od festiwalu
-                            </div>
-                            <div class="accommodation-features">
-                                <span><i class="fas fa-fire"></i> Miejsce na ognisko</span>
-                                <span><i class="fas fa-shower"></i> Prysznice</span>
-                            </div>
-                            <div class="accommodation-price">Od 60 zł/noc</div>
-                            <a href="#" class="btn btn-small">Sprawdź dostępność</a>
-                        </div>
-                    </div>
-
                 </div>
-
-                <div class="accommodation-more">
-                    <a href="#" class="btn btn-outline">Zobacz więcej noclegów</a>
-                </div>
-
-                <section class="transport-section">
-                    <h2>Wspólny transport na festiwale</h2>
-                    <p class="transport-description">Dołącz do organizowanych przejazdów lub zorganizuj własny i podziel się kosztami z innymi uczestnikami!</p>
-    
-                    <div class="transport-grid">
-                        <div class="transport-card">
-                            <div class="transport-icon">
-                                <i class="fas fa-bus fa-3x"></i>
-                            </div>
-                            <div class="transport-info">
-                                <h3>Autokar z Warszawy</h3>
-                                <div class="transport-details">
-                                    <div><i class="fas fa-calendar-alt"></i> 14.07.2025, 18:00</div>
-                                    <div><i class="fas fa-map-marker-alt"></i> Zbiórka: Dworzec Zachodni</div>
-                                    <div><i class="fas fa-users"></i> Wolnych miejsc: 12/50</div>
-                                    <div><i class="fas fa-money-bill-wave"></i> Cena: 60 zł/os</div>
-                                </div>
-                                <a href="#" class="btn btn-small">Dołącz do przejazdu</a>
-                            </div>
-                        </div>
-    
-                        <div class="transport-card">
-                            <div class="transport-icon">
-                                <i class="fas fa-car fa-3x"></i>
-                            </div>
-                            <div class="transport-info">
-                                <h3>Samochód z Krakowa</h3>
-                                <div class="transport-details">
-                                    <div><i class="fas fa-calendar-alt"></i> 02.08.2025, 16:00</div>
-                                    <div><i class="fas fa-map-marker-alt"></i> Zbiórka: Galeria Krakowska</div>
-                                    <div><i class="fas fa-users"></i> Wolnych miejsc: 2/4</div>
-                                    <div><i class="fas fa-money-bill-wave"></i> Cena: 40 zł/os</div>
-                                </div>
-                                <a href="#" class="btn btn-small">Dołącz do przejazdu</a>
-                            </div>
-                        </div>
-    
-                        <div class="transport-card">
-                            <div class="transport-icon">
-                                <i class="fas fa-car fa-3x"></i>
-                            </div>
-                            <div class="transport-info">
-                                <h3>Samochód z Mielca</h3>
-                                <div class="transport-details">
-                                    <div><i class="fas fa-calendar-alt"></i> 25.07.2025, 13:00</div>
-                                    <div><i class="fas fa-map-marker-alt"></i> Zbiórka: Dworzec Autobusowy Mielec</div>
-                                    <div><i class="fas fa-users"></i> Wolnych miejsc: 5/7</div>
-                                    <div><i class="fas fa-money-bill-wave"></i> Cena: 50 zł/os</div>
-                                </div>
-                                <a href="#" class="btn btn-small">Dołącz do przejazdu</a>
-                            </div>
-                        </div>
-                        
-                        <div class="transport-card">
-                            <div class="transport-icon">
-                                <i class="fas fa-train fa-3x"></i>
-                            </div>
-                            <div class="transport-info">
-                                <h3>Pociąg z Gdańska</h3>
-                                <div class="transport-details">
-                                    <div><i class="fas fa-calendar-alt"></i> 21.09.2025, 08:30</div>
-                                    <div><i class="fas fa-map-marker-alt"></i> Zbiórka: Gdańsk Główny</div>
-                                    <div><i class="fas fa-users"></i> Wolnych miejsc: 8/15</div>
-                                    <div><i class="fas fa-money-bill-wave"></i> Cena: 45 zł/os</div>
-                                </div>
-                                <a href="#" class="btn btn-small">Dołącz do przejazdu</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
             </section>
             <section>
                 <h2>Nasze statystyki</h2>
