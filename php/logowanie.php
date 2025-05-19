@@ -9,7 +9,6 @@ if (isset($_SESSION['login_success'])) {
     unset($_SESSION['login_success']); // Usuń komunikat po wyświetleniu
 }
 
-
 $error = '';
 $form_submitted = false;
 
@@ -29,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $db_name = "projekt_godzwon_latawiec";
 
         try {
-            $conn = new mysqli($host, $db_user, $db_password, $db_name);
+            $conn = mysqli_connect($host, $db_user, $db_password, $db_name);
             $conn->set_charset("utf8mb4");
             
             if ($conn->connect_error) {
@@ -101,7 +100,7 @@ exit();
                 
                 <form method="post">
                     <label for="username">Nazwa użytkownika lub email</label>
-                    <input type="text" id="username" name="username" required value="<?= htmlspecialchars($username) ?>">
+                    <input type="text" id="username" name="username" required>
                 
                     <label for="password">Hasło</label>
                     <input type="password" id="password" name="password" required>
