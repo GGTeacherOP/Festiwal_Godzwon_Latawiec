@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 19, 2025 at 10:49 PM
+-- Generation Time: Maj 19, 2025 at 10:53 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.0.30
 
@@ -159,7 +159,7 @@ CREATE TABLE `uzytkownicy` (
   `data_urodzenia` date NOT NULL,
   `email` varchar(100) NOT NULL,
   `telefon` varchar(20) NOT NULL,
-  `haslo` varchar(50) NOT NULL,
+  `haslo` varchar(255) NOT NULL,
   `data_dodania` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
