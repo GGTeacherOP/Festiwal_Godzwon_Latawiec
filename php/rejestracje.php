@@ -46,7 +46,7 @@
                     <input type="password" id="password" name="haslo" required>
             
                     <button type="submit">Zarejestruj się</button>
-                    <p class="form-footer">Masz już konto? <a href="logowanie.html">Zaloguj się</a></p>
+                    <p class="form-footer">Masz już konto? <a href="logowanie.php">Zaloguj się</a></p>
                 </form>
             </div>
         </main>
