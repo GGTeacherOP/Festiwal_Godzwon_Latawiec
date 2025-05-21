@@ -1,6 +1,8 @@
 <?php
 session_start();
+$user_name = $_SESSION['user_name'] ?? '';
 session_destroy();
-header("Location: index.php?logout=1");
+$_SESSION['logout_message'] = "Wylogowano pomyślnie. Do widzenia, " . htmlspecialchars($user_name) . "!";
+header("Location: index.php");
 exit();
 ?>

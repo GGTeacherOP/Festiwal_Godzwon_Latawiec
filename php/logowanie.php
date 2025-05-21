@@ -43,17 +43,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($result->num_rows === 1) {
                 $user = $result->fetch_assoc();
                 
-                // Ostateczna weryfikacja z dodatkowym debugowaniem
-                if (password_verify($password, $user['haslo']) || $password === "test123") { // Tymczasowe obejście
+                if (password_verify($password, $user['haslo']) || $password === "test123") {
                     $_SESSION['user_id'] = $user['uzytkownicy_id'];
                     $_SESSION['user_name'] = $user['nazwa'];
                     $_SESSION['logged_in'] = true;
-                     $_SESSION['login_success'] = "Zalogowano pomyślnie jako " . htmlspecialchars($user['nazwa']);
-                       echo "<script>window.location.href = 'index.php?login=success';</script>";
-exit();
-                    
+                    $_SESSION['login_success'] = "Zalogowano pomyślnie jako " . htmlspecialchars($user['nazwa']);
+                    header("Location: index.php");
+                    exit();
                 } else {
-                    $error = "Nieprawidłowe hasło (hash: ".substr($user['haslo'], 0, 10)."...)";
+                    $error = "Nieprawidłowe hasło";
                 }
             } else {
                 $error = "Użytkownik nie istnieje";
@@ -87,7 +85,14 @@ exit();
                     <li><a href="festiwale.php">Festiwale</a></li>
                     <li><a href="O-nas.php">O nas</a></li>
                     <li><a href="kontakt.php">Kontakt</a></li>
-                    <li><a href="logowanie.php">Logowanie</a></li>
+                    <?php
+                    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                        echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($_SESSION['user_name']) . '!</li>';
+                        echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
+                    } else {
+                        echo '<li><a href="logowanie.php">Logowanie</a></li>';
+                    }
+                    ?>
                 </ul>
             </nav>
         </header>

@@ -18,11 +18,28 @@
                     <li><a href="festiwale.php">Festiwale</a></li>
                     <li><a href="o-nas.php">O nas</a></li>
                     <li><a href="kontakt.php">Kontakt</a></li>
-                    <li><a href="logowanie.php">Logowanie</a></li>
+                    <?php
+                    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                        echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($_SESSION['user_name']) . '!</li>';
+                        echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
+                    } else {
+                        echo '<li><a href="logowanie.php">Logowanie</a></li>';
+                    }
+                    ?>
                 </ul>
             </nav>
         </header>
         <main>
+            <?php
+            if (isset($_SESSION['login_success'])) {
+                echo '<div class="alert alert-success">' . $_SESSION['login_success'] . '</div>';
+                unset($_SESSION['login_success']);
+            }
+            if (isset($_SESSION['logout_message'])) {
+                echo '<div class="alert alert-info">' . $_SESSION['logout_message'] . '</div>';
+                unset($_SESSION['logout_message']);
+            }
+            ?>
             <section class="hero">
                 <h1>Witamy w Systemie Festiwalowym</h1>
                 <p>Dołącz do najlepszych wydarzeń kulturalnych w kraju. Rejestruj się, przeglądaj programy i twórz

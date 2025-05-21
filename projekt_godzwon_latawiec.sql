@@ -71,28 +71,29 @@ INSERT INTO `kategoria_wydarzenia` (`kategoria_id`, `nazwa`) VALUES
 CREATE TABLE `lokalizacja` (
   `lokalizacja_id` int(11) NOT NULL,
   `nazwa` varchar(150) DEFAULT NULL,
-  `adres` varchar(255) DEFAULT NULL
+  `adres` varchar(255) DEFAULT NULL,
+  `zdjecie` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `lokalizacja`
 --
 
-INSERT INTO `lokalizacja` (`lokalizacja_id`, `nazwa`, `adres`) VALUES
-(1, 'Sala Koncertowa A', 'ul. Muzyczna 12, Warszawa'),
-(2, 'Galeria Sztuki Nowoczesnej', 'ul. Artystyczna 5, Kraków'),
-(3, 'Centrum Kongresowe', 'ul. Wiedzy 3, Wrocław'),
-(4, 'Stadion Miejski', 'ul. Sportowa 10, Poznań'),
-(5, 'Park Centralny', 'ul. Zielona 1, Gdańsk'),
-(6, 'Hala Mosir', 'ul. Kreteńska 13, Mielec'),
-(7, 'Planty', 'ul. Platowa 20A, Lublin'),
-(8, 'Górka Glebowa', 'ul. Glebowa 113, Glebnica'),
-(9, 'Ogrody Politechniki', 'ul. inteligetna 99, Rzeszów'),
-(10, 'Stadion Wiejski', 'ul. Parkingowa 76, Szczecin'),
-(11, 'Plaża', 'ul. Wypoczynkowa 4, Hel'),
-(12, 'Bulwary', 'ul. Jajowa 6, Gdynia'),
-(13, 'Pod Mostem', 'ul. Mostowa 3, Łódź'),
-(14, 'Uniwersytet Śląski', 'ul. Górnicza 33, Gliwice');
+INSERT INTO `lokalizacja` (`lokalizacja_id`, `nazwa`, `adres`, `zdjecie`) VALUES
+(1, 'Sala Koncertowa A', 'ul. Muzyczna 12, Warszawa', '../zdjecia/galeria1.jpg'),
+(2, 'Galeria Sztuki Nowoczesnej', 'ul. Artystyczna 5, Kraków', '../zdjecia/galeria2.jpg'),
+(3, 'Centrum Kongresowe', 'ul. Wiedzy 3, Wrocław', '../zdjecia/galeria3.jpg'),
+(4, 'Stadion Miejski', 'ul. Sportowa 10, Poznań', '../zdjecia/galeria4.jpg'),
+(5, 'Park Centralny', 'ul. Zielona 1, Gdańsk', '../zdjecia/galeria5.jpg'),
+(6, 'Hala Mosir', 'ul. Kreteńska 13, Mielec', '../zdjecia/galeria6.jpg'),
+(7, 'Planty', 'ul. Platowa 20A, Lublin', '../zdjecia/galeria1.jpg'),
+(8, 'Górka Glebowa', 'ul. Glebowa 113, Glebnica', '../zdjecia/galeria2.jpg'),
+(9, 'Ogrody Politechniki', 'ul. inteligetna 99, Rzeszów', '../zdjecia/galeria3.jpg'),
+(10, 'Stadion Wiejski', 'ul. Parkingowa 76, Szczecin', '../zdjecia/galeria4.jpg'),
+(11, 'Plaża', 'ul. Wypoczynkowa 4, Hel', '../zdjecia/galeria5.jpg'),
+(12, 'Bulwary', 'ul. Jajowa 6, Gdynia', '../zdjecia/galeria6.jpg'),
+(13, 'Pod Mostem', 'ul. Mostowa 3, Łódź', '../zdjecia/galeria1.jpg'),
+(14, 'Uniwersytet Śląski', 'ul. Górnicza 33, Gliwice', '../zdjecia/galeria2.jpg');
 
 -- --------------------------------------------------------
 
@@ -107,20 +108,21 @@ CREATE TABLE `noclegi` (
   `adres` varchar(255) NOT NULL,
   `liczba_pokoi` int(11) DEFAULT 0,
   `cena_za_noc` decimal(10,2) DEFAULT NULL,
-  `dostepnosc` tinyint(1) DEFAULT 1
+  `dostepnosc` tinyint(1) DEFAULT 1,
+  `zdjecie` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `noclegi`
 --
 
-INSERT INTO `noclegi` (`nocleg_id`, `lokalizacja_id`, `nazwa`, `adres`, `liczba_pokoi`, `cena_za_noc`, `dostepnosc`) VALUES
-(1, 1, 'Hotel Premium', 'ul. Muzyczna 15, Warszawa', 50, 320.00, 1),
-(2, 5, 'Hostel Festiwalowy', 'ul. Zielona 2, Gdańsk', 25, 110.00, 1),
-(3, 11, 'Apartamenty Nad Brzegiem', 'ul. Wypoczynkowa 5, Hel', 12, 290.00, 0),
-(4, 4, 'Hotel Miejski', 'ul. Sportowa 15, Poznań', 40, 240.00, 1),
-(5, 14, 'Pensjonat Zacisze', 'ul. Górnicza 35, Gliwice', 18, 170.00, 1),
-(6, 8, 'Kemping Festiwalowy', 'ul. Glebowa 114, Glebnica', 60, 60.00, 1);
+INSERT INTO `noclegi` (`nocleg_id`, `lokalizacja_id`, `nazwa`, `adres`, `liczba_pokoi`, `cena_za_noc`, `dostepnosc`, `zdjecie`) VALUES
+(1, 1, 'Hotel Premium', 'ul. Muzyczna 15, Warszawa', 50, 320.00, 1, '../zdjecia/HotelPremium.jpg'),
+(2, 5, 'Hostel Festiwalowy', 'ul. Zielona 2, Gdańsk', 25, 110.00, 1, '../zdjecia/HostelFestiwal.png'),
+(3, 11, 'Apartamenty Nad Brzegiem', 'ul. Wypoczynkowa 5, Hel', 12, 290.00, 0, '../zdjecia/apartamentNadBrzegiem.jpg'),
+(4, 4, 'Hotel Miejski', 'ul. Sportowa 15, Poznań', 40, 240.00, 1, '../zdjecia/HotelMiejski.png'),
+(5, 14, 'Pensjonat Zacisze', 'ul. Górnicza 35, Gliwice', 18, 170.00, 1, '../zdjecia/pensjonatZacisze.png'),
+(6, 8, 'Kemping Festiwalowy', 'ul. Glebowa 114, Glebnica', 60, 60.00, 1, '../zdjecia/kempingFestiwalowy.png');
 
 -- --------------------------------------------------------
 
@@ -249,25 +251,26 @@ CREATE TABLE `wydarzenia` (
   `rozpoczecie` datetime DEFAULT NULL,
   `zakonczenie` datetime DEFAULT NULL,
   `lokalizacja_id` int(11) DEFAULT NULL,
-  `kategoria_id` int(11) DEFAULT NULL
+  `kategoria_id` int(11) DEFAULT NULL,
+  `zdjecie` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `wydarzenia`
 --
 
-INSERT INTO `wydarzenia` (`wydarzenia_id`, `tytul`, `opis`, `rozpoczecie`, `zakonczenie`, `lokalizacja_id`, `kategoria_id`) VALUES
-(5, 'Rockowa Burza', 'Eksplozja rockowych brzmień pod gołym niebem.', '2025-07-20 17:00:00', '2025-07-20 23:30:00', 4, 1),
-(6, 'Filmowa Noc', 'Pokaz filmów niezależnych pod gwiazdami.', '2025-08-05 20:00:00', '2025-08-06 02:00:00', 11, 10),
-(7, 'Sztuka Życia', 'Prezentacja nowoczesnych instalacji artystycznych.', '2025-06-25 10:00:00', '2025-06-27 18:00:00', 2, 11),
-(8, 'Smak Fest', 'Festiwal kulinarny z pokazami gotowania.', '2025-08-15 12:00:00', '2025-08-16 22:00:00', 5, 4),
-(9, 'Tech Days 2025', 'Nowinki technologiczne i panele dyskusyjne.', '2025-09-10 09:00:00', '2025-09-12 18:00:00', 9, 5),
-(10, 'Kulturalny Melanż', 'Koncerty i performance kultury miejskiej.', '2025-07-29 16:00:00', '2025-07-29 23:00:00', 12, 3),
-(11, 'Głodni Śmiechu', 'Maraton stand-upów i komedii.', '2025-06-21 19:00:00', '2025-06-21 23:59:00', 6, 6),
-(12, 'Literacki Świat', 'Spotkania z autorami i premiery książek.', '2025-10-05 11:00:00', '2025-10-06 17:00:00', 14, 7),
-(13, 'Gra o Planszę', 'Turnieje i prezentacje gier planszowych.', '2025-09-22 10:00:00', '2025-09-24 19:00:00', 10, 8),
-(14, 'Alt Scena', 'Muzyczne brzmienia alternatywy.', '2025-08-20 17:00:00', '2025-08-20 22:00:00', 7, 9),
-(15, 'Kino OFF', 'Kameralne kino artystyczne i dyskusje.', '2025-07-11 18:00:00', '2025-07-12 00:00:00', 13, 10);
+INSERT INTO `wydarzenia` (`wydarzenia_id`, `tytul`, `opis`, `rozpoczecie`, `zakonczenie`, `lokalizacja_id`, `kategoria_id`, `zdjecie`) VALUES
+(5, 'Rockowa Burza', 'Eksplozja rockowych brzmień pod gołym niebem.', '2025-07-20 17:00:00', '2025-07-20 23:30:00', 4, 1, '../zdjecia/festiwalMuzykiRockowej.png'),
+(6, 'Filmowa Noc', 'Pokaz filmów niezależnych pod gwiazdami.', '2025-08-05 20:00:00', '2025-08-06 02:00:00', 11, 10, '../zdjecia/festiwalFilmowy.jpg'),
+(7, 'Sztuka Życia', 'Prezentacja nowoczesnych instalacji artystycznych.', '2025-06-25 10:00:00', '2025-06-27 18:00:00', 2, 11, '../zdjecia/festiwalKulturyiSztuki.jpg'),
+(8, 'Smak Fest', 'Festiwal kulinarny z pokazami gotowania.', '2025-08-15 12:00:00', '2025-08-16 22:00:00', 5, 4, '../zdjecia/festiwalJedzeniaiWIna.jpg'),
+(9, 'Tech Days 2025', 'Nowinki technologiczne i panele dyskusyjne.', '2025-09-10 09:00:00', '2025-09-12 18:00:00', 9, 5, '../zdjecia/festiwalTechnologii.jpg'),
+(10, 'Kulturalny Melanż', 'Koncerty i performance kultury miejskiej.', '2025-07-29 16:00:00', '2025-07-29 23:00:00', 12, 3, '../zdjecia/festiwalKulturyiSztuki.jpg'),
+(11, 'Głodni Śmiechu', 'Maraton stand-upów i komedii.', '2025-06-21 19:00:00', '2025-06-21 23:59:00', 6, 6, '../zdjecia/festiwalKomedii.jpg'),
+(12, 'Literacki Świat', 'Spotkania z autorami i premiery książek.', '2025-10-05 11:00:00', '2025-10-06 17:00:00', 14, 7, '../zdjecia/festiwalLiteracki.png'),
+(13, 'Gra o Planszę', 'Turnieje i prezentacje gier planszowych.', '2025-09-22 10:00:00', '2025-09-24 19:00:00', 10, 8, '../zdjecia/festiwalGier.png'),
+(14, 'Alt Scena', 'Muzyczne brzmienia alternatywy.', '2025-08-20 17:00:00', '2025-08-20 22:00:00', 7, 9, '../zdjecia/festiwalMuzykiRockowej.png'),
+(15, 'Kino OFF', 'Kameralne kino artystyczne i dyskusje.', '2025-07-11 18:00:00', '2025-07-12 00:00:00', 13, 10, '../zdjecia/festiwalFilmowy.jpg');
 
 -- --------------------------------------------------------
 
@@ -293,25 +296,26 @@ CREATE TABLE `zespoly` (
   `zespol_id` int(11) NOT NULL,
   `nazwa` varchar(100) NOT NULL,
   `gatunek` varchar(100) DEFAULT NULL,
-  `data_zalozenia` date DEFAULT NULL
+  `data_zalozenia` date DEFAULT NULL,
+  `zdjecie` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `zespoly`
 --
 
-INSERT INTO `zespoly` (`zespol_id`, `nazwa`, `gatunek`, `data_zalozenia`) VALUES
-(5, 'Rockersi', 'Rock', '2010-06-15'),
-(6, 'KinoSymfonia', 'Filmowa', '2014-04-10'),
-(7, 'ArtNova', 'Ambient/Nowoczesna sztuka', '2016-09-01'),
-(8, 'Kucharze Bitów', 'Kulinarny Hip-Hop', '2018-03-18'),
-(9, 'Future Sound', 'Elektronika', '2019-05-27'),
-(10, 'UrbanVibe', 'Rap/Alternatywa', '2015-11-30'),
-(11, 'ŚmiechoGrani', 'Komedia muzyczna', '2017-07-01'),
-(12, 'ProzaŻycia', 'Literacki Spoken Word', '2020-02-29'),
-(13, 'Planszówka Band', 'Jazz-Folk-Gaming', '2013-08-20'),
-(14, 'AltTrack', 'Alternatywa', '2011-12-15'),
-(15, 'Projekt OFF', 'Eksperymentalna muzyka filmowa', '2012-04-05');
+INSERT INTO `zespoly` (`zespol_id`, `nazwa`, `gatunek`, `data_zalozenia`, `zdjecie`) VALUES
+(5, 'Rockersi', 'Rock', '2010-06-15', '../zdjecia/artysta1.png'),
+(6, 'KinoSymfonia', 'Filmowa', '2014-04-10', '../zdjecia/artysta2.png'),
+(7, 'ArtNova', 'Ambient/Nowoczesna sztuka', '2016-09-01', '../zdjecia/artysta3.png'),
+(8, 'Kucharze Bitów', 'Kulinarny Hip-Hop', '2018-03-18', '../zdjecia/artysta4.png'),
+(9, 'Future Sound', 'Elektronika', '2019-05-27', '../zdjecia/artysta5.png'),
+(10, 'UrbanVibe', 'Rap/Alternatywa', '2015-11-30', '../zdjecia/artysta6.png'),
+(11, 'ŚmiechoGrani', 'Komedia muzyczna', '2017-07-01', '../zdjecia/artysta1.png'),
+(12, 'ProzaŻycia', 'Literacki Spoken Word', '2020-02-29', '../zdjecia/artysta2.png'),
+(13, 'Planszówka Band', 'Jazz-Folk-Gaming', '2013-08-20', '../zdjecia/artysta3.png'),
+(14, 'AltTrack', 'Alternatywa', '2011-12-15', '../zdjecia/artysta4.png'),
+(15, 'Projekt OFF', 'Eksperymentalna muzyka filmowa', '2012-04-05', '../zdjecia/artysta5.png');
 
 -- --------------------------------------------------------
 
@@ -585,8 +589,3 @@ ALTER TABLE `zarobki`
 ALTER TABLE `zespoly_wydarzenia`
   ADD CONSTRAINT `zespoly_wydarzenia_ibfk_1` FOREIGN KEY (`zespol_id`) REFERENCES `zespoly` (`zespol_id`),
   ADD CONSTRAINT `zespoly_wydarzenia_ibfk_2` FOREIGN KEY (`wydarzenia_id`) REFERENCES `wydarzenia` (`wydarzenia_id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
