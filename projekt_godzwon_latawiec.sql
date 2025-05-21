@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 19, 2025 at 11:03 PM
+-- Generation Time: Maj 21, 2025 at 11:08 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.0.30
 
@@ -236,7 +236,8 @@ INSERT INTO `uzytkownicy` (`uzytkownicy_id`, `nazwa`, `imie`, `nazwisko`, `data_
 (8, 'gcuio', 'mateusz', 'pezda', '2024-12-31', 'mateusz@gmail.com', '123123123', '$2y$10$2ARuO97PaUJ5THF/mIz1C.a4bz7ZxHP9l0Lg4XWNT2h', '2025-05-18 21:36:37'),
 (9, 'ulala', 'karol', 'glaz', '2023-05-09', 'glaz@gmail.com', '123', '$2y$10$LqLg62Tpdr.wmkGHA66Pruted4r2yVEGThOo3ykIg3H', '2025-05-18 21:41:00'),
 (10, 'kipi', 'kacper', 'szewc', '2021-06-15', 'kipi@gmail.com', '888999111', '$2y$10$IZhdgALyVXn7fC/IMTvaz.IruHt.xWFZOeUKRQCdHJ8', '2025-05-19 21:57:02'),
-(11, 'szymus', 'szymek', 'godzwon', '2111-03-12', 'gordi@gmail.com', '111222333', '$2y$10$rwoGG6eAt0un4iRiXP.rlu3GZUOgs7o/g4b4OgulWPi', '2025-05-19 21:59:17');
+(11, 'szymus', 'szymek', 'godzwon', '2111-03-12', 'gordi@gmail.com', '111222333', '$2y$10$rwoGG6eAt0un4iRiXP.rlu3GZUOgs7o/g4b4OgulWPi', '2025-05-19 21:59:17'),
+(12, 'dominis', 'dominik', 'kuzi', '2025-05-14', 'dominis@gmail.com', '010101010', '$2y$10$Iyj/.IVZ9ZPNQH1VLB4a.O4P0NhM1JJDSVgmuiYVfkzbZfx/Oq7f2', '2025-05-21 22:11:32');
 
 -- --------------------------------------------------------
 
@@ -501,7 +502,7 @@ ALTER TABLE `uczestnicy_zespolu`
 -- AUTO_INCREMENT for table `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `uzytkownicy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `uzytkownicy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `wydarzenia`
@@ -589,3 +590,8 @@ ALTER TABLE `zarobki`
 ALTER TABLE `zespoly_wydarzenia`
   ADD CONSTRAINT `zespoly_wydarzenia_ibfk_1` FOREIGN KEY (`zespol_id`) REFERENCES `zespoly` (`zespol_id`),
   ADD CONSTRAINT `zespoly_wydarzenia_ibfk_2` FOREIGN KEY (`wydarzenia_id`) REFERENCES `wydarzenia` (`wydarzenia_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
