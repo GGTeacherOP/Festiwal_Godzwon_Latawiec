@@ -23,7 +23,7 @@
         <main>
             <div class="form-container">
                 <h2>Rejestracja</h2>
-                <form action="../php/registration.php" method="post">
+                <form action="registration.php" method="post">
                     <label for="username">Nazwa użytkownika</label>
                     <input type="text" id="username" name="nazwa" required>
             

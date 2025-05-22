@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +29,14 @@
             </nav>
         </header>
         <main>
+            <?php if (isset($_SESSION['sukces'])): ?>
+                <div class="success-message">
+                    <?php 
+                    echo $_SESSION['sukces'];
+                    unset($_SESSION['sukces']);
+                    ?>
+                </div>
+            <?php endif; ?>
             <?php
             if (isset($_SESSION['login_success'])) {
                 echo '<div class="alert alert-success">' . $_SESSION['login_success'] . '</div>';
