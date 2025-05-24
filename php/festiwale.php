@@ -46,7 +46,9 @@ $wydarzenia = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <li><a href="kontakt.php">Kontakt</a></li>
                     <?php
                     if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-                        echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($_SESSION['user_name']) . '!</li>';
+                       echo '<li class="welcome-message">Witaj, ' . 
+     htmlspecialchars($_SESSION['user_name'] ?? $_SESSION['user_firstname'] ?? 'Użytkowniku') . 
+     '!</li>';
                         echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
                     } else {
                         echo '<li><a href="logowanie.php">Logowanie</a></li>';
@@ -55,6 +57,7 @@ $wydarzenia = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </ul>
             </nav>
         </header>
+        
       <main>
   <section class="artysci">
     <h2>Występujący Artyści</h2>

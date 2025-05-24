@@ -6,8 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $haslo = $_POST['haslo'];
     
-    $sql = "SELECT * FROM uzytkownicy WHERE email = ?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $conn->prepare("SELECT * FROM uzytkownicy WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -15,10 +14,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows == 1) {
         $uzytkownik = $result->fetch_assoc();
         if (password_verify($haslo, $uzytkownik['haslo'])) {
-            $_SESSION['id_uzytkownika'] = $uzytkownik['id'];
-            $_SESSION['email'] = $uzytkownik['email'];
-            $_SESSION['nazwa'] = $uzytkownik['nazwa_uzytkownika'];
-            $_SESSION['sukces'] = "Zalogowano pomyślnie! Witaj " . $uzytkownik['nazwa_uzytkownika'] . "!";
+            // Ustaw wszystkie potrzebne dane sesji
+           // W pliku logowanie.php po udanym logowaniu:
+$_SESSION['user_id'] = $uzytkownik['uzytkownicy_id'];
+$_SESSION['user_email'] = $uzytkownik['email'];
+$_SESSION['user_name'] = $uzytkownik['nazwa']; // Używaj TYLKO 'user_name' konsekwentnie
+$_SESSION['user_firstname'] = $uzytkownik['imie'];
+$_SESSION['user_role'] = $uzytkownik['rola'] ?? 'user';
+$_SESSION['logged_in'] = true;
+            
             header("Location: index.php");
             exit();
         } else {

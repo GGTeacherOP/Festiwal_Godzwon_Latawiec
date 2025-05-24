@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -7,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../styleCSS/Style.css">
 </head>
-
 <body>
     <div class="wrapper">
         <header>
@@ -17,17 +19,21 @@
                     <li><a href="festiwale.php">Festiwale</a></li>
                     <li><a href="o-nas.php">O nas</a></li>
                     <li><a href="kontakt.php">Kontakt</a></li>
-                    <?php
-                    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-                        echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($_SESSION['user_name']) . '!</li>';
-                        echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
-                    } else {
-                        echo '<li><a href="logowanie.php">Logowanie</a></li>';
-                    }
-                    ?>
+                 <?php
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    $welcomeName = $_SESSION['user_name'] ?? $_SESSION['imie'] ?? 'Użytkowniku';
+    echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($welcomeName) . '!</li>';
+    echo '<li><a href="user_dashboard.php">Mój profil</a></li>';
+    echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
+} else {
+    echo '<li><a href="logowanie.php">Logowanie</a></li>';
+    echo '<li><a href="rejestracja.php">Rejestracja</a></li>';
+}
+?>
                 </ul>
             </nav>
         </header>
+    
         <main>
             <?php if (isset($_SESSION['sukces'])): ?>
                 <div class="success-message">

@@ -1,0 +1,1 @@
+ALTER TABLE uzytkownicy ADD COLUMN rola ENUM('user', 'admin', 'pracownik') DEFAULT 'user';

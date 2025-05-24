@@ -2,142 +2,144 @@
 session_start();
 require_once 'config.php';
 
-// Sprawdzenie czy użytkownik jest zalogowany i jest właścicielem
-if (!isset($_SESSION['id_uzytkownika']) || $_SESSION['stanowisko'] !== 'właściciel') {
-    header("Location: logowanie.php");
+// Sprawdź czy użytkownik jest adminem
+$stmt = $pdo->prepare("SELECT rola FROM uzytkownicy WHERE uzytkownicy_id = ?");
+$stmt->execute([$_SESSION['id_uzytkownika']]);
+$user = $stmt->fetch();
+
+if ($user['rola'] !== 'admin') {
+    header("Location: user_dashboard.php");
     exit();
 }
 
-// Pobieranie danych pracowników
-$sql = "SELECT u.imie, u.nazwisko, p.stanowisko, p.data_zatrudnienia, p.zarobki 
-        FROM uzytkownicy u 
-        JOIN pracownicy p ON u.uzytkownicy_id = p.uzytkownicy_id 
-        ORDER BY p.zarobki DESC";
-$result = $conn->query($sql);
-?>
+// Pobierz wszystkich użytkowników
+$users = $pdo->query("SELECT * FROM uzytkownicy")->fetchAll();
 
+// Pobierz wszystkie wydarzenia
+$events = $pdo->query("SELECT w.*, k.nazwa AS kategoria 
+                      FROM wydarzenia w
+                      JOIN kategoria_wydarzenia k ON w.kategoria_id = k.kategoria_id")->fetchAll();
+
+// Pobierz wszystkie rezerwacje
+$bookings = $pdo->query("SELECT r.*, u.imie, u.nazwisko, n.nazwa AS nocleg
+                        FROM rezerwacje_noclegow r
+                        JOIN uzytkownicy u ON r.uzytkownicy_id = u.uzytkownicy_id
+                        JOIN noclegi n ON r.nocleg_id = n.nocleg_id")->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Właściciela - Festiwal Godz W Latawiec</title>
+    <title>Panel administratora</title>
     <link rel="stylesheet" href="../styleCSS/Style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .dashboard {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+        .admin-section {
+            margin-bottom: 40px;
         }
-        
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .stat-card h3 {
-            margin: 0 0 10px 0;
-            color: #333;
-        }
-        
-        .stat-card p {
-            font-size: 24px;
-            margin: 0;
-            color: #5a60e3;
-        }
-        
-        .employees-table {
+        table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        
-        .employees-table th,
-        .employees-table td {
-            padding: 12px 15px;
+        th, td {
+            padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ddd;
         }
-        
-        .employees-table th {
-            background-color: #5a60e3;
-            color: white;
-        }
-        
-        .employees-table tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .salary {
-            font-weight: bold;
-            color: #28a745;
+        .action-links a {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <?php include 'header.php'; ?>
-        
-        <main class="dashboard">
-            <h1>Panel Właściciela</h1>
-            
-            <div class="stats-container">
-                <div class="stat-card">
-                    <h3>Łączna liczba pracowników</h3>
-                    <p><?php echo $result->num_rows; ?></p>
-                </div>
-                <div class="stat-card">
-                    <h3>Łączne miesięczne zarobki</h3>
-                    <p><?php 
-                        $total_salary = 0;
-                        while($row = $result->fetch_assoc()) {
-                            $total_salary += $row['zarobki'];
-                        }
-                        echo number_format($total_salary, 2) . ' zł';
-                    ?></p>
-                </div>
-            </div>
-            
-            <h2>Lista pracowników</h2>
-            <table class="employees-table">
-                <thead>
-                    <tr>
-                        <th>Imię i Nazwisko</th>
-                        <th>Stanowisko</th>
-                        <th>Data zatrudnienia</th>
-                        <th>Zarobki miesięczne</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                    $result->data_seek(0); // Reset pointer to beginning
-                    while($row = $result->fetch_assoc()): 
-                    ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($row['imie'] . ' ' . $row['nazwisko']); ?></td>
-                        <td><?php echo htmlspecialchars($row['stanowisko']); ?></td>
-                        <td><?php echo date('d.m.Y', strtotime($row['data_zatrudnienia'])); ?></td>
-                        <td class="salary"><?php echo number_format($row['zarobki'], 2) . ' zł'; ?></td>
-                    </tr>
-                    <?php endwhile; ?>
-                </tbody>
+    <?php include 'header.php'; ?>
+
+    <div class="dashboard">
+        <h1>Panel administratora</h1>
+
+        <section class="admin-section">
+            <h2>Zarządzanie użytkownikami</h2>
+            <a href="add_user.php" class="btn">Dodaj użytkownika</a>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Imię i nazwisko</th>
+                    <th>Email</th>
+                    <th>Rola</th>
+                    <th>Akcje</th>
+                </tr>
+                <?php foreach ($users as $user): ?>
+                <tr>
+                    <td><?= $user['uzytkownicy_id'] ?></td>
+                    <td><?= htmlspecialchars($user['imie'] . ' ' . $user['nazwisko']) ?></td>
+                    <td><?= htmlspecialchars($user['email']) ?></td>
+                    <td><?= $user['rola'] ?></td>
+                    <td class="action-links">
+                        <a href="edit_user.php?id=<?= $user['uzytkownicy_id'] ?>">Edytuj</a>
+                        <a href="delete_user.php?id=<?= $user['uzytkownicy_id'] ?>" 
+                           onclick="return confirm('Na pewno usunąć użytkownika?')">Usuń</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
             </table>
-        </main>
-        
-        <?php include 'footer.php'; ?>
+        </section>
+
+        <section class="admin-section">
+            <h2>Zarządzanie wydarzeniami</h2>
+            <a href="add_event.php" class="btn">Dodaj wydarzenie</a>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Tytuł</th>
+                    <th>Kategoria</th>
+                    <th>Data</th>
+                    <th>Akcje</th>
+                </tr>
+                <?php foreach ($events as $event): ?>
+                <tr>
+                    <td><?= $event['wydarzenia_id'] ?></td>
+                    <td><?= htmlspecialchars($event['tytul']) ?></td>
+                    <td><?= htmlspecialchars($event['kategoria']) ?></td>
+                    <td><?= date('d.m.Y H:i', strtotime($event['rozpoczecie'])) ?></td>
+                    <td class="action-links">
+                        <a href="edit_event.php?id=<?= $event['wydarzenia_id'] ?>">Edytuj</a>
+                        <a href="delete_event.php?id=<?= $event['wydarzenia_id'] ?>"
+                           onclick="return confirm('Na pewno usunąć wydarzenie?')">Usuń</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </section>
+
+        <section class="admin-section">
+            <h2>Rezerwacje noclegów</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Użytkownik</th>
+                    <th>Nocleg</th>
+                    <th>Okres</th>
+                    <th>Status</th>
+                    <th>Akcje</th>
+                </tr>
+                <?php foreach ($bookings as $booking): ?>
+                <tr>
+                    <td><?= $booking['rezerwacja_id'] ?></td>
+                    <td><?= htmlspecialchars($booking['imie'] . ' ' . $booking['nazwisko']) ?></td>
+                    <td><?= htmlspecialchars($booking['nocleg']) ?></td>
+                    <td>
+                        <?= date('d.m.Y', strtotime($booking['data_przyjazdu'])) ?> - 
+                        <?= date('d.m.Y', strtotime($booking['data_wyjazdu'])) ?>
+                    </td>
+                    <td><?= ucfirst($booking['status']) ?></td>
+                    <td>
+                        <a href="edit_booking.php?id=<?= $booking['rezerwacja_id'] ?>">Edytuj</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </section>
     </div>
+
+    <?php include 'footer.php'; ?>
 </body>
-</html> 
+</html>
