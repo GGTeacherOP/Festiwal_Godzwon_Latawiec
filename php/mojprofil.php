@@ -193,16 +193,22 @@ else {
     echo '<p><strong>Imię i nazwisko:</strong> ' . htmlspecialchars($user['imie'] . ' ' . $user['nazwisko']) . '</p>';
     echo '<p><strong>Email:</strong> ' . htmlspecialchars($user['email']) . '</p>';
     // Bilety
-    $bilety = $pdo->prepare('SELECT b.*, w.tytul, w.rozpoczecie FROM bilety b JOIN wydarzenia w ON b.wydarzenia_id = w.wydarzenia_id WHERE b.uzytkownicy_id = ?');
+    $bilety = $pdo->prepare('SELECT b.bilet_id, w.tytul, w.rozpoczecie, w.cena FROM bilety b JOIN wydarzenia w ON b.wydarzenia_id = w.wydarzenia_id WHERE b.uzytkownicy_id = ?');
     $bilety->execute([$user_id]);
     $lista_biletow = $bilety->fetchAll(PDO::FETCH_ASSOC);
     echo '<h3>Twoje bilety</h3>';
     if ($lista_biletow) {
-        echo '<ul>';
+        echo '<table class="bilety-tabela">';
+        echo '<tr><th>Wydarzenie</th><th>Data</th><th>Cena</th><th>Nr biletu</th></tr>';
         foreach ($lista_biletow as $b) {
-            echo '<li>Wydarzenie: ' . htmlspecialchars($b['tytul']) . ' | Data: ' . htmlspecialchars($b['rozpoczecie']) . ' | Nr biletu: ' . htmlspecialchars($b['bilet_id']) . ' | Cena: ' . (isset($b['cena']) ? htmlspecialchars($b['cena']) . ' zł' : '-') . '</li>';
+            echo '<tr>';
+            echo '<td>' . htmlspecialchars($b['tytul']) . '</td>';
+            echo '<td>' . htmlspecialchars($b['rozpoczecie']) . '</td>';
+            echo '<td>' . (isset($b['cena']) ? htmlspecialchars($b['cena']) . ' zł' : '-') . '</td>';
+            echo '<td>' . htmlspecialchars($b['bilet_id']) . '</td>';
+            echo '</tr>';
         }
-        echo '</ul>';
+        echo '</table>';
     } else {
         echo '<p>Nie masz jeszcze żadnych biletów.</p>';
     }

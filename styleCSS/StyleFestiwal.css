@@ -488,3 +488,34 @@ footer a:hover {
     background-color: #5a60e3;
     transform: scale(1.2);
 }
+
+.bilety-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(90,96,227,0.08);
+    overflow: hidden;
+}
+.bilety-tabela th, .bilety-tabela td {
+    padding: 14px 18px;
+    text-align: left;
+}
+.bilety-tabela th {
+    background: linear-gradient(90deg, #5a60e3 0%, #3ec6e0 100%);
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e7ff;
+}
+.bilety-tabela tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background 0.2s;
+}
+.bilety-tabela tr:hover {
+    background: #f1f5fd;
+}
+.bilety-tabela td {
+    color: #333;
+    font-size: 1em;
+}
