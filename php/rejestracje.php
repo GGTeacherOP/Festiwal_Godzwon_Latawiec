@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Festiwalowy</title>
+    <link rel="stylesheet" href="../styleCSS/Style.css">
     <link rel="stylesheet" href="../styleCSS/StylLogRej.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -16,7 +17,15 @@
                     <li><a href="festiwale.php">Festiwale</a></li>
                     <li><a href="O-nas.php">O nas</a></li>
                     <li><a href="kontakt.php">Kontakt</a></li>
-                    <li><a href="logowanie.php">Logowanie</a></li>
+                    <?php
+                    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                        echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($_SESSION['user_name'] ?? $_SESSION['user_firstname'] ?? 'Użytkowniku') . '!</li>';
+                        echo '<li><a href="mojprofil.php">Mój profil</a></li>';
+                        echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
+                    } else {
+                        echo '<li><a href="logowanie.php">Logowanie</a></li>';
+                    }
+                    ?>
                 </ul>
             </nav>
         </header>

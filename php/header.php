@@ -22,10 +22,10 @@ if (session_status() === PHP_SESSION_NONE) session_start();
         Witaj, <?= htmlspecialchars($_SESSION['user_firstname'] ?? $_SESSION['user_name']) ?>
     </li>
     
-    <?php if ($_SESSION['user_role'] === 'admin'): ?>
+    <?php if ($_SESSION['user_role'] === 'wlasciciel'): ?>
         <li><a href="admin_dashboard.php">Panel Admina</a></li>
     <?php else: ?>
-        <li><a href="user_dashboard.php">Mój Profil</a></li>
+        <li><a href="mojprofil.php">Mój profil</a></li>
     <?php endif; ?>
     
     <li><a href="wyloguj.php">Wyloguj</a></li>

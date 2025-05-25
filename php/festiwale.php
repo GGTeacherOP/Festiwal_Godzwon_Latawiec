@@ -46,9 +46,13 @@ $wydarzenia = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <li><a href="kontakt.php">Kontakt</a></li>
                     <?php
                     if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-                       echo '<li class="welcome-message">Witaj, ' . 
-     htmlspecialchars($_SESSION['user_name'] ?? $_SESSION['user_firstname'] ?? 'Użytkowniku') . 
-     '!</li>';
+                        require_once 'config.php';
+                        $stmt = $pdo->prepare('SELECT imie FROM uzytkownicy WHERE uzytkownicy_id = ?');
+                        $stmt->execute([$_SESSION['user_id']]);
+                        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $imie = $user ? $user['imie'] : 'Użytkowniku';
+                        echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($imie) . '!</li>';
+                        echo '<li><a href="mojprofil.php">Mój profil</a></li>';
                         echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
                     } else {
                         echo '<li><a href="logowanie.php">Logowanie</a></li>';
@@ -148,10 +152,11 @@ $wydarzenia = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
                             </div>
                         </div>
-                        <?php if (isset($_SESSION['uzytkownicy_id'])): ?>
+                        <?php if (isset($_SESSION['user_id'])): ?>
                             <form action="kup_bilet.php" method="POST">
                                 <input type="hidden" name="wydarzenia_id" value="<?php echo $wydarzenie['wydarzenia_id']; ?>">
-                                <button type="submit" class="btn-kup">Kup bilet</button>
+                                <input type="hidden" name="cena" value="<?php echo isset($wydarzenie['cena']) ? htmlspecialchars($wydarzenie['cena']) : 0; ?>">
+                                <button type="submit" class="kup-bilet">Kup bilet</button>
                             </form>
                         <?php else: ?>
                             <p class="login-required">Aby kupić bilet, <a href="logowanie.php">zaloguj się</a></p>

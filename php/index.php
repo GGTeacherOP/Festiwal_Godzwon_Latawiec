@@ -21,13 +21,16 @@ session_start();
                     <li><a href="kontakt.php">Kontakt</a></li>
                  <?php
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-    $welcomeName = $_SESSION['user_name'] ?? $_SESSION['imie'] ?? 'Użytkowniku';
-    echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($welcomeName) . '!</li>';
-    echo '<li><a href="user_dashboard.php">Mój profil</a></li>';
+    require_once 'config.php';
+    $stmt = $pdo->prepare('SELECT imie FROM uzytkownicy WHERE uzytkownicy_id = ?');
+    $stmt->execute([$_SESSION['user_id']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $imie = $user ? $user['imie'] : 'Użytkowniku';
+    echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($imie) . '!</li>';
+    echo '<li><a href="mojprofil.php">Mój profil</a></li>';
     echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
 } else {
     echo '<li><a href="logowanie.php">Logowanie</a></li>';
-    echo '<li><a href="rejestracja.php">Rejestracja</a></li>';
 }
 ?>
                 </ul>

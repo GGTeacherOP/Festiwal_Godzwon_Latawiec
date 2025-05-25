@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Festiwalowy</title>
+    <link rel="stylesheet" href="../styleCSS/Style.css">
     <link rel="stylesheet" href="../styleCSS/StyleDoKontakt.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -21,9 +22,13 @@ session_start();
                     <li><a href="kontakt.php">Kontakt</a></li>
                     <?php
                     if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-                        echo '<li class="welcome-message">Witaj, ' . 
-     htmlspecialchars($_SESSION['user_name'] ?? $_SESSION['user_firstname'] ?? 'Użytkowniku') . 
-     '!</li>';
+                        require_once 'config.php';
+                        $stmt = $pdo->prepare('SELECT imie FROM uzytkownicy WHERE uzytkownicy_id = ?');
+                        $stmt->execute([$_SESSION['user_id']]);
+                        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $imie = $user ? $user['imie'] : 'Użytkowniku';
+                        echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($imie) . '!</li>';
+                        echo '<li><a href="mojprofil.php">Mój profil</a></li>';
                         echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
                     } else {
                         echo '<li><a href="logowanie.php">Logowanie</a></li>';

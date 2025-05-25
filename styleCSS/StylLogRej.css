@@ -4,58 +4,12 @@ body {
     background-color: #f4f6fa;
     color: #333;
     line-height: 1.6;
-    height: 100%;
 }
 
 .wrapper {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-header {
-    background: linear-gradient(90deg, #5a60e3, #7c83ff);
-    color: white;
-    padding: 25px 0;
-    font-size: 22px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-nav ul {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-nav ul li:last-child {
-    margin-left: auto;
-    margin-right: 15px;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 16px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #d2e3ff;
-    transform: translateY(-1px);
 }
 
 main {
@@ -133,7 +87,6 @@ footer a:hover {
     color: #444;
 }
 
-
 .form-container input {
     padding: 10px;
     border: 1px solid #ccc;
@@ -190,7 +143,6 @@ footer a:hover {
 .message .button:hover {
     background-color: #4348c1;
 }
-
 
 .social-links {
     margin-top: 15px;

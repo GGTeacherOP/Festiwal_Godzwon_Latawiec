@@ -2,26 +2,37 @@
 session_start();
 require_once 'config.php';
 
+// Połączenie z bazą przez PDO (jeśli nie istnieje)
+if (!isset($pdo)) {
+    $host = 'localhost';
+    $dbname = 'projekt_godzwon_latawiec';
+    $username = 'root';
+    $password = '';
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+        die("Błąd połączenia z bazą danych: " . $e->getMessage());
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $haslo = $_POST['haslo'];
     
-    $stmt = $conn->prepare("SELECT * FROM uzytkownicy WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt = $pdo->prepare("SELECT * FROM uzytkownicy WHERE email = ?");
+    $stmt->execute([$email]);
+    $uzytkownik = $stmt->fetch(PDO::FETCH_ASSOC);
     
-    if ($result->num_rows == 1) {
-        $uzytkownik = $result->fetch_assoc();
+    if ($uzytkownik) {
         if (password_verify($haslo, $uzytkownik['haslo'])) {
             // Ustaw wszystkie potrzebne dane sesji
-           // W pliku logowanie.php po udanym logowaniu:
-$_SESSION['user_id'] = $uzytkownik['uzytkownicy_id'];
-$_SESSION['user_email'] = $uzytkownik['email'];
-$_SESSION['user_name'] = $uzytkownik['nazwa']; // Używaj TYLKO 'user_name' konsekwentnie
-$_SESSION['user_firstname'] = $uzytkownik['imie'];
-$_SESSION['user_role'] = $uzytkownik['rola'] ?? 'user';
-$_SESSION['logged_in'] = true;
+            $_SESSION['user_id'] = $uzytkownik['uzytkownicy_id'];
+            $_SESSION['user_email'] = $uzytkownik['email'];
+            $_SESSION['user_name'] = $uzytkownik['nazwa'];
+            $_SESSION['user_firstname'] = $uzytkownik['imie'];
+            $_SESSION['user_role'] = $uzytkownik['rola'] ?? 'user';
+            $_SESSION['logged_in'] = true;
             
             header("Location: index.php");
             exit();

@@ -253,25 +253,26 @@ CREATE TABLE `wydarzenia` (
   `zakonczenie` datetime DEFAULT NULL,
   `lokalizacja_id` int(11) DEFAULT NULL,
   `kategoria_id` int(11) DEFAULT NULL,
-  `zdjecie` varchar(255) DEFAULT NULL
+  `zdjecie` varchar(255) DEFAULT NULL,
+  `cena` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `wydarzenia`
 --
 
-INSERT INTO `wydarzenia` (`wydarzenia_id`, `tytul`, `opis`, `rozpoczecie`, `zakonczenie`, `lokalizacja_id`, `kategoria_id`, `zdjecie`) VALUES
-(5, 'Rockowa Burza', 'Eksplozja rockowych brzmień pod gołym niebem.', '2025-07-20 17:00:00', '2025-07-20 23:30:00', 4, 1, '../zdjecia/festiwalMuzykiRockowej.png'),
-(6, 'Filmowa Noc', 'Pokaz filmów niezależnych pod gwiazdami.', '2025-08-05 20:00:00', '2025-08-06 02:00:00', 11, 10, '../zdjecia/festiwalFilmowy.jpg'),
-(7, 'Sztuka Życia', 'Prezentacja nowoczesnych instalacji artystycznych.', '2025-06-25 10:00:00', '2025-06-27 18:00:00', 2, 11, '../zdjecia/festiwalKulturyiSztuki.jpg'),
-(8, 'Smak Fest', 'Festiwal kulinarny z pokazami gotowania.', '2025-08-15 12:00:00', '2025-08-16 22:00:00', 5, 4, '../zdjecia/festiwalJedzeniaiWIna.jpg'),
-(9, 'Tech Days 2025', 'Nowinki technologiczne i panele dyskusyjne.', '2025-09-10 09:00:00', '2025-09-12 18:00:00', 9, 5, '../zdjecia/festiwalTechnologii.jpg'),
-(10, 'Kulturalny Melanż', 'Koncerty i performance kultury miejskiej.', '2025-07-29 16:00:00', '2025-07-29 23:00:00', 12, 3, '../zdjecia/festiwalKulturyiSztuki.jpg'),
-(11, 'Głodni Śmiechu', 'Maraton stand-upów i komedii.', '2025-06-21 19:00:00', '2025-06-21 23:59:00', 6, 6, '../zdjecia/festiwalKomedii.jpg'),
-(12, 'Literacki Świat', 'Spotkania z autorami i premiery książek.', '2025-10-05 11:00:00', '2025-10-06 17:00:00', 14, 7, '../zdjecia/festiwalLiteracki.png'),
-(13, 'Gra o Planszę', 'Turnieje i prezentacje gier planszowych.', '2025-09-22 10:00:00', '2025-09-24 19:00:00', 10, 8, '../zdjecia/festiwalGier.png'),
-(14, 'Alt Scena', 'Muzyczne brzmienia alternatywy.', '2025-08-20 17:00:00', '2025-08-20 22:00:00', 7, 9, '../zdjecia/festiwalMuzykiRockowej.png'),
-(15, 'Kino OFF', 'Kameralne kino artystyczne i dyskusje.', '2025-07-11 18:00:00', '2025-07-12 00:00:00', 13, 10, '../zdjecia/festiwalFilmowy.jpg');
+INSERT INTO `wydarzenia` (`wydarzenia_id`, `tytul`, `opis`, `rozpoczecie`, `zakonczenie`, `lokalizacja_id`, `kategoria_id`, `zdjecie`, `cena`) VALUES
+(5, 'Rockowa Burza', 'Eksplozja rockowych brzmień pod gołym niebem.', '2025-07-20 17:00:00', '2025-07-20 23:30:00', 4, 1, '../zdjecia/festiwalMuzykiRockowej.png', 100.00),
+(6, 'Filmowa Noc', 'Pokaz filmów niezależnych pod gwiazdami.', '2025-08-05 20:00:00', '2025-08-06 02:00:00', 11, 10, '../zdjecia/festiwalFilmowy.jpg', 150.00),
+(7, 'Sztuka Życia', 'Prezentacja nowoczesnych instalacji artystycznych.', '2025-06-25 10:00:00', '2025-06-27 18:00:00', 2, 11, '../zdjecia/festiwalKulturyiSztuki.jpg', 200.00),
+(8, 'Smak Fest', 'Festiwal kulinarny z pokazami gotowania.', '2025-08-15 12:00:00', '2025-08-16 22:00:00', 5, 4, '../zdjecia/festiwalJedzeniaiWIna.jpg', 120.00),
+(9, 'Tech Days 2025', 'Nowinki technologiczne i panele dyskusyjne.', '2025-09-10 09:00:00', '2025-09-12 18:00:00', 9, 5, '../zdjecia/festiwalTechnologii.jpg', 180.00),
+(10, 'Kulturalny Melanż', 'Koncerty i performance kultury miejskiej.', '2025-07-29 16:00:00', '2025-07-29 23:00:00', 12, 3, '../zdjecia/festiwalKulturyiSztuki.jpg', 150.00),
+(11, 'Głodni Śmiechu', 'Maraton stand-upów i komedii.', '2025-06-21 19:00:00', '2025-06-21 23:59:00', 6, 6, '../zdjecia/festiwalKomedii.jpg', 100.00),
+(12, 'Literacki Świat', 'Spotkania z autorami i premiery książek.', '2025-10-05 11:00:00', '2025-10-06 17:00:00', 14, 7, '../zdjecia/festiwalLiteracki.png', 120.00),
+(13, 'Gra o Planszę', 'Turnieje i prezentacje gier planszowych.', '2025-09-22 10:00:00', '2025-09-24 19:00:00', 10, 8, '../zdjecia/festiwalGier.png', 150.00),
+(14, 'Alt Scena', 'Muzyczne brzmienia alternatywy.', '2025-08-20 17:00:00', '2025-08-20 22:00:00', 7, 9, '../zdjecia/festiwalMuzykiRockowej.png', 100.00),
+(15, 'Kino OFF', 'Kameralne kino artystyczne i dyskusje.', '2025-07-11 18:00:00', '2025-07-12 00:00:00', 13, 10, '../zdjecia/festiwalFilmowy.jpg', 150.00);
 
 -- --------------------------------------------------------
 
