@@ -54,20 +54,108 @@ session_start();
                     <p><strong>Email:</strong> kontakt@festiwalowy.pl</p>
                     <p><strong>Telefon:</strong> +48 123 456 789</p>
                 </div>
-            
-                <h2>Formularz kontaktowy</h2>
-                <form action="#" method="post">
-                    <label for="name">Imię i nazwisko</label>
-                    <input type="text" id="name" name="name" required />
-            
-                    <label for="email">Adres email</label>
-                    <input type="email" id="email" name="email" required />
-            
-                    <label for="message">Wiadomość</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-            
-                    <button type="submit">Wyślij wiadomość</button>
-                </form>
+          <?php
+// Dane logowania do bazy – zmień jeśli trzeba
+$host = 'localhost';
+$db   = 'projekt_godzwon_latawiec';
+$user = 'root';
+$pass = '';
+$charset = 'utf8mb4';
+
+// Ustawienia połączenia PDO
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+];
+
+// Obsługa formularza kontaktowego
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['wiadomosc'])) {
+    $imie = trim($_POST['imie'] ?? '');
+    $nazwisko = trim($_POST['nazwisko'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $wiadomosc = trim($_POST['wiadomosc'] ?? '');
+
+    $nazwisko_imie = $nazwisko . ' ' . $imie;
+
+    if ($imie && $nazwisko && $email && $wiadomosc) {
+        try {
+            $pdo = new PDO($dsn, $user, $pass, $options);
+            $stmt = $pdo->prepare("INSERT INTO wiadomosci_kontaktowe (nazwisko_imie, email, wiadomosc) VALUES (?, ?, ?)");
+            $stmt->execute([$nazwisko_imie, $email, $wiadomosc]);
+            echo "<p style='color:green;'>Wiadomość została wysłana!</p>";
+        } catch (PDOException $e) {
+            echo "<p style='color:red;'>Błąd połączenia z bazą: " . htmlspecialchars($e->getMessage()) . "</p>";
+        }
+    } else {
+        echo "<p style='color:red;'>Wszystkie pola są wymagane!</p>";
+    }
+}
+
+// Obsługa formularza aplikacji o pracę
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['position'])) {
+    $position = trim($_POST['position'] ?? '');
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $experience = trim($_POST['experience'] ?? '');
+    $motivation = trim($_POST['motivation'] ?? '');
+    $consent = isset($_POST['consent']) ? 1 : 0;
+
+    // Obsługa pliku CV
+    $cvFileName = '';
+    if (isset($_FILES['cv']) && $_FILES['cv']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = __DIR__ . '/uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+        
+        $cvFileName = basename($_FILES['cv']['name']);
+        $targetFile = $uploadDir . $cvFileName;
+        
+        // Sprawdź rozszerzenie pliku
+        $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+        if ($fileType != 'pdf') {
+            echo "<p style='color:red;'>Tylko pliki PDF są akceptowane.</p>";
+        } elseif ($_FILES['cv']['size'] > 5000000) { // 5MB
+            echo "<p style='color:red;'>Plik jest zbyt duży. Maksymalny rozmiar to 5MB.</p>";
+        } else {
+            if (move_uploaded_file($_FILES['cv']['tmp_name'], $targetFile)) {
+                // Plik został zapisany
+            } else {
+                echo "<p style='color:red;'>Wystąpił błąd podczas przesyłania pliku.</p>";
+            }
+        }
+    }
+
+    if ($position && $name && $email && $phone && $motivation && $consent && $cvFileName) {
+        try {
+            $pdo = new PDO($dsn, $user, $pass, $options);
+            $stmt = $pdo->prepare("INSERT INTO aplikacje_praca (stanowisko, nazwisko_imie, email, telefon, doswiadczenie, motywacja, plik_cv, data_aplikacji) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+            $stmt->execute([$position, $name, $email, $phone, $experience, $motivation, $cvFileName]);
+            echo "<p style='color:green;'>Twoja aplikacja została wysłana! Dziękujemy.</p>";
+        } catch (PDOException $e) {
+            echo "<p style='color:red;'>Błąd połączenia z bazą: " . htmlspecialchars($e->getMessage()) . "</p>";
+        }
+    } else {
+        echo "<p style='color:red;'>Proszę wypełnić wszystkie wymagane pola i załączyć CV!</p>";
+    }
+}
+?>
+
+<!-- Formularz kontaktowy -->
+<form method="post">
+    <label for="name">Imie
+        <input type="text" name="imie" required></label>
+    <label>Nazwisko
+    <input type="text" name="nazwisko" required></label>
+    <label for="email">Email
+    <input type="email" name="email" required></label>
+    <label for ="message">Wiadomość
+        <textarea name="wiadomosc" required></textarea></label>
+    <input type="submit" value="Wyślij">
+</form>
+
             
                 <h2>FAQ - Najczęściej zadawane pytania</h2>
                 <div class="faq">
@@ -102,7 +190,7 @@ session_start();
                     </details>
                 </div>
             </div>
-
+            
             <div class="section join-team">
                 <h2>Dołącz do naszego zespołu!</h2>
                 <p class="join-description">Zostań częścią zespołu największych festiwali w kraju. Poszukujemy pasjonatów kultury i wydarzeń!</p>
@@ -198,7 +286,7 @@ session_start();
                 
                 <div id="application-form" class="application-form">
                     <h3>Formularz aplikacyjny</h3>
-                    <form id="job-application">
+                    <form id="job-application" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="position">Stanowisko:</label>
                             <select id="position" name="position" required>

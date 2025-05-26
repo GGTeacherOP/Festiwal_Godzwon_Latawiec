@@ -457,3 +457,5 @@ footer a {
 .social-links a.youtube:hover {
     color: #FF0000;
 }
+p.sukces { color: green; }
+p.blad { color: red; }
