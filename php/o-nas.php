@@ -28,8 +28,11 @@ session_start();
                         $user = $stmt->fetch(PDO::FETCH_ASSOC);
                         $imie = $user ? $user['imie'] : 'Użytkowniku';
                         echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($imie) . '!</li>';
-                        if ($user && $user['rola'] === 'wlasciciel') {
+                        
+                        if ($user['rola'] === 'wlasciciel') {
                             echo '<li><a href="panel_wlasciciela.php">Panel admina</a></li>';
+                        } elseif (in_array($user['rola'], ['sprzataczka', 'informatyk', 'organizator', 'technik sceniczny', 'specjalista ds. promocji', 'koordynator wolontariuszy'])) {
+                            echo '<li><a href="panel_pracownika.php">Panel pracownika</a></li>';
                         } else {
                             echo '<li><a href="panel_uzytkownika.php">Mój profil</a></li>';
                         }

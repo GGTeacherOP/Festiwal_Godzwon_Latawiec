@@ -33,7 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_role'] = $uzytkownik['rola'] ?? 'user';
             $_SESSION['logged_in'] = true;
             
-            header("Location: panel_uzytkownika.php");
+            // Redirect based on user role
+            if ($uzytkownik['rola'] === 'wlasciciel') {
+                header("Location: panel_wlasciciela.php");
+            } elseif (in_array($uzytkownik['rola'], ['sprzataczka', 'informatyk', 'organizator', 'technik sceniczny', 'specjalista ds. promocji', 'koordynator wolontariuszy'])) {
+                header("Location: panel_pracownika.php");
+            } else {
+                header("Location: panel_uzytkownika.php");
+            }
             exit();
         } else {
             $blad = "Nieprawidłowe hasło";

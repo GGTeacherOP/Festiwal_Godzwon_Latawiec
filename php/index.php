@@ -27,8 +27,11 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $imie = $user ? $user['imie'] : 'Użytkowniku';
     echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($imie) . '!</li>';
-    if ($user && $user['rola'] === 'wlasciciel') {
+    
+    if ($user['rola'] === 'wlasciciel') {
         echo '<li><a href="panel_wlasciciela.php">Panel admina</a></li>';
+    } elseif (in_array($user['rola'], ['sprzataczka', 'informatyk', 'organizator', 'technik sceniczny', 'specjalista ds. promocji', 'koordynator wolontariuszy'])) {
+        echo '<li><a href="panel_pracownika.php">Panel pracownika</a></li>';
     } else {
         echo '<li><a href="panel_uzytkownika.php">Mój profil</a></li>';
     }
@@ -333,31 +336,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                             </div>
                             <a href="#" class="btn btn-small">Dołącz do przejazdu</a>
                         </div>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <h2>Nasze statystyki</h2>
-                <div class="stats">
-                    <div class="stat-card">
-                        <i class="fas fa-users fa-2x" style="color: #5a60e3;"></i>
-                        <div class="stat-number">10,000+</div>
-                        <div class="stat-label">Uczestników rocznie</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-calendar-alt fa-2x" style="color: #5a60e3;"></i>
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Wydarzeń</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-map-marked-alt fa-2x" style="color: #5a60e3;"></i>
-                        <div class="stat-number">12</div>
-                        <div class="stat-label">Miast</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-star fa-2x" style="color: #5a60e3;"></i>
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Zadowolonych uczestników</div>
                     </div>
                 </div>
             </section>
