@@ -28,13 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($haslo, $uzytkownik['haslo'])) {
             // Ustaw wszystkie potrzebne dane sesji
             $_SESSION['user_id'] = $uzytkownik['uzytkownicy_id'];
-            $_SESSION['user_email'] = $uzytkownik['email'];
-            $_SESSION['user_name'] = $uzytkownik['nazwa'];
-            $_SESSION['user_firstname'] = $uzytkownik['imie'];
+            $_SESSION['email'] = $uzytkownik['email'];
+            $_SESSION['imie'] = $uzytkownik['imie'];
             $_SESSION['user_role'] = $uzytkownik['rola'] ?? 'user';
             $_SESSION['logged_in'] = true;
             
-            header("Location: index.php");
+            header("Location: panel_uzytkownika.php");
             exit();
         } else {
             $blad = "Nieprawidłowe hasło";

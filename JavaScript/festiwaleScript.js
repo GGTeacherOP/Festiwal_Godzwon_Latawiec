@@ -19,15 +19,6 @@ function toggleOpis(button) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const przyciskiKupBilet = document.querySelectorAll('.kup-bilet');
-    
-    przyciskiKupBilet.forEach(przycisk => {
-        przycisk.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Bilet zakupiono!');
-        });
-    });
-
     // Karuzela artystów
     const carousel = document.getElementById('carousel');
     const prevBtn = document.querySelector('.prev-btn');

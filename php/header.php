@@ -19,13 +19,13 @@ if (session_status() === PHP_SESSION_NONE) session_start();
             
            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
     <li class="welcome-message">
-        Witaj, <?= htmlspecialchars($_SESSION['user_firstname'] ?? $_SESSION['user_name']) ?>
+        Witaj, <?= htmlspecialchars($_SESSION['imie'] ?? 'Użytkowniku') ?>
     </li>
     
-    <?php if ($_SESSION['user_role'] === 'wlasciciel'): ?>
+    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'wlasciciel'): ?>
         <li><a href="admin_dashboard.php">Panel Admina</a></li>
     <?php else: ?>
-        <li><a href="mojprofil.php">Mój profil</a></li>
+        <li><a href="panel_uzytkownika.php">Mój profil</a></li>
     <?php endif; ?>
     
     <li><a href="wyloguj.php">Wyloguj</a></li>
