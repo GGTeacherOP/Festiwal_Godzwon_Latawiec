@@ -4,11 +4,11 @@ require_once 'config.php';
 
 // Sprawdź czy użytkownik jest adminem
 $stmt = $pdo->prepare("SELECT rola FROM uzytkownicy WHERE uzytkownicy_id = ?");
-$stmt->execute([$_SESSION['id_uzytkownika']]);
+$stmt->execute([$_SESSION['user_id']]);
 $user = $stmt->fetch();
 
-if ($user['rola'] !== 'admin') {
-    header("Location: user_dashboard.php");
+if ($user['rola'] !== 'wlasciciel') {
+    header("Location: panel_uzytkownika.php");
     exit();
 }
 
@@ -25,6 +25,16 @@ $bookings = $pdo->query("SELECT r.*, u.imie, u.nazwisko, n.nazwa AS nocleg
                         FROM rezerwacje_noclegow r
                         JOIN uzytkownicy u ON r.uzytkownicy_id = u.uzytkownicy_id
                         JOIN noclegi n ON r.nocleg_id = n.nocleg_id")->fetchAll();
+
+// --- PODSUMOWANIE FINANSOWE ---
+// Dochody (przychody z biletów)
+$dochody = $pdo->query("SELECT COALESCE(SUM(w.cena), 0) as suma FROM bilety b JOIN wydarzenia w ON b.wydarzenia_id = w.wydarzenia_id")->fetch(PDO::FETCH_ASSOC)['suma'] ?? 0;
+// Wydatki (wypłaty dla pracowników)
+$wydatki = $pdo->query("SELECT SUM(kwota) as suma FROM zarobki")->fetch(PDO::FETCH_ASSOC)['suma'] ?? 0;
+// Suma zarobków pracowników
+$zarobki = $pdo->query("SELECT SUM(zarobki) as suma FROM pracownicy")->fetch(PDO::FETCH_ASSOC)['suma'] ?? 0;
+// Bilans
+$bilans = $dochody - $wydatki;
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -58,7 +68,6 @@ $bookings = $pdo->query("SELECT r.*, u.imie, u.nazwisko, n.nazwa AS nocleg
 
         <section class="admin-section">
             <h2>Zarządzanie użytkownikami</h2>
-            <a href="add_user.php" class="btn">Dodaj użytkownika</a>
             <table>
                 <tr>
                     <th>ID</th>
@@ -85,7 +94,6 @@ $bookings = $pdo->query("SELECT r.*, u.imie, u.nazwisko, n.nazwa AS nocleg
 
         <section class="admin-section">
             <h2>Zarządzanie wydarzeniami</h2>
-            <a href="add_event.php" class="btn">Dodaj wydarzenie</a>
             <table>
                 <tr>
                     <th>ID</th>
@@ -138,6 +146,16 @@ $bookings = $pdo->query("SELECT r.*, u.imie, u.nazwisko, n.nazwa AS nocleg
                 <?php endforeach; ?>
             </table>
         </section>
+
+        <div class="dashboard-box" style="max-width:500px;margin:30px auto 30px auto;">
+            <h2>Podsumowanie finansowe</h2>
+            <table style="width:100%;font-size:1.1em;">
+                <tr><th style="text-align:left;">Dochody (bilety):</th><td style="text-align:right;"><b><?= number_format($dochody,2,',',' ') ?> zł</b></td></tr>
+                <tr><th style="text-align:left;">Wydatki (wypłaty):</th><td style="text-align:right;"><b><?= number_format($wydatki,2,',',' ') ?> zł</b></td></tr>
+                <tr><th style="text-align:left;">Suma zarobków pracowników:</th><td style="text-align:right;"><b><?= number_format($zarobki,2,',',' ') ?> zł</b></td></tr>
+                <tr><th style="text-align:left;">Bilans:</th><td style="text-align:right;"><b><?= number_format($bilans,2,',',' ') ?> zł</b></td></tr>
+            </table>
+        </div>
     </div>
 
     <?php include 'footer.php'; ?>

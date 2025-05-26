@@ -16,6 +16,11 @@ if (!$user_id) {
     exit();
 }
 
+if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'wlasciciel') {
+    header('Location: panel_wlasciciela.php');
+    exit();
+}
+
 // Obsługa edycji profilu
 if (isset($_POST['edit_profile'])) {
     $imie = $_POST['imie'];

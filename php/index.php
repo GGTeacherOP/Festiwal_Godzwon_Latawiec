@@ -22,12 +22,16 @@ session_start();
                  <?php
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     require_once 'config.php';
-    $stmt = $pdo->prepare('SELECT imie FROM uzytkownicy WHERE uzytkownicy_id = ?');
+    $stmt = $pdo->prepare('SELECT imie, rola FROM uzytkownicy WHERE uzytkownicy_id = ?');
     $stmt->execute([$_SESSION['user_id']]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $imie = $user ? $user['imie'] : 'Użytkowniku';
     echo '<li class="welcome-message">Witaj, ' . htmlspecialchars($imie) . '!</li>';
-    echo '<li><a href="mojprofil.php">Mój profil</a></li>';
+    if ($user && $user['rola'] === 'wlasciciel') {
+        echo '<li><a href="panel_wlasciciela.php">Panel admina</a></li>';
+    } else {
+        echo '<li><a href="panel_uzytkownika.php">Mój profil</a></li>';
+    }
     echo '<li><a href="wyloguj.php">Wyloguj</a></li>';
 } else {
     echo '<li><a href="logowanie.php">Logowanie</a></li>';

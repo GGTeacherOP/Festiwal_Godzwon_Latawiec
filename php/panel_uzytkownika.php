@@ -7,6 +7,11 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit();
 }
 
+if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'wlasciciel') {
+    header('Location: panel_wlasciciela.php');
+    exit();
+}
+
 // Fetch user data from database if not in session
 if (!isset($_SESSION['imie']) || !isset($_SESSION['email'])) {
     try {

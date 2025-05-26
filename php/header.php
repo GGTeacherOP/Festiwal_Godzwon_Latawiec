@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     </li>
     
     <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'wlasciciel'): ?>
-        <li><a href="admin_dashboard.php">Panel Admina</a></li>
+        <li><a href="panel_wlasciciela.php">Panel admina</a></li>
     <?php else: ?>
         <li><a href="panel_uzytkownika.php">Mój profil</a></li>
     <?php endif; ?>
