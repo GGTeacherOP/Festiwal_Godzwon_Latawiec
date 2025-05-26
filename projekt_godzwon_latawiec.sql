@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 25, 2025 at 10:58 PM
+-- Generation Time: Maj 27, 2025 at 01:23 AM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.0.30
 
@@ -34,6 +34,14 @@ CREATE TABLE `bilety` (
   `data_zakupu` datetime DEFAULT current_timestamp(),
   `cena` decimal(10,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Dumping data for table `bilety`
+--
+
+INSERT INTO `bilety` (`bilet_id`, `uzytkownicy_id`, `wydarzenia_id`, `data_zakupu`, `cena`) VALUES
+(1, 12, 11, '2025-05-27 00:29:50', 100.00),
+(2, 12, 15, '2025-05-27 00:29:56', 150.00);
 
 -- --------------------------------------------------------
 
@@ -136,20 +144,21 @@ CREATE TABLE `pracownicy` (
   `uzytkownicy_id` int(11) NOT NULL,
   `stanowisko` varchar(100) DEFAULT NULL,
   `data_zatrudnienia` date DEFAULT NULL,
-  `zarobki` decimal(10,2) DEFAULT NULL
+  `zarobki` decimal(10,2) DEFAULT NULL,
+  `obowiazki` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `pracownicy`
 --
 
-INSERT INTO `pracownicy` (`pracownik_id`, `uzytkownicy_id`, `stanowisko`, `data_zatrudnienia`, `zarobki`) VALUES
-(1, 7, 'informatyk', '2025-05-01', 6500.00),
-(2, 8, 'sprzątaczka', '2025-04-20', 3500.00),
-(3, 9, 'organizator', '2025-05-10', 5000.00),
-(4, 10, 'technik sceniczny', '2025-05-02', 4700.00),
-(5, 11, 'specjalista ds. promocji', '2025-05-05', 5300.00),
-(6, 12, 'koordynator wolontariuszy', '2025-05-08', 4800.00);
+INSERT INTO `pracownicy` (`pracownik_id`, `uzytkownicy_id`, `stanowisko`, `data_zatrudnienia`, `zarobki`, `obowiazki`) VALUES
+(1, 7, 'informatyk', '2025-05-01', 6500.00, '• Obsługa systemów IT festiwalu\r\n• Rozwiązywanie problemów technicznych\r\n• Wsparcie techniczne dla pracowników\r\n• Zarządzanie siecią komputerową\r\n• Zabezpieczenie danych festiwalu'),
+(2, 8, 'sprzątaczka', '2025-04-20', 3500.00, '• Utrzymanie czystości w pomieszczeniach festiwalowych\r\n• Dbanie o porządek w strefach publicznych\r\n• Uzupełnianie zapasów w łazienkach\r\n• Segregacja odpadów\r\n• Współpraca z zespołem sprzątającym'),
+(3, 9, 'organizator', '2025-05-10', 5000.00, '• Koordynacja działań festiwalowych\r\n• Nadzór nad harmonogramem wydarzeń\r\n• Kontakt z wykonawcami i zespołami\r\n• Rozwiązywanie problemów organizacyjnych\r\n• Współpraca z innymi działami'),
+(4, 10, 'technik sceniczny', '2025-05-02', 4700.00, '• Przygotowanie i obsługa sprzętu scenicznego\r\n• Nadzór nad montażem i demontażem sceny\r\n• Współpraca z zespołami muzycznymi\r\n• Dbanie o bezpieczeństwo techniczne\r\n• Obsługa systemów nagłośnienia i oświetlenia'),
+(5, 11, 'specjalista ds. promocji', '2025-05-05', 5300.00, '• Zarządzanie mediami społecznościowymi\r\n• Tworzenie materiałów promocyjnych\r\n• Kontakt z mediami\r\n• Organizacja akcji promocyjnych\r\n• Analiza skuteczności działań marketingowych'),
+(6, 12, 'koordynator wolontariuszy', '2025-05-08', 4800.00, '• Rekrutacja i szkolenie wolontariuszy\r\n• Przydzielanie zadań wolontariuszom\r\n• Nadzór nad pracą wolontariuszy\r\n• Rozwiązywanie problemów w zespole\r\n• Koordynacja harmonogramu pracy wolontariuszy');
 
 -- --------------------------------------------------------
 
@@ -259,6 +268,27 @@ INSERT INTO `uzytkownicy` (`uzytkownicy_id`, `nazwa`, `imie`, `nazwisko`, `data_
 (17, 'technikS', 'katastrof', 'Gumiak', '2025-04-30', 'gumiak@gmail.com', '212434676', '$2y$10$g5xA31awYw/8FOE0BTQJc.tAGM6X3UPtsFV5NfuoTfFGrEI6NWWHi', 'technik sceniczny', '2025-05-25 21:32:06'),
 (18, 'specjalistaDP', 'Patryk', 'Sraki', '2025-05-28', 'sraki@gmasil.com', '213766343', '$2y$10$yoQGiWb.4ZLmwfKBQ92YeeOGdpCJnMeo9thCFB6g1u3tUL7yc/ZlS', 'specjalista ds. promocji', '2025-05-25 21:32:44'),
 (19, 'koordynatorW', 'Krzysztof', 'Bomba', '2025-05-28', 'bombix@gmail.com', '989545212', '$2y$10$CIPaDzCAiaKfVOXgXOB4z.r2Hw4mm/aMdQiV2awC1mxR07Hz1CdSq', 'koordynator wolontariuszy', '2025-05-25 21:33:14');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `wiadomosci_kontaktowe`
+--
+
+CREATE TABLE `wiadomosci_kontaktowe` (
+  `id` int(11) NOT NULL,
+  `nazwisko_imie` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `wiadomosc` text NOT NULL,
+  `data_dodania` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Dumping data for table `wiadomosci_kontaktowe`
+--
+
+INSERT INTO `wiadomosci_kontaktowe` (`id`, `nazwisko_imie`, `email`, `wiadomosc`, `data_dodania`) VALUES
+(0, 'marek szpachelka', 'szpachelka@gmail.com', 'chce dom', '2025-05-27 01:22:11');
 
 -- --------------------------------------------------------
 
@@ -488,7 +518,7 @@ ALTER TABLE `zespoly_wydarzenia`
 -- AUTO_INCREMENT for table `bilety`
 --
 ALTER TABLE `bilety`
-  MODIFY `bilet_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bilet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kategoria_wydarzenia`
