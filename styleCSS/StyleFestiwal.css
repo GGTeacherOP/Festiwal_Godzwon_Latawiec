@@ -1,0 +1,521 @@
+:root {
+    --primary-blue: #2563eb;
+    --dark-blue: #1e40af;
+    --light-blue: #dbeafe;
+    --accent-blue: #3b82f6;
+    --text-dark: #1f2937;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --border-radius: 12px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+  background: linear-gradient(90deg, #5a60e3, #7c83ff);
+  color: white;
+  padding: 25px 0;
+  font-size: 22px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+nav ul li:last-child {
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #d2e3ff;
+  transform: translateY(-1px);
+}
+
+nav ul li.welcome-message {
+  color: white;
+  font-weight: 500;
+  padding: 10px 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+}
+
+nav ul li.welcome-message:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  nav ul li {
+    margin: 5px 0;
+  }
+  
+  nav ul li:last-child {
+    margin: 5px 0;
+  }
+}
+
+footer {
+    background-color: #dfe4ea;
+    text-align: center;
+    padding: 30px 10px;
+    font-size: 14px;
+    margin-top: auto;
+    border-top: 1px solid #ccc;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links {
+    margin: 20px 0;
+}
+
+footer a {
+    color: #444;
+    text-decoration: none;
+    margin: 0 8px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+footer a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #5a60e3;
+}
+
+.social-links a {
+    color: #333;
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-links a.instagram:hover { color: #E1306C; }
+.social-links a.twitter:hover { color: #1DA1F2; }
+.social-links a.youtube:hover { color: #FF0000; }
+.social-links a:hover { color: #4267B2; }
+
+/* === Artyści === */
+.artysci {
+    padding: 40px 20px;
+    background: #f8f9fa;
+}
+
+.artysci h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.artysta-carousel-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.artysta-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px 0;
+    scrollbar-width: none;
+}
+
+.artysta-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.artysta-card {
+    flex: 0 0 300px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.artysta-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.artysta-card h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.artysta-card p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.artysta-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.artysta-card li {
+    padding: 5px 0;
+    color: #555;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 2;
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+/* === Festiwale Lista === */
+.festiwal-list {
+    padding: 40px 20px;
+}
+
+.festiwale-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.festival-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.festival-card:hover {
+    transform: translateY(-5px);
+}
+
+.festival-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.festival-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.festival-content {
+    padding: 20px;
+}
+
+.festival-content h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.kategoria {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.opis {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.festival-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.lokalizacja, .data {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-kup {
+    background: linear-gradient(90deg, #5a60e3 0%, #3ec6e0 100%);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 32px;
+    font-size: 1.1em;
+    font-weight: bold;
+    box-shadow: 0 4px 16px rgba(90,96,227,0.15);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+.btn-kup:hover, .btn-kup:focus {
+    background: linear-gradient(90deg, #3ec6e0 0%, #5a60e3 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(62,198,224,0.18);
+    outline: none;
+}
+
+.login-required {
+    text-align: center;
+    color: #666;
+}
+
+.login-required a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-required a:hover {
+    text-decoration: underline;
+}
+
+/* === Przyciski === */
+.kup-bilet,
+.zobacz-wiecej {
+    padding: 0.7rem 1.3rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+}
+
+.kup-bilet {
+    background: linear-gradient(135deg, #5a60e3, #7c83ff);
+    color: white;
+    box-shadow: 0 4px 6px rgba(90, 96, 227, 0.2);
+}
+
+.kup-bilet:hover {
+    background: linear-gradient(135deg, #4a50d3, #6c73ef);
+    transform: translateY(-2px);
+}
+
+.zobacz-wiecej {
+    background-color: white;
+    color: #5a60e3;
+    border: 2px solid #5a60e3;
+}
+
+.zobacz-wiecej:hover {
+    background-color: #f0f2ff;
+    transform: translateY(-2px);
+    border-color: #4a50d3;
+    color: #4a50d3;
+}
+
+/* === Media Queries === */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .button-container button {
+        width: 100%;
+    }
+}
+
+/* Ulepszona karuzela artystów */
+.artysta-carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 0 50px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.artysta-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.artysta-carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #5a60e3;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-md);
+    z-index: 10;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background-color: #4a50d3;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.carousel-dot.active {
+    background-color: #5a60e3;
+    transform: scale(1.2);
+}
+
+.bilety-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(90,96,227,0.08);
+    overflow: hidden;
+}
+.bilety-tabela th, .bilety-tabela td {
+    padding: 14px 18px;
+    text-align: left;
+}
+.bilety-tabela th {
+    background: linear-gradient(90deg, #5a60e3 0%, #3ec6e0 100%);
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e7ff;
+}
+.bilety-tabela tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background 0.2s;
+}
+.bilety-tabela tr:hover {
+    background: #f1f5fd;
+}
+.bilety-tabela td {
+    color: #333;
+    font-size: 1em;
+}
