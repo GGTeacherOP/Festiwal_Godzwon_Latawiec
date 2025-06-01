@@ -284,7 +284,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <label for="nazwisko">Nazwisko</label>
-                    <input type="text" id="nazwisko" name="nazwisko" value="<?= htmlspecialchars($user['nazwisko']) ?>" required>
+                    <input type="text" id="nazwisko" name="nazwisko" value="<?= isset($user['nazwisko']) ? htmlspecialchars($user['nazwisko']) : '' ?>" required>
                 </div>
             </div>
 
@@ -292,12 +292,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h2><i class="fas fa-envelope"></i> Dane kontaktowe</h2>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+                    <input type="email" id="email" name="email" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>" required>
                 </div>
 
                 <div class="form-group">
                     <label for="telefon">Telefon</label>
-                    <input type="tel" id="telefon" name="telefon" value="<?= htmlspecialchars($user['telefon']) ?>">
+                    <input type="tel" id="telefon" name="telefon" value="<?= isset($user['telefon']) ? htmlspecialchars($user['telefon']) : '' ?>">
                 </div>
             </div>
 
