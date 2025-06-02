@@ -3,13 +3,23 @@ require_once 'config.php';
 session_start();
 
 // Sprawdź uprawnienia
-if (!isset($_SESSION['user_id']) || $user['rola'] !== 'wlasciciel') {
+if (!isset($_SESSION['user_id'])) {
     header("Location: logowanie.php");
     exit();
 }
 
-if (!isset($_GET['id'])) {
-    $_SESSION['error'] = "Brak ID wydarzenia.";
+// Pobierz rolę użytkownika
+$stmt = $pdo->prepare("SELECT rola FROM uzytkownicy WHERE uzytkownicy_id = ?");
+$stmt->execute([$_SESSION['user_id']]);
+$user = $stmt->fetch();
+
+if ($user['rola'] !== 'wlasciciel') {
+    header("Location: panel_uzytkownika.php");
+    exit();
+}
+
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    $_SESSION['error'] = "Nieprawidłowe ID wydarzenia.";
     header("Location: panel_wlasciciela.php");
     exit();
 }
@@ -18,39 +28,61 @@ $id = (int)$_GET['id'];
 
 // Obsługa formularza edycji
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tytul = $_POST['tytul'];
-    $opis = $_POST['opis'];
+    $tytul = trim($_POST['tytul']);
+    $opis = trim($_POST['opis']);
     $kategoria_id = (int)$_POST['kategoria_id'];
     $rozpoczecie = $_POST['rozpoczecie'];
     $zakonczenie = $_POST['zakonczenie'];
     $cena = (float)$_POST['cena'];
-    $miejsce = $_POST['miejsce'];
-    $limit_uczestnikow = (int)$_POST['limit_uczestnikow'];
 
-    try {
-        $stmt = $pdo->prepare("UPDATE wydarzenia SET 
-                              tytul = ?, opis = ?, kategoria_id = ?, 
-                              rozpoczecie = ?, zakonczenie = ?, cena = ?,
-                              miejsce = ?, limit_uczestnikow = ?
-                              WHERE wydarzenia_id = ?");
-        $stmt->execute([$tytul, $opis, $kategoria_id, $rozpoczecie, 
-                       $zakonczenie, $cena, $miejsce, $limit_uczestnikow, $id]);
+    // Walidacja danych
+    $errors = [];
+    
+    if (empty($tytul)) $errors[] = "Tytuł jest wymagany.";
+    if (empty($opis)) $errors[] = "Opis jest wymagany.";
+    if ($cena < 0) $errors[] = "Cena nie może być ujemna.";
+    
+    // Walidacja dat
+    $start_date = strtotime($rozpoczecie);
+    $end_date = strtotime($zakonczenie);
+    
+    if ($start_date === false) $errors[] = "Nieprawidłowa data rozpoczęcia.";
+    if ($end_date === false) $errors[] = "Nieprawidłowa data zakończenia.";
+    if ($end_date < $start_date) $errors[] = "Data zakończenia musi być późniejsza niż data rozpoczęcia.";
 
-        $_SESSION['success'] = "Wydarzenie zostało zaktualizowane.";
-        header("Location: panel_wlasciciela.php");
-        exit();
-    } catch (PDOException $e) {
-        $_SESSION['error'] = "Błąd podczas aktualizacji wydarzenia: " . $e->getMessage();
+    if (empty($errors)) {
+        try {
+            $stmt = $pdo->prepare("UPDATE wydarzenia SET 
+                                  tytul = ?, opis = ?, kategoria_id = ?, 
+                                  rozpoczecie = ?, zakonczenie = ?, cena = ?
+                                  WHERE wydarzenia_id = ?");
+            $stmt->execute([$tytul, $opis, $kategoria_id, $rozpoczecie, 
+                           $zakonczenie, $cena, $id]);
+
+            $_SESSION['success'] = "Wydarzenie zostało zaktualizowane pomyślnie.";
+            header("Location: panel_wlasciciela.php");
+            exit();
+        } catch (PDOException $e) {
+            $_SESSION['error'] = "Błąd podczas aktualizacji wydarzenia: " . $e->getMessage();
+        }
+    } else {
+        $_SESSION['error'] = implode("<br>", $errors);
     }
 }
 
 // Pobierz dane wydarzenia do edycji
-$stmt = $pdo->prepare("SELECT * FROM wydarzenia WHERE wydarzenia_id = ?");
-$stmt->execute([$id]);
-$event = $stmt->fetch();
+try {
+    $stmt = $pdo->prepare("SELECT * FROM wydarzenia WHERE wydarzenia_id = ?");
+    $stmt->execute([$id]);
+    $event = $stmt->fetch();
 
-if (!$event) {
-    $_SESSION['error'] = "Wydarzenie nie istnieje.";
+    if (!$event) {
+        $_SESSION['error'] = "Wydarzenie o podanym ID nie istnieje.";
+        header("Location: panel_wlasciciela.php");
+        exit();
+    }
+} catch (PDOException $e) {
+    $_SESSION['error'] = "Błąd podczas pobierania danych wydarzenia: " . $e->getMessage();
     header("Location: panel_wlasciciela.php");
     exit();
 }
@@ -72,6 +104,7 @@ $categories = $pdo->query("SELECT * FROM kategoria_wydarzenia")->fetchAll();
             padding: 20px;
             background: #f9f9f9;
             border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .form-group {
             margin-bottom: 15px;
@@ -89,11 +122,47 @@ $categories = $pdo->query("SELECT * FROM kategoria_wydarzenia")->fetchAll();
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            box-sizing: border-box;
         }
         textarea {
             height: 100px;
+            resize: vertical;
         }
-        
+        .error-message {
+            color: #a94442;
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .btn {
+            background-color: #5a60e3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #4a50d3;
+        }
+        .btn-cancel {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .btn-cancel:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
@@ -108,18 +177,18 @@ $categories = $pdo->query("SELECT * FROM kategoria_wydarzenia")->fetchAll();
 
         <form method="post">
             <div class="form-group">
-                <label>Tytuł:</label>
-                <input type="text" name="tytul" value="<?= htmlspecialchars($event['tytul']) ?>" required>
+                <label for="tytul">Tytuł:</label>
+                <input type="text" id="tytul" name="tytul" value="<?= htmlspecialchars($event['tytul']) ?>" required>
             </div>
 
             <div class="form-group">
-                <label>Opis:</label>
-                <textarea name="opis" required><?= htmlspecialchars($event['opis']) ?></textarea>
+                <label for="opis">Opis:</label>
+                <textarea id="opis" name="opis" required><?= htmlspecialchars($event['opis']) ?></textarea>
             </div>
 
             <div class="form-group">
-                <label>Kategoria:</label>
-                <select name="kategoria_id" required>
+                <label for="kategoria_id">Kategoria:</label>
+                <select id="kategoria_id" name="kategoria_id" required>
                     <?php foreach ($categories as $category): ?>
                         <option value="<?= $category['kategoria_id'] ?>" 
                             <?= $category['kategoria_id'] == $event['kategoria_id'] ? 'selected' : '' ?>>
@@ -130,32 +199,21 @@ $categories = $pdo->query("SELECT * FROM kategoria_wydarzenia")->fetchAll();
             </div>
 
             <div class="form-group">
-                <label>Data i godzina rozpoczęcia:</label>
-                <input type="datetime-local" name="rozpoczecie" 
+                <label for="rozpoczecie">Data i godzina rozpoczęcia:</label>
+                <input type="datetime-local" id="rozpoczecie" name="rozpoczecie" 
                        value="<?= date('Y-m-d\TH:i', strtotime($event['rozpoczecie'])) ?>" required>
             </div>
 
             <div class="form-group">
-                <label>Data i godzina zakończenia:</label>
-                <input type="datetime-local" name="zakonczenie" 
+                <label for="zakonczenie">Data i godzina zakończenia:</label>
+                <input type="datetime-local" id="zakonczenie" name="zakonczenie" 
                        value="<?= date('Y-m-d\TH:i', strtotime($event['zakonczenie'])) ?>" required>
             </div>
 
             <div class="form-group">
-                <label>Cena biletu (PLN):</label>
-                <input type="number" name="cena" step="0.01" min="0" 
+                <label for="cena">Cena biletu (PLN):</label>
+                <input type="number" id="cena" name="cena" step="0.01" min="0" 
                        value="<?= htmlspecialchars($event['cena']) ?>" required>
-            </div>
-
-            <div class="form-group">
-                <label>Miejsce:</label>
-                <input type="text" name="miejsce" value="<?= htmlspecialchars($event['miejsce']) ?>" required>
-            </div>
-
-            <div class="form-group">
-                <label>Limit uczestników:</label>
-                <input type="number" name="limit_uczestnikow" min="1" 
-                       value="<?= htmlspecialchars($event['limit_uczestnikow']) ?>">
             </div>
 
             <button type="submit" class="btn">Zapisz zmiany</button>

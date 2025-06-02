@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 01, 2025 at 05:43 PM
+-- Generation Time: Cze 02, 2025 at 07:03 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -307,10 +307,8 @@ INSERT INTO `wydarzenia` (`wydarzenia_id`, `tytul`, `opis`, `rozpoczecie`, `zako
 (9, 'Tech Days 2025', 'Nowinki technologiczne i panele dyskusyjne.', '2025-09-10 09:00:00', '2025-09-12 18:00:00', 9, 5, '../zdjecia/festiwalTechnologii.jpg', 180.00),
 (10, 'Kulturalny Melanż', 'Koncerty i performance kultury miejskiej.', '2025-07-29 16:00:00', '2025-07-29 23:00:00', 12, 3, '../zdjecia/festiwalKulturyiSztuki.jpg', 150.00),
 (11, 'Głodni Śmiechu', 'Maraton stand-upów i komedii.', '2025-06-21 19:00:00', '2025-06-21 23:59:00', 6, 6, '../zdjecia/festiwalKomedii.jpg', 100.00),
-(12, 'Literacki Świat', 'Spotkania z autorami i premiery książek.', '2025-10-05 11:00:00', '2025-10-06 17:00:00', 14, 7, '../zdjecia/festiwalLiteracki.png', 120.00),
-(13, 'Gra o Planszę', 'Turnieje i prezentacje gier planszowych.', '2025-09-22 10:00:00', '2025-09-24 19:00:00', 10, 8, '../zdjecia/festiwalGier.png', 150.00),
 (14, 'Alt Scena', 'Muzyczne brzmienia alternatywy.', '2025-08-20 17:00:00', '2025-08-20 22:00:00', 7, 9, '../zdjecia/festiwalMuzykiRockowej.png', 100.00),
-(15, 'Kino OFF', 'Kameralne kino artystyczne i dyskusje.', '2025-07-11 18:00:00', '2025-07-12 00:00:00', 13, 10, '../zdjecia/festiwalFilmowy.jpg', 150.00);
+(15, 'Kino OFF(Najlepsze Kino)', 'Kameralne kino artystyczne i dyskusje....', '2025-07-11 18:00:00', '2025-07-12 00:00:00', 13, 10, '../zdjecia/festiwalFilmowy.jpg', 200.00);
 
 -- --------------------------------------------------------
 
@@ -394,8 +392,6 @@ INSERT INTO `zespoly_wydarzenia` (`id`, `zespol_id`, `wydarzenia_id`, `godzina_w
 (9, 9, 9, '2025-09-10 10:00:00'),
 (10, 10, 10, '2025-07-29 17:00:00'),
 (11, 11, 11, '2025-06-21 20:00:00'),
-(12, 12, 12, '2025-10-05 13:00:00'),
-(13, 13, 13, '2025-09-22 11:00:00'),
 (14, 14, 14, '2025-08-20 18:00:00'),
 (15, 15, 15, '2025-07-11 19:00:00');
 

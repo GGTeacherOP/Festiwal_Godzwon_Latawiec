@@ -27,12 +27,54 @@ if (isset($_GET['delete_user'])) {
     exit();
 }
 
+
+
 // Obsługa usuwania wydarzenia
-if (isset($_GET['delete_event'])) {
+if (isset($_GET['delete_event']) && is_numeric($_GET['delete_event'])) {
     $id = (int)$_GET['delete_event'];
-    $stmt = $pdo->prepare("DELETE FROM wydarzenia WHERE wydarzenia_id = ?");
-    $stmt->execute([$id]);
-    $_SESSION['success'] = 'Wydarzenie zostało usunięte';
+    
+    try {
+        $pdo->beginTransaction();
+        
+        // 1. Sprawdź czy wydarzenie istnieje
+        $check_sql = "SELECT wydarzenia_id FROM wydarzenia WHERE wydarzenia_id = ?";
+        $stmt = $pdo->prepare($check_sql);
+        $stmt->execute([$id]);
+        $event = $stmt->fetch();
+        
+        if (!$event) {
+            $_SESSION['error'] = "Wydarzenie o ID $id nie istnieje";
+            header("Location: panel_wlasciciela.php");
+            exit();
+        }
+
+        // 2. Usuń powiązane bilety
+        $stmt = $pdo->prepare("DELETE FROM bilety WHERE wydarzenia_id = ?");
+        $stmt->execute([$id]);
+        
+        // 3. Usuń powiązania z zespołami
+        $stmt = $pdo->prepare("DELETE FROM zespoly_wydarzenia WHERE wydarzenia_id = ?");
+        $stmt->execute([$id]);
+        
+        // 4. Usuń wydarzenie
+        $stmt = $pdo->prepare("DELETE FROM wydarzenia WHERE wydarzenia_id = ?");
+        $stmt->execute([$id]);
+        
+        $rows_affected = $stmt->rowCount();
+        
+        if ($rows_affected > 0) {
+            $pdo->commit();
+            $_SESSION['success'] = "Wydarzenie zostało usunięte! (ID: $id)";
+        } else {
+            $pdo->rollBack();
+            $_SESSION['error'] = "Nie usunięto wydarzenia (brak zmian)";
+        }
+    } catch (PDOException $e) {
+        $pdo->rollBack();
+        $_SESSION['error'] = "Błąd podczas usuwania wydarzenia: " . $e->getMessage();
+        error_log("Błąd usuwania wydarzenia ID $id: " . $e->getMessage());
+    }
+    
     header("Location: panel_wlasciciela.php");
     exit();
 }
@@ -157,6 +199,22 @@ try {
     background-color: #ffecec;
     color: #999;
 }
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
 
     </style>
 </head>
@@ -200,7 +258,17 @@ try {
                 <?php endforeach; ?>
             </table>
         </section>
+<?php if (isset($_SESSION['success'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success']; unset($_SESSION['success']); ?>
+    </div>
+<?php endif; ?>
 
+<?php if (isset($_SESSION['error'])): ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+    </div>
+<?php endif; ?>
         <section class="admin-section">
             <h2>Zarządzanie wydarzeniami</h2>
             <table>
@@ -219,8 +287,7 @@ try {
                     <td><?= date('d.m.Y H:i', strtotime($event['rozpoczecie'])) ?></td>
                     <td class="action-links">
                         <a href="edit_event.php?id=<?= $event['wydarzenia_id'] ?>" class="btn-edit">Edytuj</a>
-                        <a href="panel_wlasciciela.php?delete_event=<?= $event['wydarzenia_id'] ?>"
-                           onclick="return confirm('Na pewno usunąć to wydarzenie?')">Usuń</a>
+                        <a href="panel_wlasciciela.php?delete_event=<?= $event['wydarzenia_id'] ?>" onclick="return confirm('Czy na pewno chcesz usunąć to wydarzenie?')">Usuń</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
