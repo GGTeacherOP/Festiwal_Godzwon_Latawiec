@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 27, 2025 at 01:23 AM
+-- Generation Time: Cze 02, 2025 at 07:03 PM
 -- Wersja serwera: 10.4.32-MariaDB
--- Wersja PHP: 8.0.30
+-- Wersja PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,8 +40,7 @@ CREATE TABLE `bilety` (
 --
 
 INSERT INTO `bilety` (`bilet_id`, `uzytkownicy_id`, `wydarzenia_id`, `data_zakupu`, `cena`) VALUES
-(1, 12, 11, '2025-05-27 00:29:50', 100.00),
-(2, 12, 15, '2025-05-27 00:29:56', 150.00);
+(1, 12, 10, '2025-06-01 16:17:36', 150.00);
 
 -- --------------------------------------------------------
 
@@ -144,21 +143,20 @@ CREATE TABLE `pracownicy` (
   `uzytkownicy_id` int(11) NOT NULL,
   `stanowisko` varchar(100) DEFAULT NULL,
   `data_zatrudnienia` date DEFAULT NULL,
-  `zarobki` decimal(10,2) DEFAULT NULL,
-  `obowiazki` text DEFAULT NULL
+  `zarobki` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `pracownicy`
 --
 
-INSERT INTO `pracownicy` (`pracownik_id`, `uzytkownicy_id`, `stanowisko`, `data_zatrudnienia`, `zarobki`, `obowiazki`) VALUES
-(1, 7, 'informatyk', '2025-05-01', 6500.00, '• Obsługa systemów IT festiwalu\r\n• Rozwiązywanie problemów technicznych\r\n• Wsparcie techniczne dla pracowników\r\n• Zarządzanie siecią komputerową\r\n• Zabezpieczenie danych festiwalu'),
-(2, 8, 'sprzątaczka', '2025-04-20', 3500.00, '• Utrzymanie czystości w pomieszczeniach festiwalowych\r\n• Dbanie o porządek w strefach publicznych\r\n• Uzupełnianie zapasów w łazienkach\r\n• Segregacja odpadów\r\n• Współpraca z zespołem sprzątającym'),
-(3, 9, 'organizator', '2025-05-10', 5000.00, '• Koordynacja działań festiwalowych\r\n• Nadzór nad harmonogramem wydarzeń\r\n• Kontakt z wykonawcami i zespołami\r\n• Rozwiązywanie problemów organizacyjnych\r\n• Współpraca z innymi działami'),
-(4, 10, 'technik sceniczny', '2025-05-02', 4700.00, '• Przygotowanie i obsługa sprzętu scenicznego\r\n• Nadzór nad montażem i demontażem sceny\r\n• Współpraca z zespołami muzycznymi\r\n• Dbanie o bezpieczeństwo techniczne\r\n• Obsługa systemów nagłośnienia i oświetlenia'),
-(5, 11, 'specjalista ds. promocji', '2025-05-05', 5300.00, '• Zarządzanie mediami społecznościowymi\r\n• Tworzenie materiałów promocyjnych\r\n• Kontakt z mediami\r\n• Organizacja akcji promocyjnych\r\n• Analiza skuteczności działań marketingowych'),
-(6, 12, 'koordynator wolontariuszy', '2025-05-08', 4800.00, '• Rekrutacja i szkolenie wolontariuszy\r\n• Przydzielanie zadań wolontariuszom\r\n• Nadzór nad pracą wolontariuszy\r\n• Rozwiązywanie problemów w zespole\r\n• Koordynacja harmonogramu pracy wolontariuszy');
+INSERT INTO `pracownicy` (`pracownik_id`, `uzytkownicy_id`, `stanowisko`, `data_zatrudnienia`, `zarobki`) VALUES
+(1, 7, 'informatyk', '2025-05-01', 6500.00),
+(2, 8, 'sprzątaczka', '2025-04-20', 3500.00),
+(3, 9, 'organizator', '2025-05-10', 5000.00),
+(4, 10, 'technik sceniczny', '2025-05-02', 4700.00),
+(5, 11, 'specjalista ds. promocji', '2025-05-05', 5300.00),
+(6, 12, 'koordynator wolontariuszy', '2025-05-08', 4800.00);
 
 -- --------------------------------------------------------
 
@@ -183,9 +181,7 @@ CREATE TABLE `rezerwacje_noclegow` (
 INSERT INTO `rezerwacje_noclegow` (`rezerwacja_id`, `uzytkownicy_id`, `nocleg_id`, `data_przyjazdu`, `data_wyjazdu`, `liczba_osob`, `status`) VALUES
 (1, 1, 1, '2025-07-19', '2025-07-21', 2, 'potwierdzona'),
 (2, 2, 2, '2025-08-14', '2025-08-16', 1, 'potwierdzona'),
-(3, 3, 3, '2025-08-05', '2025-08-07', 2, 'anulowana'),
 (4, 4, 4, '2025-07-28', '2025-07-30', 3, 'potwierdzona'),
-(5, 5, 5, '2025-10-04', '2025-10-06', 1, 'oczekująca'),
 (6, 6, 6, '2025-09-21', '2025-09-24', 2, 'potwierdzona');
 
 -- --------------------------------------------------------
@@ -207,9 +203,7 @@ CREATE TABLE `uczestnicy` (
 INSERT INTO `uczestnicy` (`uczestnik_id`, `uzytkownicy_id`, `data_dolaczenia`) VALUES
 (1, 1, '2025-05-18'),
 (2, 2, '2025-05-18'),
-(3, 3, '2025-05-18'),
 (4, 4, '2025-05-18'),
-(5, 5, '2025-05-18'),
 (6, 6, '2025-05-18');
 
 -- --------------------------------------------------------
@@ -241,33 +235,33 @@ CREATE TABLE `uzytkownicy` (
   `telefon` varchar(20) NOT NULL,
   `haslo` varchar(255) NOT NULL,
   `rola` varchar(50) NOT NULL DEFAULT 'klient',
-  `data_dodania` datetime DEFAULT current_timestamp()
+  `data_dodania` datetime DEFAULT current_timestamp(),
+  `aktywny` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `uzytkownicy`
 --
 
-INSERT INTO `uzytkownicy` (`uzytkownicy_id`, `nazwa`, `imie`, `nazwisko`, `data_urodzenia`, `email`, `telefon`, `haslo`, `rola`, `data_dodania`) VALUES
-(1, 'maciej_latawiec', 'Maciej', 'Latawiec', '2025-05-13', 'maciej.latawiec29@gmail.com', '668939663', '827ccb0eea8a706c4c34a16891f84e7b', 'klient', '2025-05-18 20:08:21'),
-(2, 'latini', 'michal', 'kowalski', '2025-05-01', 'drapacz.fok29@gmail.com', '123456789', 'e10adc3949ba59abbe56e057f20f883e', 'wlasciciel', '2025-05-18 20:12:50'),
-(3, 'katastrof', 'szymon', 'lala', '2025-05-21', 'maciunia2007@gmail.com', '234324324', '202cb962ac59075b964b07152d234b70', 'klient', '2025-05-18 20:15:53'),
-(4, 'lala', 'oskar', 'kotlet', '2025-06-06', 'lala@gmail.com', '123456789', '202cb962ac59075b964b07152d234b70', 'klient', '2025-05-18 20:22:29'),
-(5, 'lulus', 'papus', 'papa', '2025-05-26', 'uaua@gmail.com', '668939663', '827ccb0eea8a706c4c34a16891f84e7b', 'klient', '2025-05-18 20:44:00'),
-(6, 'uaua', 'aae', 'vadf', '2025-05-05', 'fadsafds@lala.com', '123456789', '202cb962ac59075b964b07152d234b70', 'klient', '2025-05-18 20:45:22'),
-(7, 'blaba', 'sratuys', 'sr', '2025-05-15', 'aka@gmail.com', '098765432', '$2y$10$ThVz5cof/SlIKTXgoX91e.10PDCz8/qX2P7ldgiv7GB', 'klient', '2025-05-18 21:35:14'),
-(8, 'gcuio', 'mateusz', 'pezda', '2024-12-31', 'mateusz@gmail.com', '123123123', '$2y$10$2ARuO97PaUJ5THF/mIz1C.a4bz7ZxHP9l0Lg4XWNT2h', 'klient', '2025-05-18 21:36:37'),
-(9, 'ulala', 'karol', 'glaz', '2023-05-09', 'glaz@gmail.com', '123', '$2y$10$LqLg62Tpdr.wmkGHA66Pruted4r2yVEGThOo3ykIg3H', 'klient', '2025-05-18 21:41:00'),
-(10, 'kipi', 'kacper', 'szewc', '2021-06-15', 'kipi@gmail.com', '888999111', '$2y$10$IZhdgALyVXn7fC/IMTvaz.IruHt.xWFZOeUKRQCdHJ8', 'klient', '2025-05-19 21:57:02'),
-(11, 'szymus', 'szymek', 'godzwon', '2111-03-12', 'gordi@gmail.com', '111222333', '$2y$10$rwoGG6eAt0un4iRiXP.rlu3GZUOgs7o/g4b4OgulWPi', 'klient', '2025-05-19 21:59:17'),
-(12, 'dominis', 'dominik', 'kuzi', '2025-05-14', 'dominis@gmail.com', '010101010', '$2y$10$Iyj/.IVZ9ZPNQH1VLB4a.O4P0NhM1JJDSVgmuiYVfkzbZfx/Oq7f2', 'klient', '2025-05-21 22:11:32'),
-(13, 'baru', 'Bartosz', 'Dziewit', '2025-05-13', 'baru@gmail.com', '173959424', '$2y$10$vRrfLSueGGaz8USgELQ.HumKaUI47Bbj8t7qM6.DdtV/X0IQXuJTO', 'wlasciciel', '2025-05-25 20:39:26'),
-(14, 'informatyk', 'olek', 'olisowski', '2025-05-14', 'info@gmail.com', '000111888', '$2y$10$VKsyuPhk/SJhq2jujUgnZemkwzse5mZRtCKt4UNetnd2ykhfDC/1S', 'sprzataczka', '2025-05-25 21:30:02'),
-(15, 'orga', 'Kazimierz', 'Plamba', '2025-05-28', 'plamba@gmail.com', '121232454', '$2y$10$XW4kW.UHf/bYszmOdtSkH.aRtMeHa7ufDxmOXNXVL2TDp0k3XTuum', 'informatyk', '2025-05-25 21:30:36'),
-(16, 'sprzataczka', 'katarzyna', 'Plumbowska', '2025-05-06', 'kat@gmail.com', '020858626', '$2y$10$p5v5NQjT4q.an7ZWoZv2.useT6h3pJ8hH/tv2hkY61BBJEEorDczm', 'organizator', '2025-05-25 21:31:26'),
-(17, 'technikS', 'katastrof', 'Gumiak', '2025-04-30', 'gumiak@gmail.com', '212434676', '$2y$10$g5xA31awYw/8FOE0BTQJc.tAGM6X3UPtsFV5NfuoTfFGrEI6NWWHi', 'technik sceniczny', '2025-05-25 21:32:06'),
-(18, 'specjalistaDP', 'Patryk', 'Sraki', '2025-05-28', 'sraki@gmasil.com', '213766343', '$2y$10$yoQGiWb.4ZLmwfKBQ92YeeOGdpCJnMeo9thCFB6g1u3tUL7yc/ZlS', 'specjalista ds. promocji', '2025-05-25 21:32:44'),
-(19, 'koordynatorW', 'Krzysztof', 'Bomba', '2025-05-28', 'bombix@gmail.com', '989545212', '$2y$10$CIPaDzCAiaKfVOXgXOB4z.r2Hw4mm/aMdQiV2awC1mxR07Hz1CdSq', 'koordynator wolontariuszy', '2025-05-25 21:33:14');
+INSERT INTO `uzytkownicy` (`uzytkownicy_id`, `nazwa`, `imie`, `nazwisko`, `data_urodzenia`, `email`, `telefon`, `haslo`, `rola`, `data_dodania`, `aktywny`) VALUES
+(1, 'maciej_latawiec', 'Maciej', 'Latawiec', '2025-05-13', 'maciej.latawiec29@gmail.com', '668939663', '827ccb0eea8a706c4c34a16891f84e7b', 'klient', '2025-05-18 20:08:21', 1),
+(2, 'latini', 'michal', 'kowalski', '2025-05-01', 'drapacz.fok29@gmail.com', '123456789', 'e10adc3949ba59abbe56e057f20f883e', 'wlasciciel', '2025-05-18 20:12:50', 1),
+(4, 'lala', 'oskar', 'kotlet', '2025-06-06', 'lala@gmail.com', '123456789', '202cb962ac59075b964b07152d234b70', 'klient', '2025-05-18 20:22:29', 1),
+(6, 'uaua', 'Szymon', 'Gordi', '2025-05-05', 's@gmail.com', '123456789', '202cb962ac59075b964b07152d234b70', 'wlasciciel', '2025-05-18 20:45:22', 1),
+(7, 'blaba', 'sratuys', 'sr', '2025-05-15', 'aka@gmail.com', '098765432', '$2y$10$ThVz5cof/SlIKTXgoX91e.10PDCz8/qX2P7ldgiv7GB', 'klient', '2025-05-18 21:35:14', 1),
+(8, 'gcuio', 'mateusz', 'pezda', '2024-12-31', 'mateusz@gmail.com', '123123123', '$2y$10$2ARuO97PaUJ5THF/mIz1C.a4bz7ZxHP9l0Lg4XWNT2h', 'klient', '2025-05-18 21:36:37', 1),
+(9, 'ulala', 'karol', 'glaz', '2023-05-09', 'glaz@gmail.com', '123', '$2y$10$LqLg62Tpdr.wmkGHA66Pruted4r2yVEGThOo3ykIg3H', 'klient', '2025-05-18 21:41:00', 1),
+(10, 'kipi', 'kacper', 'szewc', '2021-06-15', 'kipi@gmail.com', '888999111', '$2y$10$IZhdgALyVXn7fC/IMTvaz.IruHt.xWFZOeUKRQCdHJ8', 'klient', '2025-05-19 21:57:02', 1),
+(11, 'szymus', 'szymek', 'godzwon', '2111-03-12', 'gordi@gmail.com', '111222333', '$2y$10$rwoGG6eAt0un4iRiXP.rlu3GZUOgs7o/g4b4OgulWPi', 'klient', '2025-05-19 21:59:17', 1),
+(12, 'dominis', 'marcin', 'wewewe', '2025-05-14', 'xdpl@gmail.com', '111222333', '$2y$10$Iyj/.IVZ9ZPNQH1VLB4a.O4P0NhM1JJDSVgmuiYVfkzbZfx/Oq7f2', 'klient', '2025-05-21 22:11:32', 1),
+(13, 'baru', 'Bartosz', 'Dziewit', '2025-05-13', 'baru@gmail.com', '173959424', '$2y$10$vRrfLSueGGaz8USgELQ.HumKaUI47Bbj8t7qM6.DdtV/X0IQXuJTO', 'wlasciciel', '2025-05-25 20:39:26', 1),
+(14, 'informatyk', 'olek', 'olisowski', '2025-05-14', 'info@gmail.com', '000111888', '$2y$10$VKsyuPhk/SJhq2jujUgnZemkwzse5mZRtCKt4UNetnd2ykhfDC/1S', 'sprzataczka', '2025-05-25 21:30:02', 1),
+(15, 'orga', 'Kazimierz', 'Plamba', '2025-05-28', 'plamba@gmail.com', '121232454', '$2y$10$XW4kW.UHf/bYszmOdtSkH.aRtMeHa7ufDxmOXNXVL2TDp0k3XTuum', 'informatyk', '2025-05-25 21:30:36', 1),
+(16, 'sprzataczka', 'katarzyna', 'Plumbowska', '2025-05-06', 'kat@gmail.com', '020858626', '$2y$10$p5v5NQjT4q.an7ZWoZv2.useT6h3pJ8hH/tv2hkY61BBJEEorDczm', 'organizator', '2025-05-25 21:31:26', 1),
+(17, 'technikS', 'katastrof', 'Gumiak', '2025-04-30', 'gumiak@gmail.com', '212434676', '$2y$10$g5xA31awYw/8FOE0BTQJc.tAGM6X3UPtsFV5NfuoTfFGrEI6NWWHi', 'technik sceniczny', '2025-05-25 21:32:06', 1),
+(18, 'specjalistaDP', 'Patryk', 'Sraki', '2025-05-28', 'sraki@gmasil.com', '213766343', '$2y$10$yoQGiWb.4ZLmwfKBQ92YeeOGdpCJnMeo9thCFB6g1u3tUL7yc/ZlS', 'specjalista ds. promocji', '2025-05-25 21:32:44', 1),
+(19, 'koordynatorW', 'Krzysztof', 'Bomba', '2025-05-28', 'bombix@gmail.com', '989545212', '$2y$10$CIPaDzCAiaKfVOXgXOB4z.r2Hw4mm/aMdQiV2awC1mxR07Hz1CdSq', 'koordynator wolontariuszy', '2025-05-25 21:33:14', 1),
+(20, 'test', 'test', 'test', '2025-06-18', 'test@gmail.com', '111222999', '$2y$10$nSJxB18/Q6RBfhntdhpN.eyCsA3DsJIc5kFqxfENcHzcDefTI3KCO', 'wlasciciel', '2025-06-01 16:23:02', 1);
 
 -- --------------------------------------------------------
 
@@ -282,13 +276,6 @@ CREATE TABLE `wiadomosci_kontaktowe` (
   `wiadomosc` text NOT NULL,
   `data_dodania` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
-
---
--- Dumping data for table `wiadomosci_kontaktowe`
---
-
-INSERT INTO `wiadomosci_kontaktowe` (`id`, `nazwisko_imie`, `email`, `wiadomosc`, `data_dodania`) VALUES
-(0, 'marek szpachelka', 'szpachelka@gmail.com', 'chce dom', '2025-05-27 01:22:11');
 
 -- --------------------------------------------------------
 
@@ -320,10 +307,8 @@ INSERT INTO `wydarzenia` (`wydarzenia_id`, `tytul`, `opis`, `rozpoczecie`, `zako
 (9, 'Tech Days 2025', 'Nowinki technologiczne i panele dyskusyjne.', '2025-09-10 09:00:00', '2025-09-12 18:00:00', 9, 5, '../zdjecia/festiwalTechnologii.jpg', 180.00),
 (10, 'Kulturalny Melanż', 'Koncerty i performance kultury miejskiej.', '2025-07-29 16:00:00', '2025-07-29 23:00:00', 12, 3, '../zdjecia/festiwalKulturyiSztuki.jpg', 150.00),
 (11, 'Głodni Śmiechu', 'Maraton stand-upów i komedii.', '2025-06-21 19:00:00', '2025-06-21 23:59:00', 6, 6, '../zdjecia/festiwalKomedii.jpg', 100.00),
-(12, 'Literacki Świat', 'Spotkania z autorami i premiery książek.', '2025-10-05 11:00:00', '2025-10-06 17:00:00', 14, 7, '../zdjecia/festiwalLiteracki.png', 120.00),
-(13, 'Gra o Planszę', 'Turnieje i prezentacje gier planszowych.', '2025-09-22 10:00:00', '2025-09-24 19:00:00', 10, 8, '../zdjecia/festiwalGier.png', 150.00),
 (14, 'Alt Scena', 'Muzyczne brzmienia alternatywy.', '2025-08-20 17:00:00', '2025-08-20 22:00:00', 7, 9, '../zdjecia/festiwalMuzykiRockowej.png', 100.00),
-(15, 'Kino OFF', 'Kameralne kino artystyczne i dyskusje.', '2025-07-11 18:00:00', '2025-07-12 00:00:00', 13, 10, '../zdjecia/festiwalFilmowy.jpg', 150.00);
+(15, 'Kino OFF(Najlepsze Kino)', 'Kameralne kino artystyczne i dyskusje....', '2025-07-11 18:00:00', '2025-07-12 00:00:00', 13, 10, '../zdjecia/festiwalFilmowy.jpg', 200.00);
 
 -- --------------------------------------------------------
 
@@ -407,8 +392,6 @@ INSERT INTO `zespoly_wydarzenia` (`id`, `zespol_id`, `wydarzenia_id`, `godzina_w
 (9, 9, 9, '2025-09-10 10:00:00'),
 (10, 10, 10, '2025-07-29 17:00:00'),
 (11, 11, 11, '2025-06-21 20:00:00'),
-(12, 12, 12, '2025-10-05 13:00:00'),
-(13, 13, 13, '2025-09-22 11:00:00'),
 (14, 14, 14, '2025-08-20 18:00:00'),
 (15, 15, 15, '2025-07-11 19:00:00');
 
@@ -518,7 +501,7 @@ ALTER TABLE `zespoly_wydarzenia`
 -- AUTO_INCREMENT for table `bilety`
 --
 ALTER TABLE `bilety`
-  MODIFY `bilet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `bilet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `kategoria_wydarzenia`
@@ -566,7 +549,7 @@ ALTER TABLE `uczestnicy_zespolu`
 -- AUTO_INCREMENT for table `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `uzytkownicy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `uzytkownicy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `wydarzenia`
@@ -619,14 +602,14 @@ ALTER TABLE `pracownicy`
 -- Constraints for table `rezerwacje_noclegow`
 --
 ALTER TABLE `rezerwacje_noclegow`
-  ADD CONSTRAINT `rezerwacje_noclegow_ibfk_1` FOREIGN KEY (`uzytkownicy_id`) REFERENCES `uzytkownicy` (`uzytkownicy_id`),
+  ADD CONSTRAINT `rezerwacje_noclegow_ibfk_1` FOREIGN KEY (`uzytkownicy_id`) REFERENCES `uzytkownicy` (`uzytkownicy_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `rezerwacje_noclegow_ibfk_2` FOREIGN KEY (`nocleg_id`) REFERENCES `noclegi` (`nocleg_id`);
 
 --
 -- Constraints for table `uczestnicy`
 --
 ALTER TABLE `uczestnicy`
-  ADD CONSTRAINT `uczestnicy_ibfk_1` FOREIGN KEY (`uzytkownicy_id`) REFERENCES `uzytkownicy` (`uzytkownicy_id`);
+  ADD CONSTRAINT `uczestnicy_ibfk_1` FOREIGN KEY (`uzytkownicy_id`) REFERENCES `uzytkownicy` (`uzytkownicy_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `uczestnicy_zespolu`
